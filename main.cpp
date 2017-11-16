@@ -7,6 +7,8 @@ void resizeView(const sf::RenderWindow& window, sf::View& view){
     view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
 }
 
+//test
+
 int main()
 {
     float deltaTime;
