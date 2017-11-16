@@ -7,7 +7,7 @@ void resizeView(const sf::RenderWindow& window, sf::View& view){
     view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
 }
 
-//test 2
+//test 3
 
 int main()
 {
