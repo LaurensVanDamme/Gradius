@@ -15,7 +15,7 @@ public:
     Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed);
 
     void update(float deltaTime);
-    void draw(sf::RenderWindow& window);//t
+    void draw(sf::RenderWindow& window)
 
     const sf::Vector2f &getBodyPosition() const;
 
