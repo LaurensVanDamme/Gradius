@@ -9,6 +9,25 @@
 
 class MovingEntity: public Entity {
 public:
+/**
+\n    Moves the entity up in the coordinate system
+*/
+    void moveUp(float deltaTime);
+
+/**
+\n    Moves the entity down in the coordinate system
+*/
+    void moveDown(float deltaTime);
+
+/**
+\n    Moves the entity right in the coordinate system
+*/
+    void moveRight(float deltaTime);
+
+/**
+\n    Moves the entity left in the coordinate system
+*/
+    void moveLeft(float deltaTime);
 
 private:
     float speed;

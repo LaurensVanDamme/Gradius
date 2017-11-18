@@ -3,4 +3,4 @@ project(Gradius)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(MODEL_FILES Entity.cpp Entity.h Model.cpp Model.h)
+set(MODEL_FILES  Model.cpp Model.h)

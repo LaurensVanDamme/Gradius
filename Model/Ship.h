@@ -6,12 +6,17 @@
 #define GRADIUS_SHIP_H
 
 #include "MovingEntity.h"
+#include "Bullet.h"
 
 class Ship: public MovingEntity{
 public:
 
 private:
+public:
+
+private:
     unsigned int healt;
+    Bullet* bullettype;
 };
 
 

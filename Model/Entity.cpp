@@ -3,3 +3,19 @@
 //
 
 #include "Entity.h"
+
+double Entity::getPositionX() const {
+    return this->x;
+}
+
+double Entity::getPositionY() const {
+    return this->y;
+}
+
+void Entity::updatePositionX(double newPositionX) {
+    this->x = newPositionX;
+}
+
+void Entity::updatePositionY(double newPositionY) {
+    this->y = newPositionY;
+}

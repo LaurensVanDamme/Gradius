@@ -10,11 +10,6 @@ void resizeView(const sf::RenderWindow& window, sf::View& view){
     view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
 }
 
-//test 4
-
-/**
-\n    ENSURE(properlyInitialized(), "Constructor moet eindigen in properlyInitialised status.");
-*/
 
 int main()
 {

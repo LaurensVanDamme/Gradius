@@ -5,17 +5,32 @@
 #ifndef GRADIUS_ENTITY_H
 #define GRADIUS_ENTITY_H
 
-struct Coor {
-    double x;
-    double y;
-};
-
 class Entity {
 public:
+/**
+\n    Returns the x coordinate of the entity
+*/
+    double getPositionX() const;
 
+/**
+\n    Returns the y coordinate of the entity
+*/
+    double getPositionY() const;
+
+/**
+\n    Updates the x coordinate of the entity by a new x coordinate
+*/
+    void updatePositionX(double newPositionX);
+
+/**
+\n    Updates the y coordinate of the entity by a new y coordinate
+*/
+    void updatePositionY(double newPositionY);
 private:
-    Coor position;
-    Coor size;
+    double x;
+    double y;
+    float height;
+    float width;
 };
 
 
