@@ -7,6 +7,7 @@
 
 
 class Transformation {
+public:
 
 };
 

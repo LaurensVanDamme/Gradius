@@ -3,3 +3,11 @@
 //
 
 #include "Model.h"
+
+Ship *Model::getPlayer() {
+    return player;
+}
+
+void Model::setPlayer(Ship *player) {
+    Model::player = player;
+}

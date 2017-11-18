@@ -5,12 +5,14 @@
 #ifndef GRADIUS_CONTROLLER_H
 #define GRADIUS_CONTROLLER_H
 
-#include "../View/View.h"
-#include "../Model/Model.h"
+class Model;
+class View;
 
 class Controller {
 public:
-
+    Controller();
+    Controller(Model* model, View* view);
+    void checkForEvents(float deltaTime);
 private:
     Model* model;
     View* view;
