@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Controller/Controller.h"
+#include "View/View.h"
+#include "Model/Model.h"
 
 static const float VIEW_HEIGHT = 1200.0f;
 void resizeView(const sf::RenderWindow& window, sf::View& view){
@@ -19,7 +22,7 @@ int main()
     sf::View view(sf::Vector2f(0.0, 0.0), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
 
     sf::Texture shipTexture;
-    shipTexture.loadFromFile("../Night Raider sprites.png");
+    shipTexture.loadFromFile("../Textures/Night Raider sprites.png");
 
     Player player1(&shipTexture, sf::Vector2u(4,1), 0.25, 400.0);
 
