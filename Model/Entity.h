@@ -5,7 +5,7 @@
 #ifndef GRADIUS_ENTITY_H
 #define GRADIUS_ENTITY_H
 
-struct Position {
+struct Coor {
     double x;
     double y;
 };
@@ -14,7 +14,8 @@ class Entity {
 public:
 
 private:
-    Position position;
+    Coor position;
+    Coor size;
 };
 
 
