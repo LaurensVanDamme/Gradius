@@ -9,6 +9,9 @@
 
 class MovingEntity: public Entity {
 public:
+    MovingEntity();
+    MovingEntity(double x, double y, float height, float width, float speed);
+
 /**
 \n    Moves the entity up in the coordinate system
 */

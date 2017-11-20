@@ -19,11 +19,19 @@ void Transformation::updateWindowSize(unsigned int windowWidth, unsigned int win
 }
 
 double Transformation::transformViaX(double x) {
-    return (x / 8) * windowWidth;
+    if (x >= 0){
+        return ((x / 4) * (windowWidth / 2)) + (windowWidth / 2);
+    } else {
+        return (x / 4) * (windowWidth / 2);
+    }
 }
 
 double Transformation::transformViaY(double y) {
-    return (y / 6) * windowHeight;
+    if (y >= 0){
+        return ((y / 3) * (windowHeight / 2)) + (windowHeight / 2);
+    } else {
+        return (y / 3) * (windowHeight / 2);
+    }
 }
 
 

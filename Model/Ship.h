@@ -10,9 +10,8 @@
 
 class Ship: public MovingEntity{
 public:
-
-private:
-public:
+    Ship();
+    Ship(double x, double y, float width, float height, float speed, unsigned int healt, Bullet *bullettype = nullptr);
 
 private:
     unsigned int healt;

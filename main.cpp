@@ -1,5 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
+
+#include "Player.h"
+#include "View/ViewEntity.h"
+#include "Model/Ship.h"
+
 #include "Controller/Controller.h"
 #include "View/View.h"
 #include "Model/Model.h"
@@ -9,23 +14,31 @@ using namespace std;
 
 int main()
 {
-    time_t lastTime;
-    time(&lastTime);
-    time_t currentTime;
+    clock_t lastTime;
+    lastTime = clock();
     float deltaTime;
     Model model;
     View view(1200, 800, &model);
 
+    //------------ start Test ------------//
+
+    Ship* player = new Ship(0, 0, 0.2, (0.2/3)*2, 10, 2);
+    model.setPlayer(player);
+    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.3);
+    view.addViewEntity(test1);
+
+    //------------- End Test -------------//
+
+
     // Let the program loop until shut down
     while (view.isWindowOpen())
     {
-        time(&currentTime);
-        deltaTime = difftime(lastTime, currentTime);
-        lastTime = currentTime;
+        deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;
+        lastTime = clock();
         sf::Event event;
         view.checkForEvents(event);
         view.updateView(deltaTime);
-        cout << currentTime << "   " << deltaTime << endl;
+//        cout << deltaTime << "   " << "" << endl;
     }
 
     return 0;
@@ -56,6 +69,7 @@ int main()
     while (window.isOpen())
     {
         deltaTime = clock.restart().asSeconds();
+        cout << deltaTime << endl;
         sf::Event event;
         while (window.pollEvent(event))
         {

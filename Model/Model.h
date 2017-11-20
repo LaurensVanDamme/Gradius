@@ -9,13 +9,13 @@ class Ship;
 
 class Model {
 public:
-
-private:
-    Ship* player;
-public:
     Ship *getPlayer();
 
     void setPlayer(Ship *player);
+
+private:
+    Ship* player;
+
 };
 
 

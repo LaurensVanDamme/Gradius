@@ -4,6 +4,10 @@
 
 #include "Entity.h"
 
+Entity::Entity() {}
+
+Entity::Entity(double x, double y, float height, float width) : x(x), y(y), height(height), width(width) {}
+
 double Entity::getPositionX() const {
     return this->x;
 }

@@ -17,6 +17,8 @@ public:
     View();
     View(unsigned int windowWidth, unsigned int windowHeight, Model* model);
 
+    void addViewEntity(ViewEntity* entity);
+
     void checkForEvents(sf::Event event);
 
     void updateView(float deltaTime);

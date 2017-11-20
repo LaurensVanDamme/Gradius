@@ -7,6 +7,9 @@
 
 class Entity {
 public:
+    Entity();
+    Entity(double x, double y, float height, float width);
+
 /**
 \n    Returns the x coordinate of the entity
 */

@@ -6,14 +6,16 @@
 #include "Transformation.h"
 #include "../Model/Entity.h"
 
-ViewEntity::ViewEntity(Entity* entity, sf::Texture *texture, sf::Vector2u imageCount, float switchTime):
-    animation(texture, imageCount, switchTime), entity(entity) {
+ViewEntity::ViewEntity(Entity* entity, const std::string pathToTexture, sf::Vector2u imageCount, float switchTime):
+    entity(entity) {
+    texture.loadFromFile(pathToTexture);
+    animation = Animation(&texture, imageCount, switchTime);
     row = 0;
     // Create a body for the player with a texture
     body.setSize(sf::Vector2f(200, 300));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(600, 400);
-    body.setTexture(texture);
+    body.setTexture(&texture);
 }
 
 void ViewEntity::update(Transformation* trans, float deltaTime) {

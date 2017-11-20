@@ -14,7 +14,7 @@ class Transformation;
 class ViewEntity {
 public:
 
-    ViewEntity(Entity* entity, sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
+    ViewEntity(Entity* entity, const std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 
     void update(Transformation* trans, float deltaTime);
@@ -24,6 +24,7 @@ public:
 
 
 private:
+    sf::Texture texture;
     sf::RectangleShape body;
     Animation animation;
     unsigned int row;

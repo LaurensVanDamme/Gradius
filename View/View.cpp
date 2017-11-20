@@ -15,6 +15,10 @@ View::View(unsigned int windowWidth, unsigned int windowHeight, Model *model): m
     transformation = Transformation(windowWidth, windowHeight);
 }
 
+void View::addViewEntity(ViewEntity *entity) {
+    this->entities.push_back(entity);
+}
+
 void View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // Go over every entity in the view update it and draw it on the window
@@ -44,7 +48,7 @@ bool View::isWindowOpen() {
 }
 
 View::~View() {
-    for (auto entity: this->entities){
-        delete entity;
-    }
+//    for (auto entity: this->entities){
+//        delete entity;
+//    }
 }
