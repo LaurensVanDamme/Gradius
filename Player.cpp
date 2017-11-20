@@ -29,7 +29,7 @@ void Player::update(float deltaTime) {
         movement.y -= speed * deltaTime;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         movement.y += speed * deltaTime;
-    // Update the texture en move the player
+    // Update the texture and move the player
     animation.update(row, deltaTime);
     body.setTextureRect(animation.uvRect);
     body.move(movement);

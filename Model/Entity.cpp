@@ -19,3 +19,11 @@ void Entity::updatePositionX(double newPositionX) {
 void Entity::updatePositionY(double newPositionY) {
     this->y = newPositionY;
 }
+
+float Entity::getHeight() const {
+    return height;
+}
+
+float Entity::getWidth() const {
+    return width;
+}

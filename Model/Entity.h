@@ -26,6 +26,12 @@ public:
 \n    Updates the y coordinate of the entity by a new y coordinate
 */
     void updatePositionY(double newPositionY);
+
+
+    float getHeight() const;
+
+
+    float getWidth() const;
 private:
     double x;
     double y;

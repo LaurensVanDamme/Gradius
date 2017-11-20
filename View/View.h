@@ -6,6 +6,7 @@
 #define GRADIUS_VIEW_H
 
 #include <SFML/Graphics.hpp>
+#include "Transformation.h"
 
 class Model;
 
@@ -14,14 +15,12 @@ public:
     View();
     View(unsigned int windowWidth, unsigned int windowHeight, Model* model);
 
-
-    sf::RenderWindow *getWindow() const;
-
     void updateView();
 
 private:
     Model* model;
-    sf::RenderWindow * window;
+    sf::RenderWindow* window;
+    Transformation transformation;
 };
 
 

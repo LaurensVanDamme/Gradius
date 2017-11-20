@@ -6,7 +6,7 @@
 #define GRADIUS_PLAYER_H
 
 #include <SFML/Graphics.hpp>
-#include "Animation.h"
+#include "View/Animation.h"
 
 
 class Player {

@@ -8,7 +8,16 @@
 
 class Transformation {
 public:
+    Transformation();
+    Transformation(unsigned int windowWidth, unsigned int windowHeight);
 
+    double transformViaX(double x);
+
+    double transformViaY(double y);
+
+private:
+    unsigned int windowWidth;
+    unsigned int windowHeight;
 };
 
 

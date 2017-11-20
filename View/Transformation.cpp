@@ -3,3 +3,20 @@
 //
 
 #include "Transformation.h"
+
+Transformation::Transformation() {
+
+}
+
+Transformation::Transformation(unsigned int windowWidth, unsigned int windowHeight):
+    windowWidth(windowWidth), windowHeight(windowHeight) {
+
+}
+
+double Transformation::transformViaX(double x) {
+    return (x / 8) * windowWidth;
+}
+
+double Transformation::transformViaY(double y) {
+    return (y / 6) * windowHeight;
+}
