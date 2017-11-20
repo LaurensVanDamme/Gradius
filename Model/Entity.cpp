@@ -17,11 +17,23 @@ double Entity::getPositionY() const {
 }
 
 void Entity::updatePositionX(double newPositionX) {
-    this->x = newPositionX;
+    if (newPositionX > 4){
+        this->x = 4;
+    } else if (newPositionX < -4){
+        this->x = -4;
+    } else {
+        this->x = newPositionX;
+    }
 }
 
 void Entity::updatePositionY(double newPositionY) {
-    this->y = newPositionY;
+    if (newPositionY > 3){
+        this->y = 3;
+    } else if (newPositionY < -3){
+        this->y = -3;
+    } else {
+        this->y = newPositionY;
+    }
 }
 
 float Entity::getHeight() const {

@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <ctime>
 
 #include "Player.h"
 #include "View/ViewEntity.h"
@@ -19,12 +18,13 @@ int main()
     float deltaTime;
     Model model;
     View view(1200, 800, &model);
+    Controller controller(&model, &view);
 
     //------------ start Test ------------//
 
-    Ship* player = new Ship(0, 0, 1, 0.66666, 10, 2);
+    Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 15, 2);
     model.setPlayer(player);
-    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.3);
+    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.03);
     view.addViewEntity(test1);
 
     //------------- End Test -------------//
@@ -38,6 +38,7 @@ int main()
         sf::Event event;
         view.checkForEvents(event);
         view.updateView(deltaTime);
+        controller.checkForEvents(deltaTime);
 //        cout << deltaTime << "   " << "" << endl;
     }
 

@@ -22,7 +22,7 @@ float Transformation::transformViaX(float x) {
     if (x >= 0){
         return ((x / 4) * (windowWidth / 2)) + (windowWidth / 2);
     } else {
-        return (x / 4) * (windowWidth / 2);
+        return (windowWidth / 2) - ((-x / 4) * (windowWidth / 2));
     }
 }
 
@@ -30,7 +30,7 @@ float Transformation::transformViaY(float y) {
     if (y >= 0){
         return ((y / 3) * (windowHeight / 2)) + (windowHeight / 2);
     } else {
-        return (y / 3) * (windowHeight / 2);
+        return (windowHeight / 2) - ((-y / 3) * (windowHeight / 2));
     }
 }
 

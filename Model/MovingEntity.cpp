@@ -5,6 +5,9 @@
 #include "Entity.h"
 #include "MovingEntity.h"
 
+#include <iostream>
+using namespace std;
+
 MovingEntity::MovingEntity() {}
 
 MovingEntity::MovingEntity(double x, double y, float height, float width, float speed) :
@@ -13,37 +16,17 @@ MovingEntity::MovingEntity(double x, double y, float height, float width, float 
 }
 
 void MovingEntity::moveUp(float deltaTime) {
-    double newY = this->getPositionY() + (speed * deltaTime);
-    if (newY > 3){
-        this->updatePositionY(3.0);
-    } else {
-        this->updatePositionY(newY);
-    }
+    this->updatePositionY(this->getPositionY() - (speed * deltaTime));
 }
 
 void MovingEntity::moveDown(float deltaTime) {
-    double newY = this->getPositionY() - (speed * deltaTime);
-    if (newY < -3){
-        this->updatePositionY(-3.0);
-    } else {
-        this->updatePositionY(newY);
-    }
+    this->updatePositionY(this->getPositionY() + (speed * deltaTime));
 }
 
 void MovingEntity::moveRight(float deltaTime) {
-    double newX = this->getPositionX() + (speed * deltaTime);
-    if (newX > 4){
-        this->updatePositionX(4.0);
-    } else {
-        this->updatePositionX(newX);
-    }
+    this->updatePositionX(this->getPositionX() + (speed * deltaTime));
 }
 
 void MovingEntity::moveLeft(float deltaTime) {
-    double newX = this->getPositionX() - (speed * deltaTime);
-    if (newX < -4){
-        this->updatePositionX(-4.0);
-    } else {
-        this->updatePositionX(newX);
-    }
+    this->updatePositionX(this->getPositionX() - (speed * deltaTime));
 }

@@ -6,6 +6,9 @@
 #include "Transformation.h"
 #include "../Model/Entity.h"
 
+#include <iostream>
+using namespace std;
+
 ViewEntity::ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime):
         entity(entity) {
     texture.loadFromFile(pathToTexture);
@@ -21,6 +24,7 @@ void ViewEntity::update(Transformation* trans, float deltaTime) {
     // Get the coordinates from the entity and transform them into pixels
     body.setSize(sf::Vector2f(trans->transformWidth(this->entity->getWidth()), trans->transformHeight(this->entity->getHeight())));
     body.setOrigin(body.getSize() / 2.0f);
+//    cout << "(" << this->entity->getPositionX() << ", " << this->entity->getPositionY() << ") == (" << trans->transformViaX(this->entity->getPositionX()) << ", " << trans->transformViaY(this->entity->getPositionY()) << ")\n";
     body.setPosition(trans->transformViaX(this->entity->getPositionX()), trans->transformViaY(this->entity->getPositionY()));
 }
 
