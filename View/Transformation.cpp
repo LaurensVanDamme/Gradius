@@ -9,7 +9,7 @@ Transformation::Transformation() {
 }
 
 Transformation::Transformation(unsigned int windowWidth, unsigned int windowHeight):
-    windowWidth(windowWidth), windowHeight(windowHeight) {
+        windowWidth(windowWidth), windowHeight(windowHeight) {
 
 }
 
@@ -18,7 +18,7 @@ void Transformation::updateWindowSize(unsigned int windowWidth, unsigned int win
     this->windowHeight = windowHeight;
 }
 
-double Transformation::transformViaX(double x) {
+float Transformation::transformViaX(float x) {
     if (x >= 0){
         return ((x / 4) * (windowWidth / 2)) + (windowWidth / 2);
     } else {
@@ -26,12 +26,20 @@ double Transformation::transformViaX(double x) {
     }
 }
 
-double Transformation::transformViaY(double y) {
+float Transformation::transformViaY(float y) {
     if (y >= 0){
         return ((y / 3) * (windowHeight / 2)) + (windowHeight / 2);
     } else {
         return (y / 3) * (windowHeight / 2);
     }
+}
+
+float Transformation::transformWidth(float width) {
+    return (width / 8) * windowWidth;
+}
+
+float Transformation::transformHeight(float height) {
+    return (height / 6) * windowHeight;
 }
 
 

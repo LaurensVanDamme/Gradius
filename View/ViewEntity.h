@@ -14,7 +14,7 @@ class Transformation;
 class ViewEntity {
 public:
 
-    ViewEntity(Entity* entity, const std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
+    ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 
     void update(Transformation* trans, float deltaTime);

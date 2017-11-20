@@ -13,9 +13,13 @@ public:
 
     void updateWindowSize(unsigned int windowWidth, unsigned int windowHeight);
 
-    double transformViaX(double x);
+    float transformViaX(float x);
 
-    double transformViaY(double y);
+    float transformViaY(float y);
+
+    float transformWidth(float width);
+
+    float transformHeight(float height);
 
 private:
     unsigned int windowWidth;
