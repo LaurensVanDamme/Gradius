@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <time.h>
+#include <ctime>
 
 #include "Player.h"
 #include "View/ViewEntity.h"
