@@ -1,10 +1,37 @@
 #include <SFML/Graphics.hpp>
-#include "Player.h"
+#include <time.h>
 #include "Controller/Controller.h"
 #include "View/View.h"
 #include "Model/Model.h"
 
-static const float VIEW_HEIGHT = 1200.0f;
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    time_t lastTime;
+    time(&lastTime);
+    time_t currentTime;
+    float deltaTime;
+    Model model;
+    View view(1200, 800, &model);
+
+    // Let the program loop until shut down
+    while (view.isWindowOpen())
+    {
+        time(&currentTime);
+        deltaTime = difftime(lastTime, currentTime);
+        lastTime = currentTime;
+        sf::Event event;
+        view.checkForEvents(event);
+        view.updateView(deltaTime);
+        cout << currentTime << "   " << deltaTime << endl;
+    }
+
+    return 0;
+}
+
+/*static const float VIEW_HEIGHT = 1200.0f;
 void resizeView(const sf::RenderWindow& window, sf::View& view){
     float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
     view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
@@ -43,7 +70,7 @@ int main()
         }
 
         player1.update(deltaTime);
-//        view.setCenter(player1.getBodyPosition());
+//        view.setCenter(player1.getBodyPosition());de
 
         window.clear(sf::Color(150, 150, 150));
         window.setView(view);
@@ -52,4 +79,4 @@ int main()
     }
 
     return 0;
-}
+} */

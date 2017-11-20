@@ -20,7 +20,8 @@ public:
     void update(Transformation* trans, float deltaTime);
 
 
-    void draw(sf::RenderWindow window);
+    void draw(sf::RenderWindow* window);
+
 
 private:
     sf::RectangleShape body;

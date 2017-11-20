@@ -19,9 +19,10 @@ ViewEntity::ViewEntity(Entity* entity, sf::Texture *texture, sf::Vector2u imageC
 void ViewEntity::update(Transformation* trans, float deltaTime) {
     animation.update(row, deltaTime);
     body.setTextureRect(animation.uvRect);
+    // Get the coordinates from the entity and transform them into pixels
     body.setPosition(trans->transformViaX(this->entity->getPositionX()), trans->transformViaY(this->entity->getPositionY()));
 }
 
-void ViewEntity::draw(sf::RenderWindow window) {
-    window.draw(body);
+void ViewEntity::draw(sf::RenderWindow* window) {
+    window->draw(body);
 }
