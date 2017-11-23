@@ -7,9 +7,11 @@
 
 
 class Transformation {
-public:
+private:
     Transformation();
-    Transformation(unsigned int windowWidth, unsigned int windowHeight);
+
+public:
+    static Transformation* getTransformation();
 
     void updateWindowSize(unsigned int windowWidth, unsigned int windowHeight);
 
@@ -22,6 +24,8 @@ public:
     float transformHeight(float height);
 
 private:
+
+    static Transformation* instance;
     unsigned int windowWidth;
     unsigned int windowHeight;
 };

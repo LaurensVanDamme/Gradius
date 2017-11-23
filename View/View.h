@@ -30,7 +30,7 @@ public:
 private:
     Model* model;
     sf::RenderWindow* window;
-    Transformation transformation;
+    Transformation* transformation;
     std::vector<ViewEntity*> entities;
 };
 

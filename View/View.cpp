@@ -4,6 +4,7 @@
 
 #include "View.h"
 #include "ViewEntity.h"
+#include "Transformation.h"
 
 
 View::View() {
@@ -12,20 +13,44 @@ View::View() {
 
 View::View(unsigned int windowWidth, unsigned int windowHeight, Model *model): model(model){
     window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
-    transformation = Transformation(windowWidth, windowHeight);
+    transformation = Transformation::getTransformation();
+    transformation->updateWindowSize(windowWidth, windowHeight);
 }
 
 void View::addViewEntity(ViewEntity *entity) {
     this->entities.push_back(entity);
 }
 
+// Tijdelijk
+
+sf::Text getFPS(sf::Font font) {
+    static sf::Clock clock;
+    float cTime = clock.getElapsedTime().asSeconds();
+    clock.restart();
+    int fps = std::round(1 / cTime);
+
+    std::string str = "FPS: " + std::to_string(fps);
+    sf::Text text;
+    text.setFont(font);
+    text.setCharacterSize(24);
+    text.setString(str);
+    return text;
+}
+
+// einde tijdelijk
+
 void View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // Go over every entity in the view update it and draw it on the window
     for (auto entity: this->entities){
-        entity->update(&transformation, deltaTime);
+        entity->update(transformation, deltaTime);
         entity->draw(window);
     }
+    // Tijdelijk
+    sf::Font font;
+    font.loadFromFile("arial.ttf");
+    window->draw(getFPS(font));
+    // Einde tijdelijk
     window->display();
 }
 
@@ -37,7 +62,7 @@ void View::checkForEvents(sf::Event event) {
                 window->close();
                 break;
             case sf::Event::Resized:
-                transformation.updateWindowSize(window->getSize().x, window->getSize().y);
+                transformation->updateWindowSize(window->getSize().x, window->getSize().y);
                 break;
         }
     }

@@ -7,16 +7,19 @@
 
 class Model;
 class View;
+class Stopwatch;
 
 class Controller {
 public:
-    Controller();
-    Controller(Model* model, View* view);
-    void checkForEvents(float deltaTime);
+    Controller(std::string jsonFile = "");
+
+    void run();
+
+    void checkForEvents();
 private:
     Model* model;
     View* view;
-
+    Stopwatch* stopwatch;
 };
 
 

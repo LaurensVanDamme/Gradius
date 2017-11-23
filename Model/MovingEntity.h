@@ -15,22 +15,22 @@ public:
 /**
 \n    Moves the entity up in the coordinate system
 */
-    void moveUp(float deltaTime);
+    void moveUp();
 
 /**
 \n    Moves the entity down in the coordinate system
 */
-    void moveDown(float deltaTime);
+    void moveDown();
 
 /**
 \n    Moves the entity right in the coordinate system
 */
-    void moveRight(float deltaTime);
+    void moveRight();
 
 /**
 \n    Moves the entity left in the coordinate system
 */
-    void moveLeft(float deltaTime);
+    void moveLeft();
 
 private:
     float speed;

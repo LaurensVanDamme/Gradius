@@ -1,30 +1,29 @@
 #include <SFML/Graphics.hpp>
-
-#include "Player.h"
-#include "View/ViewEntity.h"
-#include "Model/Ship.h"
-
 #include "Controller/Controller.h"
-#include "View/View.h"
-#include "Model/Model.h"
 
-#include <iostream>
-using namespace std;
+int main()
+{
+    Controller game;
+    game.run();
+    return 0;
+}
 
+/*
 int main()
 {
     clock_t lastTime;
     lastTime = clock();
     float deltaTime;
+    float totalTime = 0;
     Model model;
-    View view(1200, 800, &model);
+    View view(2100, 1400, &model);
     Controller controller(&model, &view);
 
     //------------ start Test ------------//
 
-    Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 15, 2);
+    Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
     model.setPlayer(player);
-    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.03);
+    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.1);
     view.addViewEntity(test1);
 
     //------------- End Test -------------//
@@ -33,17 +32,32 @@ int main()
     // Let the program loop until shut down
     while (view.isWindowOpen())
     {
+        // steek in stopwatch en gebruik chrono en ni time (makkelijker)
+        // maak stopwatch en transformatie singelton
+        // maak observer pattern met subject en observer (
         deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;
+        totalTime += deltaTime;
         lastTime = clock();
-        sf::Event event;
-        view.checkForEvents(event);
-        view.updateView(deltaTime);
-        controller.checkForEvents(deltaTime);
+
+        if (totalTime < 0.015){
+            continue;
+        }
+        else {
+//            cout << totalTime << "   " << "" << endl;
+
+            sf::Event event;
+            view.checkForEvents(event);
+            view.updateView(totalTime);
+            controller.checkForEvents(1);
+            totalTime -= 0.015;
 //        cout << deltaTime << "   " << "" << endl;
+        }
     }
 
     return 0;
 }
+
+*/
 
 /*static const float VIEW_HEIGHT = 1200.0f;
 void resizeView(const sf::RenderWindow& window, sf::View& view){

@@ -15,18 +15,18 @@ MovingEntity::MovingEntity(double x, double y, float height, float width, float 
 
 }
 
-void MovingEntity::moveUp(float deltaTime) {
-    this->updatePositionY(this->getPositionY() - (speed * deltaTime));
+void MovingEntity::moveUp() {
+    this->updatePositionY(this->getPositionY() - speed);
 }
 
-void MovingEntity::moveDown(float deltaTime) {
-    this->updatePositionY(this->getPositionY() + (speed * deltaTime));
+void MovingEntity::moveDown() {
+    this->updatePositionY(this->getPositionY() + speed);
 }
 
-void MovingEntity::moveRight(float deltaTime) {
-    this->updatePositionX(this->getPositionX() + (speed * deltaTime));
+void MovingEntity::moveRight() {
+    this->updatePositionX(this->getPositionX() + speed);
 }
 
-void MovingEntity::moveLeft(float deltaTime) {
-    this->updatePositionX(this->getPositionX() - (speed * deltaTime));
+void MovingEntity::moveLeft() {
+    this->updatePositionX(this->getPositionX() - speed);
 }

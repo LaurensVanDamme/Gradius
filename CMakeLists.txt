@@ -4,7 +4,7 @@ project(Gradius)
 set(CMAKE_CXX_STANDARD 11)
 
 set(MODEL_FILES Model/Model.h Model/Model.cpp Model/Entity.cpp Model/Entity.h Model/Ship.cpp Model/Ship.h Model/Obstacle.cpp Model/Obstacle.h Model/Bullet.cpp Model/Bullet.h Model/MovingEntity.cpp Model/MovingEntity.h Model/StaticEntity.cpp Model/StaticEntity.h)
-set(VIEW_FILES View/ViewEntity.cpp View/ViewEntity.h View/Animation.cpp View/Animation.h View/Stopwatch.cpp View/Stopwatch.h View/Transformation.cpp View/Transformation.h View/View.h View/View.cpp View/ViewEntity.cpp View/ViewEntity.h)
+set(VIEW_FILES View/ViewEntity.cpp View/ViewEntity.h View/Animation.cpp View/Animation.h Controller/Stopwatch.cpp Controller/Stopwatch.h View/Transformation.cpp View/Transformation.h View/View.h View/View.cpp View/ViewEntity.cpp View/ViewEntity.h)
 set(CONTROLLER_FILES Controller/Controller.h Controller/Controller.cpp)
 
 set(SOURCE_FILES main.cpp Player.cpp Player.h)

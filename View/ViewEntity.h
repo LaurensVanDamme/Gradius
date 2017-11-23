@@ -29,6 +29,7 @@ private:
     Animation animation;
     unsigned int row;
     Entity* entity;
+    bool animationEnabled;
 };
 
 

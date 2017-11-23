@@ -4,12 +4,9 @@
 
 #include "Transformation.h"
 
+Transformation* Transformation:: instance = nullptr;
+
 Transformation::Transformation() {
-
-}
-
-Transformation::Transformation(unsigned int windowWidth, unsigned int windowHeight):
-        windowWidth(windowWidth), windowHeight(windowHeight) {
 
 }
 
@@ -40,6 +37,13 @@ float Transformation::transformWidth(float width) {
 
 float Transformation::transformHeight(float height) {
     return (height / 6) * windowHeight;
+}
+
+Transformation *Transformation::getTransformation() {
+    if (!instance){
+        Transformation::instance = new Transformation();
+    }
+    return Transformation::instance;
 }
 
 
