@@ -7,17 +7,17 @@
 #include "Transformation.h"
 
 
-View::View() {
+View::View::View() {
 
 }
 
-View::View(unsigned int windowWidth, unsigned int windowHeight, Model *model): model(model){
+View::View::View(unsigned int windowWidth, unsigned int windowHeight, Model *model): model(model){
     window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
     transformation = Transformation::getTransformation();
     transformation->updateWindowSize(windowWidth, windowHeight);
 }
 
-void View::addViewEntity(ViewEntity *entity) {
+void View::View::addViewEntity(ViewEntity *entity) {
     this->entities.push_back(entity);
 }
 
@@ -39,7 +39,7 @@ sf::Text getFPS(sf::Font font) {
 
 // einde tijdelijk
 
-void View::updateView(float deltaTime) {
+void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // Go over every entity in the view update it and draw it on the window
     for (auto entity: this->entities){
@@ -54,7 +54,7 @@ void View::updateView(float deltaTime) {
     window->display();
 }
 
-void View::checkForEvents(sf::Event event) {
+void View::View::checkForEvents(sf::Event event) {
     while (window->pollEvent(event))
     {
         switch (event.type){
@@ -68,11 +68,11 @@ void View::checkForEvents(sf::Event event) {
     }
 }
 
-bool View::isWindowOpen() {
+bool View::View::isWindowOpen() {
     return window->isOpen();
 }
 
-View::~View() {
+View::View::~View() {
 //    for (auto entity: this->entities){
 //        delete entity;
 //    }

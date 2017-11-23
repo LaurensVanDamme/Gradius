@@ -11,26 +11,30 @@
 class Entity;
 class Transformation;
 
-class ViewEntity {
-public:
+namespace View {
 
-    ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
+    class ViewEntity {
+    public:
 
-
-    void update(Transformation* trans, float deltaTime);
-
-
-    void draw(sf::RenderWindow* window);
+        ViewEntity(Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 
-private:
-    sf::Texture texture;
-    sf::RectangleShape body;
-    Animation animation;
-    unsigned int row;
-    Entity* entity;
-    bool animationEnabled;
-};
+        void update(Transformation *trans, float deltaTime);
+
+
+        void draw(sf::RenderWindow *window);
+
+
+    private:
+        sf::Texture texture;
+        sf::RectangleShape body;
+        Animation animation;
+        unsigned int row;
+        Entity *entity;
+        bool animationEnabled;
+    };
+
+}
 
 
 #endif //GRADIUS_VIEWENTITY_H

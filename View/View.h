@@ -12,27 +12,32 @@
 class Model;
 class ViewEntity;
 
-class View {
-public:
-    View();
-    View(unsigned int windowWidth, unsigned int windowHeight, Model* model);
+namespace View {
 
-    void addViewEntity(ViewEntity* entity);
+    class View {
+    public:
+        View();
 
-    void checkForEvents(sf::Event event);
+        View(unsigned int windowWidth, unsigned int windowHeight, Model *model);
 
-    void updateView(float deltaTime);
+        void addViewEntity(ViewEntity *entity);
 
-    bool isWindowOpen();
+        void checkForEvents(sf::Event event);
 
-    virtual ~View();
+        void updateView(float deltaTime);
 
-private:
-    Model* model;
-    sf::RenderWindow* window;
-    Transformation* transformation;
-    std::vector<ViewEntity*> entities;
-};
+        bool isWindowOpen();
+
+        virtual ~View();
+
+    private:
+        Model *model;
+        sf::RenderWindow *window;
+        Transformation *transformation;
+        std::vector<ViewEntity *> entities;
+    };
+
+}
 
 
 #endif //GRADIUS_VIEW_H

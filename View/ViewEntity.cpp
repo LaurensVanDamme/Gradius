@@ -9,9 +9,10 @@
 #include <iostream>
 using namespace std;
 
-ViewEntity::ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0):
+View::ViewEntity::ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0):
         entity(entity) {
     texture.loadFromFile(pathToTexture);
+    // Check if there is a animation and make it if there is one
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {
         animation = Animation(&texture, imageCount, switchTime);
         animationEnabled = true;
@@ -23,7 +24,7 @@ ViewEntity::ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u i
     body.setTexture(&texture);
 }
 
-void ViewEntity::update(Transformation* trans, float deltaTime) {
+void View::ViewEntity::update(Transformation* trans, float deltaTime) {
     if (animationEnabled) {
         animation.update(row, deltaTime);
         body.setTextureRect(animation.uvRect);
@@ -35,6 +36,6 @@ void ViewEntity::update(Transformation* trans, float deltaTime) {
     body.setPosition(trans->transformViaX(this->entity->getPositionX()), trans->transformViaY(this->entity->getPositionY()));
 }
 
-void ViewEntity::draw(sf::RenderWindow* window) {
+void View::ViewEntity::draw(sf::RenderWindow* window) {
     window->draw(body);
 }

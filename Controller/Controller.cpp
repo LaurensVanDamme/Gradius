@@ -39,7 +39,7 @@ void Controller::run(){
         sf::Event event;
         view->checkForEvents(event);
         if (stopwatch->updateAndCheck()) {
-            view->updateView(stopwatch->getTotalTime());
+            view->updateView(stopwatch->getTotalTickTime());
             this->checkForEvents();
         }
     }

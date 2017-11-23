@@ -15,12 +15,13 @@ bool Stopwatch::updateAndCheck() {
     deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;  // Get the amount of seconds for the last while loop
     lastTime = clock();
     totalTime += deltaTime; // Add the deltaTime to the totalTime
-    formalTotalTime = totalTime;
+    totalTickTime += deltaTime;
+    formalTotalTickTime = totalTickTime;
     // If totalTime s bigger then timePerTick we can proceed with the program so it returns 1
-    if (totalTime < timePerTick){
+    if (totalTickTime < timePerTick){
         return false;
     } else {
-        totalTime -= timePerTick;  // Reset the totalTime
+        totalTickTime -= timePerTick;  // Reset the totalTime
         return true;
     }
 }
@@ -32,6 +33,10 @@ Stopwatch *Stopwatch::getStopwatch() {  // Make sure that there can only be one 
     return Stopwatch::instance;
 }
 
-float Stopwatch::getTotalTime() {
-    return formalTotalTime;
+float Stopwatch::getTotalTickTime() const{
+    return formalTotalTickTime;
+}
+
+float Stopwatch::getTotalTime() const {
+    return totalTime;
 }

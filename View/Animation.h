@@ -7,22 +7,26 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace View {
 
-class Animation {
-public:
-    Animation();
-    Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchtime);
+    class Animation {
+    public:
+        Animation();
 
-    void update(unsigned int row, float deltaTime);
+        Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchtime);
 
-public:
-    sf::IntRect uvRect;
-private:
-    sf::Vector2u imageCount;
-    sf::Vector2u currentImage;
-    float totalTime;
-    float switchTime;
-};
+        void update(unsigned int row, float deltaTime);
+
+    public:
+        sf::IntRect uvRect;
+    private:
+        sf::Vector2u imageCount;
+        sf::Vector2u currentImage;
+        float totalTime;
+        float switchTime;
+    };
+
+}
 
 
 #endif //GRADIUS_ANIMATION_H

@@ -6,29 +6,32 @@
 #define GRADIUS_TRANSFORMATION_H
 
 
-class Transformation {
-private:
-    Transformation();
+namespace View {
 
-public:
-    static Transformation* getTransformation();
+    class Transformation {
+    private:
+        Transformation();
 
-    void updateWindowSize(unsigned int windowWidth, unsigned int windowHeight);
+    public:
+        static Transformation *getTransformation();
 
-    float transformViaX(float x);
+        void updateWindowSize(unsigned int windowWidth, unsigned int windowHeight);
 
-    float transformViaY(float y);
+        float transformViaX(float x);
 
-    float transformWidth(float width);
+        float transformViaY(float y);
 
-    float transformHeight(float height);
+        float transformWidth(float width);
 
-private:
+        float transformHeight(float height);
 
-    static Transformation* instance;
-    unsigned int windowWidth;
-    unsigned int windowHeight;
-};
+    private:
 
+        static Transformation *instance;
+        unsigned int windowWidth;
+        unsigned int windowHeight;
+    };
+
+}
 
 #endif //GRADIUS_TRANSFORMATION_H

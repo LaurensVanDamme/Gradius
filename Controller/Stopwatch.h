@@ -23,17 +23,23 @@ public:
     bool updateAndCheck();
 
 /**
-\n    Returns the totalTime before the substraction of timePerTick
+\n    Returns the totalTickTime before the substraction of timePerTick
 */
-    float getTotalTime();
+    float getTotalTickTime() const;
+
+/**
+\n    Returns the totalTime the program is running
+*/
+    float getTotalTime() const;
 
 private:
     static Stopwatch* instance;
 
     float timePerTick = 0.030;
     float deltaTime;
+    float totalTickTime;
     float totalTime;
-    float formalTotalTime;
+    float formalTotalTickTime;
     std::clock_t lastTime;
 };
 

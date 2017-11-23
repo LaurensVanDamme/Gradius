@@ -4,18 +4,18 @@
 
 #include "Transformation.h"
 
-Transformation* Transformation:: instance = nullptr;
+View::Transformation* View::Transformation:: instance = nullptr;
 
-Transformation::Transformation() {
+View::Transformation::Transformation() {
 
 }
 
-void Transformation::updateWindowSize(unsigned int windowWidth, unsigned int windowHeight) {
+void View::Transformation::updateWindowSize(unsigned int windowWidth, unsigned int windowHeight) {
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
 }
 
-float Transformation::transformViaX(float x) {
+float View::Transformation::transformViaX(float x) {
     if (x >= 0){
         return ((x / 4) * (windowWidth / 2)) + (windowWidth / 2);
     } else {
@@ -23,7 +23,7 @@ float Transformation::transformViaX(float x) {
     }
 }
 
-float Transformation::transformViaY(float y) {
+float View::Transformation::transformViaY(float y) {
     if (y >= 0){
         return ((y / 3) * (windowHeight / 2)) + (windowHeight / 2);
     } else {
@@ -31,19 +31,19 @@ float Transformation::transformViaY(float y) {
     }
 }
 
-float Transformation::transformWidth(float width) {
+float View::Transformation::transformWidth(float width) {
     return (width / 8) * windowWidth;
 }
 
-float Transformation::transformHeight(float height) {
+float View::Transformation::transformHeight(float height) {
     return (height / 6) * windowHeight;
 }
 
-Transformation *Transformation::getTransformation() {
+View::Transformation* View::Transformation::getTransformation() {
     if (!instance){
-        Transformation::instance = new Transformation();
+        instance = new Transformation();
     }
-    return Transformation::instance;
+    return instance;
 }
 
 

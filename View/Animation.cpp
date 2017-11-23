@@ -5,11 +5,11 @@
 #include "Animation.h"
 #include <iostream>
 
-Animation::Animation() {
+View::Animation::Animation() {
 
 }
 
-Animation::Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchtime):
+View::Animation::Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchtime):
         imageCount(imageCount), switchTime(switchtime) {
     this->totalTime = 0.0;  // Initialize the time at 0 sec
     currentImage.x = 0;  // Always start with the first image
@@ -18,7 +18,7 @@ Animation::Animation(sf::Texture *texture, sf::Vector2u imageCount, float switch
     uvRect.height = texture->getSize().y / (float)(imageCount.y);
 }
 
-void Animation::update(unsigned int row, float deltaTime) {
+void View::Animation::update(unsigned int row, float deltaTime) {
     currentImage.y = row;  // Specify which row of animation will be used
     totalTime += deltaTime;  // Make sure the animation goes everywhere at the same speed
     // If it's time to switch to the next picture
