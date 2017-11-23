@@ -4,7 +4,7 @@
 
 // Test
 
-#include "../View/ViewEntity.h"
+#include "../View/Entity.h"
 #include "../Model/Ship.h"
 
 // End Test
@@ -26,7 +26,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     Model::Ship* player = new Model::Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
     model->setPlayer(player);
-    View::ViewEntity* test1 = new View::ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
+    View::Entity* test1 = new View::Entity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
     view->addViewEntity(test1);
 
     //------------- End Test -------------//

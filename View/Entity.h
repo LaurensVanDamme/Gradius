@@ -16,10 +16,10 @@ namespace View {
 
     class Transformation;
 
-    class ViewEntity {
+    class Entity {
     public:
 
-        ViewEntity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
+        Entity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 
         void update(Transformation *trans, float deltaTime);

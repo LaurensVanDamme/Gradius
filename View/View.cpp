@@ -3,7 +3,7 @@
 //
 
 #include "View.h"
-#include "ViewEntity.h"
+#include "Entity.h"
 #include "Transformation.h"
 
 
@@ -17,7 +17,7 @@ View::View::View(unsigned int windowWidth, unsigned int windowHeight, Model::Mod
     transformation->updateWindowSize(windowWidth, windowHeight);
 }
 
-void View::View::addViewEntity(ViewEntity *entity) {
+void View::View::addViewEntity(Entity *entity) {
     this->entities.push_back(entity);
 }
 

@@ -15,7 +15,7 @@ namespace Model {
 
 namespace View {
 
-    class ViewEntity;
+    class Entity;
 
 
     class View {
@@ -24,7 +24,7 @@ namespace View {
 
         View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model);
 
-        void addViewEntity(ViewEntity *entity);
+        void addViewEntity(Entity *entity);
 
         void checkForEvents(sf::Event event);
 
@@ -38,7 +38,7 @@ namespace View {
         Model::Model *model;
         sf::RenderWindow *window;
         Transformation *transformation;
-        std::vector<ViewEntity *> entities;
+        std::vector<Entity *> entities;
     };
 
 }

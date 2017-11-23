@@ -23,7 +23,7 @@ int main()
 
     Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
     model.setPlayer(player);
-    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.1);
+    Entity* test1 = new Entity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.1);
     view.addViewEntity(test1);
 
     //------------- End Test -------------//

@@ -2,14 +2,14 @@
 // Created by laurens on 11/20/17.
 //
 
-#include "ViewEntity.h"
+#include "Entity.h"
 #include "Transformation.h"
 #include "../Model/Entity.h"
 
 #include <iostream>
 using namespace std;
 
-View::ViewEntity::ViewEntity(Model::Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
+View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): entity(entity) {
     texture.loadFromFile(pathToTexture);
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {
@@ -23,7 +23,7 @@ View::ViewEntity::ViewEntity(Model::Entity* entity, std::string pathToTexture, s
     body.setTexture(&texture);
 }
 
-void View::ViewEntity::update(Transformation* trans, float deltaTime) {
+void View::Entity::update(Transformation* trans, float deltaTime) {
     if (animationEnabled) {
         animation.update(row, deltaTime);
         body.setTextureRect(animation.uvRect);
@@ -37,6 +37,6 @@ void View::ViewEntity::update(Transformation* trans, float deltaTime) {
                      trans->transformViaY(this->entity->getPositionY()));
 }
 
-void View::ViewEntity::draw(sf::RenderWindow* window) {
+void View::Entity::draw(sf::RenderWindow* window) {
     window->draw(body);
 }
