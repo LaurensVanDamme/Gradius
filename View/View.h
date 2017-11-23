@@ -9,7 +9,9 @@
 #include "Transformation.h"
 #include <vector>
 
-class Model;
+namespace Model {
+    class Model;
+}
 
 namespace View {
 
@@ -20,7 +22,7 @@ namespace View {
     public:
         View();
 
-        View(unsigned int windowWidth, unsigned int windowHeight, Model *model);
+        View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model);
 
         void addViewEntity(ViewEntity *entity);
 
@@ -33,7 +35,7 @@ namespace View {
         virtual ~View();
 
     private:
-        Model *model;
+        Model::Model *model;
         sf::RenderWindow *window;
         Transformation *transformation;
         std::vector<ViewEntity *> entities;

@@ -5,18 +5,22 @@
 #ifndef GRADIUS_MODEL_H
 #define GRADIUS_MODEL_H
 
-class Ship;
+namespace Model {
 
-class Model {
-public:
-    Ship *getPlayer();
+    class Ship;
 
-    void setPlayer(Ship *player);
+    class Model {
+    public:
+        Ship *getPlayer();
 
-private:
-    Ship* player;
+        void setPlayer(Ship *player);
 
-};
+    private:
+        Ship *player;
+
+    };
+
+}
 
 
 #endif //GRADIUS_MODEL_H

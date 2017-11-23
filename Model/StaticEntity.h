@@ -7,12 +7,16 @@
 
 #include "Entity.h"
 
-class StaticEntity: public Entity {
-public:
+namespace Model {
 
-private:
+    class StaticEntity : public Entity {
+    public:
 
-};
+    private:
+
+    };
+
+}
 
 
 #endif //GRADIUS_STATICENTITY_H

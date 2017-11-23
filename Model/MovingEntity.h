@@ -7,34 +7,39 @@
 
 #include "Entity.h"
 
-class MovingEntity: public Entity {
-public:
-    MovingEntity();
-    MovingEntity(double x, double y, float height, float width, float speed);
+namespace Model {
+
+    class MovingEntity : public Entity {
+    public:
+        MovingEntity();
+
+        MovingEntity(double x, double y, float height, float width, float speed);
 
 /**
 \n    Moves the entity up in the coordinate system
 */
-    void moveUp();
+        void moveUp();
 
 /**
 \n    Moves the entity down in the coordinate system
 */
-    void moveDown();
+        void moveDown();
 
 /**
 \n    Moves the entity right in the coordinate system
 */
-    void moveRight();
+        void moveRight();
 
 /**
 \n    Moves the entity left in the coordinate system
 */
-    void moveLeft();
+        void moveLeft();
 
-private:
-    float speed;
-};
+    private:
+        float speed;
+    };
+
+}
 
 
 #endif //GRADIUS_MOVINGENTITY_H

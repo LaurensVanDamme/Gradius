@@ -7,13 +7,17 @@
 
 #include "MovingEntity.h"
 
-class Bullet: public MovingEntity {
-public:
+namespace Model {
 
-private:
-    float timePerShot;
-    unsigned int damage;
-};
+    class Bullet : public MovingEntity {
+    public:
+
+    private:
+        float timePerShot;
+        unsigned int damage;
+    };
+
+}
 
 
 #endif //GRADIUS_BULLET_H

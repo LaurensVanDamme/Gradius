@@ -8,7 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
 
-class Entity;
+namespace Model {
+    class Entity;
+}
 
 namespace View {
 
@@ -17,7 +19,7 @@ namespace View {
     class ViewEntity {
     public:
 
-        ViewEntity(Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
+        ViewEntity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 
         void update(Transformation *trans, float deltaTime);
@@ -31,7 +33,7 @@ namespace View {
         sf::RectangleShape body;
         Animation animation;
         unsigned int row;
-        Entity *entity;
+        Model::Entity *entity;
         bool animationEnabled;
     };
 

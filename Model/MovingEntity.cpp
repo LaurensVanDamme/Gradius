@@ -8,25 +8,25 @@
 #include <iostream>
 using namespace std;
 
-MovingEntity::MovingEntity() {}
+Model::MovingEntity::MovingEntity() {}
 
-MovingEntity::MovingEntity(double x, double y, float height, float width, float speed) :
+Model::MovingEntity::MovingEntity(double x, double y, float height, float width, float speed) :
         Entity(x, y, height, width), speed(speed) {
 
 }
 
-void MovingEntity::moveUp() {
+void Model::MovingEntity::moveUp() {
     this->updatePositionY(this->getPositionY() - speed);
 }
 
-void MovingEntity::moveDown() {
+void Model::MovingEntity::moveDown() {
     this->updatePositionY(this->getPositionY() + speed);
 }
 
-void MovingEntity::moveRight() {
+void Model::MovingEntity::moveRight() {
     this->updatePositionX(this->getPositionX() + speed);
 }
 
-void MovingEntity::moveLeft() {
+void Model::MovingEntity::moveLeft() {
     this->updatePositionX(this->getPositionX() - speed);
 }

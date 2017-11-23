@@ -7,12 +7,16 @@
 
 #include "StaticEntity.h"
 
-class Obstacle: public StaticEntity {
-public:
+namespace Model {
 
-private:
-    unsigned int damage;
-};
+    class Obstacle : public StaticEntity {
+    public:
+
+    private:
+        unsigned int damage;
+    };
+
+}
 
 
 #endif //GRADIUS_OBSTACLE_H

@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-View::ViewEntity::ViewEntity(Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
+View::ViewEntity::ViewEntity(Model::Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): entity(entity) {
     texture.loadFromFile(pathToTexture);
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {

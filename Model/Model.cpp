@@ -4,10 +4,10 @@
 
 #include "Model.h"
 
-Ship *Model::getPlayer() {
+Model::Ship *Model::Model::getPlayer() {
     return player;
 }
 
-void Model::setPlayer(Ship *player) {
-    Model::player = player;
+void Model::Model::setPlayer(Ship *player) {
+    this->player = player;
 }

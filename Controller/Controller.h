@@ -5,7 +5,9 @@
 #ifndef GRADIUS_CONTROLLER_H
 #define GRADIUS_CONTROLLER_H
 
-class Model;
+namespace Model {
+    class Model;
+}
 
 namespace View {
     class View;
@@ -24,7 +26,7 @@ namespace Ctrl {
         void checkForEvents();
 
     private:
-        Model *model;
+        Model::Model *model;
         View::View *view;
         Stopwatch *stopwatch;
     };

@@ -4,19 +4,19 @@
 
 #include "Entity.h"
 
-Entity::Entity() {}
+Model::Entity::Entity() {}
 
-Entity::Entity(double x, double y, float height, float width) : x(x), y(y), height(height), width(width) {}
+Model::Entity::Entity(double x, double y, float height, float width) : x(x), y(y), height(height), width(width) {}
 
-double Entity::getPositionX() const {
+double Model::Entity::getPositionX() const {
     return this->x;
 }
 
-double Entity::getPositionY() const {
+double Model::Entity::getPositionY() const {
     return this->y;
 }
 
-void Entity::updatePositionX(double newPositionX) {
+void Model::Entity::updatePositionX(double newPositionX) {
     if (newPositionX > 4){
         this->x = 4;
     } else if (newPositionX < -4){
@@ -26,7 +26,7 @@ void Entity::updatePositionX(double newPositionX) {
     }
 }
 
-void Entity::updatePositionY(double newPositionY) {
+void Model::Entity::updatePositionY(double newPositionY) {
     if (newPositionY > 3){
         this->y = 3;
     } else if (newPositionY < -3){
@@ -36,10 +36,10 @@ void Entity::updatePositionY(double newPositionY) {
     }
 }
 
-float Entity::getHeight() const {
+float Model::Entity::getHeight() const {
     return height;
 }
 
-float Entity::getWidth() const {
+float Model::Entity::getWidth() const {
     return width;
 }
