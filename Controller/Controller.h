@@ -6,21 +6,30 @@
 #define GRADIUS_CONTROLLER_H
 
 class Model;
-class View;
-class Stopwatch;
 
-class Controller {
-public:
-    Controller(std::string jsonFile = "");
+namespace View {
+    class View;
+}
 
-    void run();
+namespace Ctrl {
 
-    void checkForEvents();
-private:
-    Model* model;
-    View* view;
-    Stopwatch* stopwatch;
-};
+    class Stopwatch;
+
+    class Controller {
+    public:
+        Controller(std::string jsonFile = "");
+
+        void run();
+
+        void checkForEvents();
+
+    private:
+        Model *model;
+        View::View *view;
+        Stopwatch *stopwatch;
+    };
+
+}
 
 
 #endif //GRADIUS_CONTROLLER_H

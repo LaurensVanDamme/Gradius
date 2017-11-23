@@ -9,9 +9,10 @@
 #include "Animation.h"
 
 class Entity;
-class Transformation;
 
 namespace View {
+
+    class Transformation;
 
     class ViewEntity {
     public:

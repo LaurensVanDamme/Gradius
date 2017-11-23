@@ -10,9 +10,11 @@
 #include <vector>
 
 class Model;
-class ViewEntity;
 
 namespace View {
+
+    class ViewEntity;
+
 
     class View {
     public:

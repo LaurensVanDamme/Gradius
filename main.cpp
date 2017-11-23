@@ -3,7 +3,7 @@
 
 int main()
 {
-    Controller game;
+    Ctrl::Controller game;
     game.run();
     return 0;
 }

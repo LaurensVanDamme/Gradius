@@ -17,22 +17,22 @@
 #include <iostream>
 using namespace std;
 
-Controller::Controller(const std::string jsonFile) {
+Ctrl::Controller::Controller(const std::string jsonFile) {
     stopwatch = Stopwatch::getStopwatch();
     model = new Model;
-    view = new View(2100, 1400, model);
+    view = new View::View(2100, 1400, model);
 
     //------------ start Test ------------//
 
     Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
     model->setPlayer(player);
-    ViewEntity* test1 = new ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
+    View::ViewEntity* test1 = new View::ViewEntity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
     view->addViewEntity(test1);
 
     //------------- End Test -------------//
 }
 
-void Controller::run(){
+void Ctrl::Controller::run(){
     // Let the program loop until shut down
     while (view->isWindowOpen())
     {
@@ -45,7 +45,7 @@ void Controller::run(){
     }
 }
 
-void Controller::checkForEvents() {
+void Ctrl::Controller::checkForEvents() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->model->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))

@@ -21,7 +21,7 @@ public:
 
 private:
     sf::RectangleShape body;
-    Animation animation;
+    View::Animation animation;
     unsigned int row;
     float speed;
 };

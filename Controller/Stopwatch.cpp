@@ -4,14 +4,14 @@
 
 #include "Stopwatch.h"
 
-Stopwatch* Stopwatch::instance = nullptr;
+Ctrl::Stopwatch* Ctrl::Stopwatch::instance = nullptr;
 
-Stopwatch::Stopwatch() {
+Ctrl::Stopwatch::Stopwatch() {
     lastTime = std::clock();
     totalTime = 0;
 }
 
-bool Stopwatch::updateAndCheck() {
+bool Ctrl::Stopwatch::updateAndCheck() {
     deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;  // Get the amount of seconds for the last while loop
     lastTime = clock();
     totalTime += deltaTime; // Add the deltaTime to the totalTime
@@ -26,17 +26,17 @@ bool Stopwatch::updateAndCheck() {
     }
 }
 
-Stopwatch *Stopwatch::getStopwatch() {  // Make sure that there can only be one stopwatch
+Ctrl::Stopwatch* Ctrl::Stopwatch::getStopwatch() {  // Make sure that there can only be one stopwatch
     if (!instance){
         Stopwatch::instance = new Stopwatch;
     }
     return Stopwatch::instance;
 }
 
-float Stopwatch::getTotalTickTime() const{
+float Ctrl::Stopwatch::getTotalTickTime() const{
     return formalTotalTickTime;
 }
 
-float Stopwatch::getTotalTime() const {
+float Ctrl::Stopwatch::getTotalTime() const {
     return totalTime;
 }
