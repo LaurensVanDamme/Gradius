@@ -30,14 +30,12 @@ View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vecto
 }
 
 void View::Entity::updateXCoor() {
-    cout << "x" << endl;
     // Get the X coordinate from the entity and transform it into pixels
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(Transformation::getTransformation()->transformViaX(this->subject->getPositionX()), body.getPosition().y);
 }
 
 void View::Entity::updateYCoor() {
-    cout << "y" << endl;
     // Get the X coordinate from the entity and transform it into pixels
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(body.getPosition().x, Transformation::getTransformation()->transformViaY(this->subject->getPositionY()));

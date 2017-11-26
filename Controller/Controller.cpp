@@ -24,7 +24,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     //------------ start Test ------------//
 
-    model->setPlayer(-4, 0, 0.88888, 0.66666, 0.08, 2);
+    model->setPlayer(-3.5, 0, 0.88888, 0.66666, 0.08, 2);
     view->addViewEntity(model->getPlayer(), "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
 
     //------------- End Test -------------//

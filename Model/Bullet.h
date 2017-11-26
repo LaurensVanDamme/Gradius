@@ -12,7 +12,15 @@ namespace Model {
     class Bullet : public MovingEntity {
     public:
 
+        Bullet();
+
+        Bullet(double x, double y, float height, float width, float speed, float timePerShot, unsigned int damage);
+
     private:
+        void checkCoorX();
+
+        void checkCoorY();
+
         float timePerShot;
         unsigned int damage;
     };

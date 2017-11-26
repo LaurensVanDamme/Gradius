@@ -15,22 +15,30 @@ Model::MovingEntity::MovingEntity(double x, double y, float height, float width,
 
 }
 
+float Model::MovingEntity::getSpeed() const {
+    return speed;
+}
+
 void Model::MovingEntity::moveUp() {
-    this->updatePositionY(this->getPositionY() - speed);
+    this->updatePositionY(this->getPositionY() - this->getSpeed());
+    this->checkCoorY();
     this->notifyYCoor();
 }
 
 void Model::MovingEntity::moveDown() {
-    this->updatePositionY(this->getPositionY() + speed);
+    this->updatePositionY(this->getPositionY() + this->getSpeed());
+    this->checkCoorY();
     this->notifyYCoor();
 }
 
 void Model::MovingEntity::moveRight() {
-    this->updatePositionX(this->getPositionX() + speed);
+    this->updatePositionX(this->getPositionX() + this->getSpeed());
+    this->checkCoorX();
     this->notifyXCoor();
 }
 
 void Model::MovingEntity::moveLeft() {
-    this->updatePositionX(this->getPositionX() - speed);
+    this->updatePositionX(this->getPositionX() - this->getSpeed());
+    this->checkCoorX();
     this->notifyXCoor();
 }

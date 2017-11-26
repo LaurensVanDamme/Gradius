@@ -41,7 +41,12 @@ namespace Model {
 
         float getWidth() const;
 
+        bool isDestroyed() const;
+
+        void wrecked();
+
     private:
+        bool destroyed;
         double x;
         double y;
         float height;

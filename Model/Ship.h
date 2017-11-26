@@ -18,6 +18,10 @@ namespace Model {
              Bullet *bullettype = nullptr);
 
     private:
+        void checkCoorX();
+
+        void checkCoorY();
+
         unsigned int healt;
         Bullet *bullettype;
     };

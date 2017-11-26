@@ -15,6 +15,8 @@ namespace Model {
 
         MovingEntity(double x, double y, float height, float width, float speed);
 
+        float getSpeed() const;
+
 /**
 \n    Moves the entity up in the coordinate system
 */
@@ -36,6 +38,10 @@ namespace Model {
         void moveLeft();
 
     private:
+        virtual void checkCoorX()=0;
+
+        virtual void checkCoorY()=0;
+
         float speed;
     };
 

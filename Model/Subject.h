@@ -19,6 +19,8 @@ public:
 
     void notifyYCoor();
 
+    void notifyDestroyed();
+
 private:
     std::vector<Observer*> observers;
 };

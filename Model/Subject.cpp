@@ -24,3 +24,7 @@ void Subject::notifyYCoor(){
         observer->updateYCoor();
     }
 }
+
+void Subject::notifyDestroyed() {
+
+}
