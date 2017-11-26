@@ -15,13 +15,17 @@ namespace Model {
         Ship();
 
         Ship(double x, double y, float width, float height, float speed, unsigned int healt,
-             Bullet *bullettype = nullptr);
+             float timePerShot);
+
+        bool canShoot(float time);
 
     private:
         void checkCoorX() override;
 
         void checkCoorY() override;
 
+        float lastTimeShot;
+        float timePerShot;
         unsigned int healt;
         Bullet *bullettype;
     };

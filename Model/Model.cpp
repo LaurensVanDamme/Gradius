@@ -11,16 +11,16 @@ Model::Ship *Model::Model::getPlayer() {
 }
 
 void Model::Model::setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
-                             Bullet *bullettype) {
-    this->player = new Ship(x, y, width, height, speed, healt, bullettype);
+                             float timePerShot) {
+    this->player = new Ship(x, y, width, height, speed, healt, timePerShot);
 }
 
-void Model::Model::addBullet(float speed, float timePerShot, unsigned int damage) {
+void Model::Model::addBullet(float speed, unsigned int damage) {
     float width = this->player->getWidth() / 4;
     float height = this->player->getHeight() /4;
-    float x = this->player->getPositionX() + this->player->getWidth() + width;
+    float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
     float y = this->player->getPositionY();
-    Bullet* bullet = new Bullet(x, y, width, height, speed, timePerShot, damage);
+    Bullet* bullet = new Bullet(x, y, width, height, speed, damage);
     this->bullets.push_back(bullet);
 }
 
@@ -38,4 +38,10 @@ void Model::Model::checkForDestroyed() {
 
 Model::Bullet *Model::Model::getLastBullet() const {
     return bullets.back();
+}
+
+void Model::Model::moveBullets() {
+    for (auto bullet: bullets){
+        bullet->moveRight();
+    }
 }

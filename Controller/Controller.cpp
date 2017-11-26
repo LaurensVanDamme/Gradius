@@ -24,7 +24,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     //------------ start Test ------------//
 
-    model->setPlayer(-3.5, 0, 0.88888, 0.66666, 0.08, 2);
+    model->setPlayer(-3.5, 0, 0.88888, 0.66666, 0.08, 2, 0.25);
     view->addViewEntity(model->getPlayer(), "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
 
     //------------- End Test -------------//
@@ -45,6 +45,7 @@ void Ctrl::Controller::run(){
 }
 
 void Ctrl::Controller::checkForEvents() {
+    model->moveBullets();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->model->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -54,9 +55,10 @@ void Ctrl::Controller::checkForEvents() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->model->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        this->model->addBullet(0.16, 1, 1);
-        this->view->addViewEntity(this->model->getLastBullet(), "../Textures/beam1.png");
+        if (this->model->getPlayer()->canShoot(stopwatch->getTotalTime())) {
+            this->model->addBullet(0.16, 1);
+            this->view->addViewEntity(this->model->getLastBullet(), "../Textures/beam1.png");
+        }
     }
-    // kijken naar botsingen
 }
 

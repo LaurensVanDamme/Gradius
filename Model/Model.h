@@ -18,13 +18,15 @@ namespace Model {
         Ship *getPlayer();
 
         void setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
-                       Bullet *bullettype = nullptr);
+                       float timePerShot);
 
-        void addBullet(float speed, float timePerShot, unsigned int damage);
+        void addBullet(float speed, unsigned int damage);
 
         void checkForDestroyed();
 
         Bullet * getLastBullet() const;
+
+        void moveBullets();
 
     private:
         Ship *player;
