@@ -13,8 +13,14 @@ void Subject::attach(Observer *observer) {
     observers.push_back(observer);
 }
 
-void Subject::notify() {
+void Subject::notifyXCoor(){
     for (auto observer: observers){
-        observer->update();
+        observer->updateXCoor();
+    }
+}
+
+void Subject::notifyYCoor(){
+    for (auto observer: observers){
+        observer->updateYCoor();
     }
 }

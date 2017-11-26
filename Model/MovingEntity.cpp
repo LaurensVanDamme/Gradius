@@ -17,16 +17,20 @@ Model::MovingEntity::MovingEntity(double x, double y, float height, float width,
 
 void Model::MovingEntity::moveUp() {
     this->updatePositionY(this->getPositionY() - speed);
+    this->notifyYCoor();
 }
 
 void Model::MovingEntity::moveDown() {
     this->updatePositionY(this->getPositionY() + speed);
+    this->notifyYCoor();
 }
 
 void Model::MovingEntity::moveRight() {
     this->updatePositionX(this->getPositionX() + speed);
+    this->notifyXCoor();
 }
 
 void Model::MovingEntity::moveLeft() {
     this->updatePositionX(this->getPositionX() - speed);
+    this->notifyXCoor();
 }

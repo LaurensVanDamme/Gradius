@@ -15,7 +15,10 @@ public:
 
     void attach(Observer* observer);
 
-    void notify();
+    void notifyXCoor();
+
+    void notifyYCoor();
+
 private:
     std::vector<Observer*> observers;
 };

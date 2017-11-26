@@ -5,19 +5,21 @@
 #ifndef GRADIUS_OBSERVER_H
 #define GRADIUS_OBSERVER_H
 
-#include "../Model/Subject.h"
+#include "../Model/Entity.h"
 
 class Subject;
 
 class Observer {
 public:
     Observer();
-    Observer(Subject* subject);
+    Observer(Model::Entity* subject);
 
-    virtual void update()=0;
+    virtual void updateXCoor()=0;
+
+    virtual void updateYCoor()=0;
 
 protected:
-    Subject* subject;
+    Model::Entity* subject;
 };
 
 

@@ -8,12 +8,14 @@
 namespace Model {
 
     class Ship;
+    class Bullet;
 
     class Model {
     public:
         Ship *getPlayer();
 
-        void setPlayer(Ship *player);
+        void setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
+                       Bullet *bullettype = nullptr);
 
     private:
         Ship *player;

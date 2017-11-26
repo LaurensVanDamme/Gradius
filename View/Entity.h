@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
+#include "Observer.h"
 
 namespace Model {
     class Entity;
@@ -16,16 +17,20 @@ namespace View {
 
     class Transformation;
 
-    class Entity {
+    class Entity: public Observer {
     public:
 
         Entity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
+//        void updateCoordinates(int x, int y);
 
-        void update(Transformation *trans, float deltaTime);
+
+        void updateXCoor();
+
+        void updateYCoor();
 
 
-        void draw(sf::RenderWindow *window);
+        void draw(sf::RenderWindow *window, float deltaTime);
 
 
     private:
@@ -33,7 +38,6 @@ namespace View {
         sf::RectangleShape body;
         Animation animation;
         unsigned int row;
-        Model::Entity *entity;
         bool animationEnabled;
     };
 

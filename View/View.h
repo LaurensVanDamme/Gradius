@@ -11,6 +11,7 @@
 
 namespace Model {
     class Model;
+    class Entity;
 }
 
 namespace View {
@@ -24,7 +25,7 @@ namespace View {
 
         View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model);
 
-        void addViewEntity(Entity *entity);
+        void addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime); // Een late aanmaken ipv gwn toevoegen
 
         void checkForEvents(sf::Event event);
 

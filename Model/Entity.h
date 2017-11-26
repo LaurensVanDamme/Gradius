@@ -5,9 +5,11 @@
 #ifndef GRADIUS_ENTITY_H
 #define GRADIUS_ENTITY_H
 
+#include "Subject.h"
+
 namespace Model {
 
-    class Entity {
+    class Entity: public Subject {
     public:
         Entity();
 

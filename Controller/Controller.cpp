@@ -24,10 +24,8 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     //------------ start Test ------------//
 
-    Model::Ship* player = new Model::Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
-    model->setPlayer(player);
-    View::Entity* test1 = new View::Entity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
-    view->addViewEntity(test1);
+    model->setPlayer(-4, 0, 0.88888, 0.66666, 0.08, 2);
+    view->addViewEntity(model->getPlayer(), "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.15);
 
     //------------- End Test -------------//
 }
@@ -54,6 +52,8 @@ void Ctrl::Controller::checkForEvents() {
         this->model->getPlayer()->moveUp();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->model->getPlayer()->moveDown();
+//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+//        this->model->
     // kijken naar botsingen
 }
 

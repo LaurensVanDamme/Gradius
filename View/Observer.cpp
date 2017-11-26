@@ -8,6 +8,6 @@ Observer::Observer() {
 
 }
 
-Observer::Observer(Subject *subject): subject(subject) {
+Observer::Observer(Model::Entity *subject): subject(subject) {
 
 }

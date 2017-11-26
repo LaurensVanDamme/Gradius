@@ -4,7 +4,6 @@
 
 #include "View.h"
 #include "Entity.h"
-#include "Transformation.h"
 
 
 View::View::View() {
@@ -17,11 +16,13 @@ View::View::View(unsigned int windowWidth, unsigned int windowHeight, Model::Mod
     transformation->updateWindowSize(windowWidth, windowHeight);
 }
 
-void View::View::addViewEntity(Entity *entity) {
-    this->entities.push_back(entity);
+void View::View::addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime) {
+    Entity* ventity = new Entity(entity, pathToTexture, imageCount, switchTime);
+    entity->attach(ventity);
+    this->entities.push_back(ventity);
 }
 
-// Tijdelijk
+//----------Tijdelijk----------//
 
 sf::Text getFPS(sf::Font font) {
     static sf::Clock clock;
@@ -37,20 +38,19 @@ sf::Text getFPS(sf::Font font) {
     return text;
 }
 
-// einde tijdelijk
+//-------einde tijdelijk-------//
 
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // Go over every entity in the view update it and draw it on the window
     for (auto entity: this->entities){
-        entity->update(transformation, deltaTime);
-        entity->draw(window);
+        entity->draw(window, deltaTime);
     }
-    // Tijdelijk
+    //----------Tijdelijk----------//
     sf::Font font;
     font.loadFromFile("arial.ttf");
     window->draw(getFPS(font));
-    // Einde tijdelijk
+    //-------Einde tijdelijk-------//
     window->display();
 }
 
