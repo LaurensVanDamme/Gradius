@@ -18,6 +18,8 @@ public:
 
     virtual void updateYCoor()=0;
 
+    virtual void updateDestroyed()=0;
+
 protected:
     Model::Entity* subject;
 };

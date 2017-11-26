@@ -18,9 +18,9 @@ namespace Model {
              Bullet *bullettype = nullptr);
 
     private:
-        void checkCoorX();
+        void checkCoorX() override;
 
-        void checkCoorY();
+        void checkCoorY() override;
 
         unsigned int healt;
         Bullet *bullettype;

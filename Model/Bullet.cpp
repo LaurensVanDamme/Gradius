@@ -6,7 +6,7 @@
 
 Model::Bullet::Bullet() {}
 
-Model::Bullet::Bullet(double x, double y, float height, float width, float speed, float timePerShot,
+Model::Bullet::Bullet(double x, double y, float width, float height, float speed, float timePerShot,
                       unsigned int damage) : MovingEntity(x, y, height, width, speed), timePerShot(timePerShot),
                                              damage(damage) {}
 

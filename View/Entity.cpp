@@ -11,6 +11,7 @@ using namespace std;
 
 View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): Observer(entity) {
+    this->destroyed = false;
     texture.loadFromFile(pathToTexture);
     // Check if an animation has to be made
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {
@@ -39,6 +40,14 @@ void View::Entity::updateYCoor() {
     // Get the X coordinate from the entity and transform it into pixels
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(body.getPosition().x, Transformation::getTransformation()->transformViaY(this->subject->getPositionY()));
+}
+
+void View::Entity::updateDestroyed() {
+    this->destroyed = true;
+}
+
+bool View::Entity::isDestroyed() const {
+    return destroyed;
 }
 
 void View::Entity::draw(sf::RenderWindow* window, float deltaTime) {

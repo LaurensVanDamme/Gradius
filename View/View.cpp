@@ -4,6 +4,8 @@
 
 #include "View.h"
 #include "Entity.h"
+#include <vector>
+using namespace std;
 
 
 View::View::View() {
@@ -42,10 +44,17 @@ sf::Text getFPS(sf::Font font) {
 
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
-    // Go over every entity in the view update it and draw it on the window
+    // Go over every entity in the view and draw it on the window if it isn't destroyed
+    vector<Entity*> toKeep;
     for (auto entity: this->entities){
-        entity->draw(window, deltaTime);
+        if (!entity->isDestroyed()){
+            entity->draw(window, deltaTime);
+            toKeep.push_back(entity);
+        } else {
+            delete entity;
+        }
     }
+    this->entities = toKeep;
     //----------Tijdelijk----------//
     sf::Font font;
     font.loadFromFile("arial.ttf");

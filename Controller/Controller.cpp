@@ -37,6 +37,7 @@ void Ctrl::Controller::run(){
         sf::Event event;
         view->checkForEvents(event);
         if (stopwatch->updateAndCheck()) {
+            model->checkForDestroyed();
             view->updateView(stopwatch->getTotalTickTime());
             this->checkForEvents();
         }
@@ -52,8 +53,10 @@ void Ctrl::Controller::checkForEvents() {
         this->model->getPlayer()->moveUp();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->model->getPlayer()->moveDown();
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//        this->model->
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        this->model->addBullet(0.16, 1, 1);
+        this->view->addViewEntity(this->model->getLastBullet(), "../Textures/beam1.png");
+    }
     // kijken naar botsingen
 }
 

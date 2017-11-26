@@ -14,12 +14,12 @@ namespace Model {
 
         Bullet();
 
-        Bullet(double x, double y, float height, float width, float speed, float timePerShot, unsigned int damage);
+        Bullet(double x, double y, float width, float height, float speed, float timePerShot, unsigned int damage);
 
     private:
-        void checkCoorX();
+        void checkCoorX() override;
 
-        void checkCoorY();
+        void checkCoorY() override;
 
         float timePerShot;
         unsigned int damage;

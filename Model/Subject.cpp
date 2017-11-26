@@ -26,5 +26,7 @@ void Subject::notifyYCoor(){
 }
 
 void Subject::notifyDestroyed() {
-
+    for (auto observer: observers){
+        observer->updateDestroyed();
+    }
 }

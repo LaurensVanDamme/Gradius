@@ -25,13 +25,16 @@ namespace View {
 //        void updateCoordinates(int x, int y);
 
 
-        void updateXCoor();
+        void updateXCoor() override;
 
-        void updateYCoor();
+        void updateYCoor() override;
+
+        void updateDestroyed() override;
+
+        bool isDestroyed() const;
 
 
         void draw(sf::RenderWindow *window, float deltaTime);
-
 
     private:
         sf::Texture texture;
@@ -39,6 +42,7 @@ namespace View {
         Animation animation;
         unsigned int row;
         bool animationEnabled;
+        bool destroyed;
     };
 
 }
