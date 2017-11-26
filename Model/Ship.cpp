@@ -7,7 +7,7 @@
 Model::Ship::Ship() {}
 
 Model::Ship::Ship(double x, double y, float width, float height, float speed, unsigned int healt, float timePerShot)
-        : MovingEntity(x, y, height, width, speed), healt(healt), bullettype(bullettype), timePerShot(timePerShot) {
+        : MovingEntity(x, y, height, width, speed), healt(healt), timePerShot(timePerShot) {
     lastTimeShot = 0;
 }
 

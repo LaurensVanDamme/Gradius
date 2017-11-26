@@ -27,7 +27,6 @@ namespace Model {
         float lastTimeShot;
         float timePerShot;
         unsigned int healt;
-        Bullet *bullettype;
     };
 
 }

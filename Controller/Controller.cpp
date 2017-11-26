@@ -37,9 +37,9 @@ void Ctrl::Controller::run(){
         sf::Event event;
         view->checkForEvents(event);
         if (stopwatch->updateAndCheck()) {
+            this->checkForEvents();
             model->checkForDestroyed();
             view->updateView(stopwatch->getTotalTickTime());
-            this->checkForEvents();
         }
     }
 }
