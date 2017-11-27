@@ -13,7 +13,7 @@ namespace Model {
     class Ship;
     class ScrollingEntity;
 
-    class Model {
+    class Model {  // Vergeet deconstructor ni!!!
     public:
         Ship *getPlayer();
 
@@ -24,9 +24,11 @@ namespace Model {
 
         ScrollingEntity* addBorder();
 
-        void checkForDestroyed();
+        bool checkForDestroyed();
 
-        void updateWorld();
+        void updateWorld(float totalTime);
+
+
 
     private:
         Ship *player;

@@ -10,3 +10,7 @@ Model::ScrollingEntity::ScrollingEntity(double x, double y, float height, float 
                                         unsigned int damage) : Entity(x, y, height, width), damage(damage) {
     scrollSpeed = 0.06;
 }
+
+unsigned int Model::ScrollingEntity::getDamage() const {
+    return damage;
+}

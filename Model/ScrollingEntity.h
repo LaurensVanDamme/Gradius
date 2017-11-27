@@ -17,6 +17,8 @@ namespace Model {
 
         virtual void scroll()=0;
 
+        unsigned int getDamage() const;
+
     private:
 
         virtual void checkCoorX()=0;

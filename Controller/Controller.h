@@ -27,6 +27,8 @@ namespace Ctrl {
 
         void makeBorders();
 
+        void endGame();
+
     private:
         Model::Model *model;
         View::View *view;

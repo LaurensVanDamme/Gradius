@@ -46,7 +46,10 @@ Model::ScrollingEntity *Model::Model::addBorder() {
     return border;
 }
 
-void Model::Model::checkForDestroyed() {
+bool Model::Model::checkForDestroyed() {
+    if (player->isDestroyed()){
+        return false;
+    }
     vector<ScrollingEntity*> toKeep;
     for (auto scrollingEntity: this->scrollingEntities) {
         if (!scrollingEntity->isDestroyed()){
@@ -56,33 +59,42 @@ void Model::Model::checkForDestroyed() {
         }
     }
     this->scrollingEntities = toKeep;
+    return true;
 }
 
-void Model::Model::updateWorld() {
+void Model::Model::updateWorld(float totalTime) {
     for (auto scrollingEntity: scrollingEntities){
         scrollingEntity->scroll();
+        bool x = false;
+        bool y = false;
         if (player->getPositionX() > scrollingEntity->getPositionX()){
             if ((player->getPositionX() - (player->getWidth() / 2) <
                     (scrollingEntity->getPositionX() + (scrollingEntity->getWidth() / 2)))){
-                player->hit();
+                x = true;
             }
         } else {
             if ((player->getPositionX() + (player->getWidth() / 2) >
                  (scrollingEntity->getPositionX() - (scrollingEntity->getWidth() / 2)))){
-                player->hit();
+                x = true;
             }
         }
         if (player->getPositionY() > scrollingEntity->getPositionY()){
             if ((player->getPositionY() - (player->getHeight() / 2) <
                  (scrollingEntity->getPositionY() + (scrollingEntity->getHeight() / 2)))){
-                player->hit();
+                y = true;
             }
         } else {
             if ((player->getPositionY() + (player->getHeight() / 2) >
                  (scrollingEntity->getPositionY() - (scrollingEntity->getHeight() / 2)))){
-                player->hit();
+                y = true;
+            }
+        }
+        if (x and y){
+            if (player->canBeHit(totalTime)) {
+                player->hit(scrollingEntity->getDamage());
             }
         }
     }
-    // To add: Collitionhandling and aiShips
+    // To add: Collitionhandling in een functie steken and aiShips, die kunnen dan ook gehit worden door een kogel van de speler
+    // daardoor is die functie voor collition handig
 }

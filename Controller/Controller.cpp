@@ -38,15 +38,18 @@ void Ctrl::Controller::run(){
         sf::Event event;
         view->checkForEvents(event);
         if (stopwatch->updateAndCheck()) {
+            model->updateWorld(stopwatch->getTotalTime());
             this->checkForEvents();
-            model->checkForDestroyed();
+            if (!model->checkForDestroyed()){
+                this->endGame();
+                break;
+            }
             view->updateView(stopwatch->getTotalTickTime());
         }
     }
 }
 
 void Ctrl::Controller::checkForEvents() {
-    model->updateWorld();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->model->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -68,6 +71,11 @@ void Ctrl::Controller::makeBorders() {
         this->view->addViewEntity(border, "../Textures/rock.png");
         border = this->model->addBorder();
     }
+}
+
+void Ctrl::Controller::endGame() {
+    delete view;
+    delete model;
 }
 
 

@@ -20,7 +20,7 @@ namespace View {
     class Entity;
 
 
-    class View {
+    class View {  // Vergeet deconstructor ni!!!
     public:
         View();
 

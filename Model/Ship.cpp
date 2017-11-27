@@ -36,10 +36,22 @@ bool Model::Ship::canShoot(float time){
     }
 }
 
+bool Model::Ship::canBeHit(float time) {
+    if (time - lastTimeHit >= 1){
+        lastTimeHit = time;
+        return true;
+    } else {
+        return false;
+    }
+}
+
 unsigned int Model::Ship::getHealt() const {
     return healt;
 }
 
-void Model::Ship::hit() {
-    this->healt--;
+void Model::Ship::hit(unsigned int damage) {
+    this->healt -= damage;
+    if (this->healt == 0){
+        this->wrecked();
+    }
 }
