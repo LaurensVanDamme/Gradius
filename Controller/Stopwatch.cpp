@@ -3,6 +3,8 @@
 //
 
 #include "Stopwatch.h"
+#include <iostream>
+using namespace std;
 
 Ctrl::Stopwatch* Ctrl::Stopwatch::instance = nullptr;
 

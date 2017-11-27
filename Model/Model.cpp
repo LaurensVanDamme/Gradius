@@ -6,6 +6,9 @@
 #include "Bullet.h"
 #include "Ship.h"
 
+#include <iostream>
+using namespace std;
+
 Model::Ship *Model::Model::getPlayer() {
     return player;
 }
@@ -15,33 +18,30 @@ void Model::Model::setPlayer(double x, double y, float width, float height, floa
     this->player = new Ship(x, y, width, height, speed, healt, timePerShot);
 }
 
-void Model::Model::addBullet(float speed, unsigned int damage) {
+Model::Bullet* Model::Model::addBullet(unsigned int damage, float speed) {
     float width = this->player->getWidth() / 4;
     float height = this->player->getHeight() /4;
     float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
     float y = this->player->getPositionY();
-    Bullet* bullet = new Bullet(x, y, width, height, speed, damage);
-    this->bullets.push_back(bullet);
+    auto bullet = new Bullet(x, y, width, height, damage, speed);
+    this->scrollingEntities.push_back(bullet);
+    return bullet;
 }
 
 void Model::Model::checkForDestroyed() {
-    vector<Bullet*> toKeep;
-    for (auto bullet: this->bullets) {
-        if (!bullet->isDestroyed()){
-            toKeep.push_back(bullet);
+    vector<ScrollingEntity*> toKeep;
+    for (auto scrollingEntity: this->scrollingEntities) {
+        if (!scrollingEntity->isDestroyed()){
+            toKeep.push_back(scrollingEntity);
         } else {
-            delete bullet;
+            delete scrollingEntity;
         }
     }
-    this->bullets = toKeep;
+    this->scrollingEntities = toKeep;
 }
 
-Model::Bullet *Model::Model::getLastBullet() const {
-    return bullets.back();
-}
-
-void Model::Model::moveBullets() {
-    for (auto bullet: bullets){
-        bullet->moveRight();
-    }
+void Model::Model::updateWorld() {
+    for (auto scrollingEntity: scrollingEntities){
+        scrollingEntity->scroll();
+    } // To add: Collitionhandling and aiShips
 }

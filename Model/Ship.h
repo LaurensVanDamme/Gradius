@@ -25,7 +25,7 @@ namespace Model {
         void checkCoorY() override;
 
         float lastTimeShot;
-        float timePerShot;
+        float timePerShot; // in seconds
         unsigned int healt;
     };
 

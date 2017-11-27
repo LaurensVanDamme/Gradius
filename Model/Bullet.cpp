@@ -8,25 +8,22 @@ using namespace std;
 
 Model::Bullet::Bullet() {}
 
-Model::Bullet::Bullet(double x, double y, float width, float height, float speed,
-                      unsigned int damage) : MovingEntity(x, y, height, width, speed), damage(damage) {}
+Model::Bullet::Bullet(double x, double y, float height, float width, unsigned int damage, float speed)
+        : ScrollingEntity(x, y, height, width, damage) {
+    this->scrollSpeed = speed;
+}
+
+void Model::Bullet::scroll() {
+    this->updatePositionX(this->getPositionX() + scrollSpeed);
+    this->checkCoorX();
+    this->notifyXCoor();
+}
 
 void Model::Bullet::checkCoorX() {
     if (this->getPositionX() > (4 + (this->getWidth() / 2))){
         this->wrecked();
-        this->notifyDestroyed();
     } else if (this->getPositionX() < (-4 - (this->getWidth() / 2))){
         this->wrecked();
-        this->notifyDestroyed();
     }
 }
 
-void Model::Bullet::checkCoorY() {
-    if (this->getPositionY() > (3 - (this->getHeight() / 2))) {
-        this->wrecked();
-        this->notifyDestroyed();
-    } else if (this->getPositionY() < (-3 + (this->getHeight() / 2))) {
-        this->wrecked();
-        this->notifyDestroyed();
-    }
-}

@@ -5,23 +5,22 @@
 #ifndef GRADIUS_BULLET_H
 #define GRADIUS_BULLET_H
 
-#include "MovingEntity.h"
+#include "ScrollingEntity.h"
 
 namespace Model {
 
-    class Bullet : public MovingEntity {
+    class Bullet : public ScrollingEntity {
     public:
 
         Bullet();
 
-        Bullet(double x, double y, float width, float height, float speed, unsigned int damage);
+        Bullet(double x, double y, float height, float width, unsigned int damage, float speed);
+
+        void scroll() override;
 
     private:
+
         void checkCoorX() override;
-
-        void checkCoorY() override;
-
-        unsigned int damage;
     };
 
 }

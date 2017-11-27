@@ -11,6 +11,7 @@ using namespace std;
 namespace Model {
 
     class Ship;
+    class ScrollingEntity;
     class Bullet;
 
     class Model {
@@ -20,17 +21,15 @@ namespace Model {
         void setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
                        float timePerShot);
 
-        void addBullet(float speed, unsigned int damage);
+        Bullet* addBullet(unsigned int damage, float speed);
 
         void checkForDestroyed();
 
-        Bullet * getLastBullet() const;
-
-        void moveBullets();
+        void updateWorld();
 
     private:
         Ship *player;
-        vector<Bullet*> bullets;
+        vector<ScrollingEntity*> scrollingEntities;
     };
 
 }

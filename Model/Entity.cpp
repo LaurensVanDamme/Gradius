@@ -6,15 +6,15 @@
 
 Model::Entity::Entity() {}
 
-Model::Entity::Entity(double x, double y, float height, float width) : x(x), y(y), height(height), width(width) {
+Model::Entity::Entity(float x, float y, float height, float width) : x(x), y(y), height(height), width(width) {
     this->destroyed = false;
 }
 
-double Model::Entity::getPositionX() const {
+float Model::Entity::getPositionX() const {
     return this->x;
 }
 
-double Model::Entity::getPositionY() const {
+float Model::Entity::getPositionY() const {
     return this->y;
 }
 
@@ -46,4 +46,5 @@ bool Model::Entity::isDestroyed() const {
 
 void Model::Entity::wrecked() {
     this->destroyed = true;
+    this->notifyDestroyed();
 }

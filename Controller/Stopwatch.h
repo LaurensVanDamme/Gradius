@@ -37,7 +37,7 @@ namespace Ctrl {
     private:
         static Stopwatch *instance;
 
-        float timePerTick = 0.030;
+        float timePerTick = 0.030; // Seconds per tick/frame
         float deltaTime;
         float totalTickTime;
         float totalTime;

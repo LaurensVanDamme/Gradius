@@ -45,7 +45,7 @@ void Ctrl::Controller::run(){
 }
 
 void Ctrl::Controller::checkForEvents() {
-    model->moveBullets();
+    model->updateWorld();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->model->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -56,8 +56,7 @@ void Ctrl::Controller::checkForEvents() {
         this->model->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         if (this->model->getPlayer()->canShoot(stopwatch->getTotalTime())) {
-            this->model->addBullet(0.16, 1);
-            this->view->addViewEntity(this->model->getLastBullet(), "../Textures/beam1.png");
+            this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
         }
     }
 }

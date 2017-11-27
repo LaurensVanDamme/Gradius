@@ -13,17 +13,17 @@ namespace Model {
     public:
         Entity();
 
-        Entity(double x, double y, float height, float width);
+        Entity(float x, float y, float height, float width);
 
 /**
 \n    Returns the x coordinate of the entity
 */
-        double getPositionX() const;
+        float getPositionX() const;
 
 /**
 \n    Returns the y coordinate of the entity
 */
-        double getPositionY() const;
+        float getPositionY() const;
 
 /**
 \n    Updates the x coordinate of the entity by a new x coordinate
@@ -41,14 +41,16 @@ namespace Model {
 
         float getWidth() const;
 
+
         bool isDestroyed() const;
+
 
         void wrecked();
 
     private:
         bool destroyed;
-        double x;
-        double y;
+        float x;
+        float y;
         float height;
         float width;
     };

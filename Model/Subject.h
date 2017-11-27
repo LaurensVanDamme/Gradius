@@ -15,7 +15,7 @@ public:
 
     void attach(Observer* observer);
 
-    void notifyXCoor();
+    void notifyXCoor() const ;
 
     void notifyYCoor();
 

@@ -1,19 +1,26 @@
 //
-// Created by laurens on 11/18/17.
+// Created by laurens on 11/27/17.
 //
 
 #ifndef GRADIUS_OBSTACLE_H
 #define GRADIUS_OBSTACLE_H
 
-#include "StaticEntity.h"
+#include "ScrollingEntity.h"
 
 namespace Model {
 
-    class Obstacle : public StaticEntity {
+    class Obstacle: public ScrollingEntity {
     public:
+        Obstacle();
+
+        Obstacle(double x, double y, float height, float width, unsigned int damage);
+
+        void scroll() override;
 
     private:
-        unsigned int damage;
+
+        virtual void checkCoorX() override;
+
     };
 
 }

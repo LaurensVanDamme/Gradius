@@ -13,7 +13,7 @@ void Subject::attach(Observer *observer) {
     observers.push_back(observer);
 }
 
-void Subject::notifyXCoor(){
+void Subject::notifyXCoor() const{
     for (auto observer: observers){
         observer->updateXCoor();
     }
