@@ -25,6 +25,8 @@ namespace Ctrl {
 
         void checkForEvents();
 
+        void makeBorders();
+
     private:
         Model::Model *model;
         View::View *view;

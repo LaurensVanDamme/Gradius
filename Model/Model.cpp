@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "Bullet.h"
 #include "Ship.h"
+#include "Border.h"
 
 #include <iostream>
 using namespace std;
@@ -18,7 +19,7 @@ void Model::Model::setPlayer(double x, double y, float width, float height, floa
     this->player = new Ship(x, y, width, height, speed, healt, timePerShot);
 }
 
-Model::Bullet* Model::Model::addBullet(unsigned int damage, float speed) {
+Model::ScrollingEntity* Model::Model::addBullet(unsigned int damage, float speed) {
     float width = this->player->getWidth() / 4;
     float height = this->player->getHeight() /4;
     float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
@@ -26,6 +27,23 @@ Model::Bullet* Model::Model::addBullet(unsigned int damage, float speed) {
     auto bullet = new Bullet(x, y, width, height, damage, speed);
     this->scrollingEntities.push_back(bullet);
     return bullet;
+}
+
+Model::ScrollingEntity *Model::Model::addBorder() {
+    static float x = -4;
+    static float y = 2.75 + 0.125;
+    static unsigned int number = 0;
+    if (number == 33){
+        x = -4;
+        y = -2.75 - 0.125;
+    } else if (number == 67){
+        return nullptr;
+    }
+    auto border = new Border(x, y, 0.25, 0.25, 2);
+    x += 0.25;
+    number++;
+    this->scrollingEntities.push_back(border);
+    return border;
 }
 
 void Model::Model::checkForDestroyed() {

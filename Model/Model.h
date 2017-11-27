@@ -12,7 +12,6 @@ namespace Model {
 
     class Ship;
     class ScrollingEntity;
-    class Bullet;
 
     class Model {
     public:
@@ -21,7 +20,9 @@ namespace Model {
         void setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
                        float timePerShot);
 
-        Bullet* addBullet(unsigned int damage, float speed);
+        ScrollingEntity* addBullet(unsigned int damage, float speed);
+
+        ScrollingEntity* addBorder();
 
         void checkForDestroyed();
 

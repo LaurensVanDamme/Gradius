@@ -5,7 +5,6 @@
 // Test
 
 #include "../View/Entity.h"
-#include "../Model/Ship.h"
 
 // End Test
 
@@ -13,6 +12,7 @@
 #include "Controller.h"
 #include "../View/View.h"
 #include "../Model/Model.h"
+#include "../Model/Ship.h"
 
 #include <iostream>
 using namespace std;
@@ -21,6 +21,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
     stopwatch = Stopwatch::getStopwatch();
     model = new Model::Model;
     view = new View::View(2100, 1400, model);
+    this->makeBorders();
 
     //------------ start Test ------------//
 
@@ -60,4 +61,14 @@ void Ctrl::Controller::checkForEvents() {
         }
     }
 }
+
+void Ctrl::Controller::makeBorders() {
+    Model::Entity* border = this->model->addBorder();
+    while(border){
+        this->view->addViewEntity(border, "../Textures/rock.png");
+        border = this->model->addBorder();
+    }
+}
+
+
 

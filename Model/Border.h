@@ -12,6 +12,8 @@ namespace Model {
     class Border: public Obstacle {
     public:
 
+        Border(double x, double y, float height, float width, unsigned int damage);
+
         void checkCoorX() override;
 
     private:
