@@ -20,13 +20,13 @@ float Model::MovingEntity::getSpeed() const {
 }
 
 void Model::MovingEntity::moveUp() {
-    this->updatePositionY(this->getPositionY() - this->getSpeed());
+    this->updatePositionY(this->getPositionY() + this->getSpeed());
     this->checkCoorY();
     this->notifyYCoor();
 }
 
 void Model::MovingEntity::moveDown() {
-    this->updatePositionY(this->getPositionY() + this->getSpeed());
+    this->updatePositionY(this->getPositionY() - this->getSpeed());
     this->checkCoorY();
     this->notifyYCoor();
 }

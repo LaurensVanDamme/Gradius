@@ -35,3 +35,11 @@ bool Model::Ship::canShoot(float time){
         return false;
     }
 }
+
+unsigned int Model::Ship::getHealt() const {
+    return healt;
+}
+
+void Model::Ship::hit() {
+    this->healt--;
+}

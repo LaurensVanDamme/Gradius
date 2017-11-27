@@ -24,10 +24,10 @@ float View::Transformation::transformViaX(float x) {
 }
 
 float View::Transformation::transformViaY(float y) {
-    if (y >= 0){
-        return ((y / 3) * (windowHeight / 2)) + (windowHeight / 2);
+    if (y <= 0){
+        return ((-y / 3) * (windowHeight / 2)) + (windowHeight / 2);
     } else {
-        return (windowHeight / 2) - ((-y / 3) * (windowHeight / 2));
+        return (windowHeight / 2) - ((y / 3) * (windowHeight / 2));
     }
 }
 

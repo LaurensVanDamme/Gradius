@@ -4,9 +4,11 @@
 
 #include "View.h"
 #include "Entity.h"
+#include "Player.h"
+#include "../Model/Ship.h"
+
 #include <vector>
 using namespace std;
-
 
 View::View::View() {
 
@@ -16,6 +18,13 @@ View::View::View(unsigned int windowWidth, unsigned int windowHeight, Model::Mod
     window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
     transformation = Transformation::getTransformation();
     transformation->updateWindowSize(windowWidth, windowHeight);
+}
+
+void View::View::addPlayer(Model::Ship *entity, const std::string &pathToTexture, sf::Vector2u imageCount,
+                           float switchTime) {
+    auto ventity = new Player(entity, pathToTexture, imageCount, switchTime);
+    entity->attach(ventity);
+    this->entities.push_back(ventity);
 }
 
 void View::View::addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime) {

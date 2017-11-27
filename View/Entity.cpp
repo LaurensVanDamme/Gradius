@@ -9,6 +9,8 @@
 #include <iostream>
 using namespace std;
 
+View::Entity::Entity() {}
+
 View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): Observer(entity) {
     this->destroyed = false;

@@ -20,6 +20,7 @@ namespace View {
     class Entity: public Observer {
     public:
 
+        Entity();
         Entity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 //        void updateCoordinates(int x, int y);
@@ -34,7 +35,7 @@ namespace View {
         bool isDestroyed() const;
 
 
-        void draw(sf::RenderWindow *window, float deltaTime);
+        virtual void draw(sf::RenderWindow *window, float deltaTime);
 
     private:
         sf::Texture texture;

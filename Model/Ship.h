@@ -19,6 +19,10 @@ namespace Model {
 
         bool canShoot(float time);
 
+        unsigned int getHealt() const;
+
+        void hit();
+
     private:
         void checkCoorX() override;
 

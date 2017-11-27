@@ -31,11 +31,11 @@ Model::ScrollingEntity* Model::Model::addBullet(unsigned int damage, float speed
 
 Model::ScrollingEntity *Model::Model::addBorder() {
     static float x = -4;
-    static float y = 2.75 + 0.125;
+    static float y = 2.875;
     static unsigned int number = 0;
     if (number == 33){
         x = -4;
-        y = -2.75 - 0.125;
+        y = -2.875;
     } else if (number == 67){
         return nullptr;
     }
@@ -61,5 +61,28 @@ void Model::Model::checkForDestroyed() {
 void Model::Model::updateWorld() {
     for (auto scrollingEntity: scrollingEntities){
         scrollingEntity->scroll();
-    } // To add: Collitionhandling and aiShips
+        if (player->getPositionX() > scrollingEntity->getPositionX()){
+            if ((player->getPositionX() - (player->getWidth() / 2) <
+                    (scrollingEntity->getPositionX() + (scrollingEntity->getWidth() / 2)))){
+                player->hit();
+            }
+        } else {
+            if ((player->getPositionX() + (player->getWidth() / 2) >
+                 (scrollingEntity->getPositionX() - (scrollingEntity->getWidth() / 2)))){
+                player->hit();
+            }
+        }
+        if (player->getPositionY() > scrollingEntity->getPositionY()){
+            if ((player->getPositionY() - (player->getHeight() / 2) <
+                 (scrollingEntity->getPositionY() + (scrollingEntity->getHeight() / 2)))){
+                player->hit();
+            }
+        } else {
+            if ((player->getPositionY() + (player->getHeight() / 2) >
+                 (scrollingEntity->getPositionY() - (scrollingEntity->getHeight() / 2)))){
+                player->hit();
+            }
+        }
+    }
+    // To add: Collitionhandling and aiShips
 }

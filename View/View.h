@@ -12,6 +12,7 @@
 namespace Model {
     class Model;
     class Entity;
+    class Ship;
 }
 
 namespace View {
@@ -24,6 +25,8 @@ namespace View {
         View();
 
         View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model);
+
+        void addPlayer(Model::Ship *entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
 
         void addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
 
