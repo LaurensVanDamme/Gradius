@@ -37,7 +37,9 @@ namespace View {
 
         virtual void draw(sf::RenderWindow *window, float deltaTime);
 
-    private:
+
+
+    protected:
         sf::Texture texture;
         sf::RectangleShape body;
         Animation animation;

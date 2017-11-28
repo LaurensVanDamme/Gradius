@@ -7,7 +7,7 @@
 Model::Ship::Ship() {}
 
 Model::Ship::Ship(double x, double y, float width, float height, float speed, unsigned int healt, float timePerShot)
-        : MovingEntity(x, y, height, width, speed), healt(healt), timePerShot(timePerShot) {
+        : MovingEntity(x, y, height, width, speed), health(healt), timePerShot(timePerShot) {
     lastTimeShot = 0;
 }
 
@@ -36,9 +36,11 @@ bool Model::Ship::canShoot(float time){
     }
 }
 
-bool Model::Ship::canBeHit(float time) {
-    if (time - lastTimeHit >= 1){
-        lastTimeHit = time;
+bool Model::Ship::canBeHit(float time, bool hit) {
+    if (time - lastTimeHit >= 1.5){
+        if (hit) {
+            lastTimeHit = time;
+        }
         return true;
     } else {
         return false;
@@ -46,12 +48,12 @@ bool Model::Ship::canBeHit(float time) {
 }
 
 unsigned int Model::Ship::getHealt() const {
-    return healt;
+    return health;
 }
 
 void Model::Ship::hit(unsigned int damage) {
-    this->healt -= damage;
-    if (this->healt == 0){
+    this->health -= damage;
+    if (this->health == 0){
         this->wrecked();
     }
 }

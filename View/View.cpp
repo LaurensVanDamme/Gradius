@@ -89,9 +89,3 @@ void View::View::checkForEvents(sf::Event event) {
 bool View::View::isWindowOpen() {
     return window->isOpen();
 }
-
-View::View::~View() {
-//    for (auto entity: this->entities){
-//        delete entity;
-//    }
-}

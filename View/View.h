@@ -36,8 +36,6 @@ namespace View {
 
         bool isWindowOpen();
 
-        virtual ~View();
-
     private:
         Model::Model *model;
         sf::RenderWindow *window;

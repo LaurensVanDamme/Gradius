@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "../Model/Ship.h"
 #include "Transformation.h"
+#include "../Controller/Stopwatch.h"
 
 View::Player::Player(Model::Ship *entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                      float switchTime) : Entity(entity, pathToTexture, imageCount, switchTime) {
@@ -13,8 +14,13 @@ View::Player::Player(Model::Ship *entity, const std::string &pathToTexture, cons
 
 void View::Player::draw(sf::RenderWindow *window, float deltaTime) {
     Transformation* trans = Transformation::getTransformation();
+    if (!this->subject->canBeHit(Ctrl::Stopwatch::getStopwatch()->getTotalTime(), false)){
+        this->row = 1;
+    } else {
+        this->row = 0;
+    }
     Entity::draw(window, deltaTime);
-    float x = -3.5;
+    float x = -3.5f;
     float y = trans->transformViaY(2.475);
     sf::Texture texture;
     texture.loadFromFile("../Textures/Hearth.png");

@@ -19,7 +19,7 @@ namespace Model {
 
         bool canShoot(float time);
 
-        bool canBeHit(float time);
+        bool canBeHit(float time, bool hit = true);
 
         unsigned int getHealt() const;
 
@@ -33,7 +33,7 @@ namespace Model {
         float lastTimeShot;
         float lastTimeHit;
         float timePerShot; // in seconds
-        unsigned int healt;
+        unsigned int health;
     };
 
 }
