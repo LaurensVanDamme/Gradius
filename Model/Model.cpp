@@ -36,7 +36,7 @@ Model::ScrollingEntity *Model::Model::addBorder() {
     if (number == 33){
         x = -4;
         y = -2.875;
-    } else if (number == 67){
+    } else if (number == 66){
         return nullptr;
     }
     auto border = new Border(x, y, 0.25, 0.25, 2);

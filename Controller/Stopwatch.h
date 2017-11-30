@@ -6,19 +6,16 @@
 #define GRADIUS_STOPWATCH_H
 
 #include <ctime>
+#include "../Singleton.h"
 
 namespace Ctrl {
 
-    class Stopwatch {
+    class Stopwatch: public Singleton<Stopwatch> {
+        friend class Singleton<Stopwatch>;
     private:
         Stopwatch();
 
     public:
-/**
-\n    Creates or returns the only stopwatch (singleton)
-*/
-        static Stopwatch *getStopwatch();
-
 /**
 \n    Updates the totalTime etc and returns if the program can do another tick
 */
@@ -35,8 +32,6 @@ namespace Ctrl {
         float getTotalTime() const;
 
     private:
-        static Stopwatch *instance;
-
         float timePerTick = 0.030; // Seconds per tick/frame
         float deltaTime;
         float totalTickTime;

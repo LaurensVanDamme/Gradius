@@ -6,8 +6,6 @@
 #include <iostream>
 using namespace std;
 
-Ctrl::Stopwatch* Ctrl::Stopwatch::instance = nullptr;
-
 Ctrl::Stopwatch::Stopwatch() {
     lastTime = std::clock();
     totalTime = 0;
@@ -26,13 +24,6 @@ bool Ctrl::Stopwatch::updateAndCheck() {
         totalTickTime -= timePerTick;  // Reset the totalTime
         return true;
     }
-}
-
-Ctrl::Stopwatch* Ctrl::Stopwatch::getStopwatch() {  // Make sure that there can only be one stopwatch
-    if (!instance){
-        Stopwatch::instance = new Stopwatch;
-    }
-    return Stopwatch::instance;
 }
 
 float Ctrl::Stopwatch::getTotalTickTime() const{

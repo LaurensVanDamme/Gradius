@@ -6,14 +6,16 @@
 #define GRADIUS_TRANSFORMATION_H
 
 
+#include "../Singleton.h"
+
 namespace View {
 
-    class Transformation {
+    class Transformation: public Singleton<Transformation> {
+        friend class Singleton<Transformation>;
     private:
         Transformation();
 
     public:
-        static Transformation *getTransformation();
 
         void updateWindowSize(unsigned int windowWidth, unsigned int windowHeight);
 
@@ -26,8 +28,6 @@ namespace View {
         float transformHeight(float height);
 
     private:
-
-        static Transformation *instance;
         unsigned int windowWidth;
         unsigned int windowHeight;
     };

@@ -16,7 +16,7 @@ View::View::View() {
 
 View::View::View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model): model(model){
     window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
-    transformation = Transformation::getTransformation();
+    transformation = Transformation::getInstance();
     transformation->updateWindowSize(windowWidth, windowHeight);
 }
 

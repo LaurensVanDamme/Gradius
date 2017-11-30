@@ -24,7 +24,7 @@ View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vecto
         animationEnabled = false;
     }
     // Create a body for the player with a texture and set it at the right position
-    Transformation* trans = Transformation::getTransformation();
+    Transformation* trans = Transformation::getInstance();
     body.setTexture(&texture);
     body.setSize(sf::Vector2f(trans->transformWidth(this->subject->getWidth()),
                               trans->transformHeight(this->subject->getHeight())));
@@ -35,13 +35,13 @@ View::Entity::Entity(Model::Entity* entity, std::string pathToTexture, sf::Vecto
 void View::Entity::updateXCoor() {
     // Get the X coordinate from the entity and transform it into pixels
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(Transformation::getTransformation()->transformViaX(this->subject->getPositionX()), body.getPosition().y);
+    body.setPosition(Transformation::getInstance()->transformViaX(this->subject->getPositionX()), body.getPosition().y);
 }
 
 void View::Entity::updateYCoor() {
     // Get the X coordinate from the entity and transform it into pixels
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(body.getPosition().x, Transformation::getTransformation()->transformViaY(this->subject->getPositionY()));
+    body.setPosition(body.getPosition().x, Transformation::getInstance()->transformViaY(this->subject->getPositionY()));
 }
 
 void View::Entity::updateDestroyed() {

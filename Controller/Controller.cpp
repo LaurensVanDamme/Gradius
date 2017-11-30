@@ -18,7 +18,7 @@
 using namespace std;
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
-    stopwatch = Stopwatch::getStopwatch();
+    stopwatch = Stopwatch::getInstance();
     model = new Model::Model;
     view = new View::View(2100, 1400, model);
     this->makeBorders();

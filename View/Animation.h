@@ -1,5 +1,6 @@
 //
 // Created by laurens on 11/15/17.
+// Based on: https://www.youtube.com/watch?v=kAZVbPF6N4Q
 //
 
 #ifndef GRADIUS_ANIMATION_H

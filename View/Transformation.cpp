@@ -4,7 +4,6 @@
 
 #include "Transformation.h"
 
-View::Transformation* View::Transformation:: instance = nullptr;
 
 View::Transformation::Transformation() {
 
@@ -37,13 +36,6 @@ float View::Transformation::transformWidth(float width) {
 
 float View::Transformation::transformHeight(float height) {
     return (height / 6) * windowHeight;
-}
-
-View::Transformation* View::Transformation::getTransformation() {
-    if (!instance){
-        instance = new Transformation();
-    }
-    return instance;
 }
 
 

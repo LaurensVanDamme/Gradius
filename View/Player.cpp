@@ -13,8 +13,8 @@ View::Player::Player(Model::Ship *entity, const std::string &pathToTexture, cons
 }
 
 void View::Player::draw(sf::RenderWindow *window, float deltaTime) {
-    Transformation* trans = Transformation::getTransformation();
-    if (!this->subject->canBeHit(Ctrl::Stopwatch::getStopwatch()->getTotalTime(), false)){
+    Transformation* trans = Transformation::getInstance();
+    if (!this->subject->canBeHit(Ctrl::Stopwatch::getInstance()->getTotalTime(), false)){
         this->row = 1;
     } else {
         this->row = 0;
