@@ -18,9 +18,8 @@
 using namespace std;
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
-    stopwatch = Stopwatch::getInstance();
-    model = new Model::Model;
-    view = new View::View(2100, 1400, model);
+    model = std::make_unique<Model::Model>(Model::Model());
+    view = std::make_unique<View::View>(View::View(2100, 1400));
     this->makeBorders();
 
     //------------ start Test ------------//
@@ -37,14 +36,14 @@ void Ctrl::Controller::run(){
     {
         sf::Event event;
         view->checkForEvents(event);
-        if (stopwatch->updateAndCheck()) {
-            model->updateWorld(stopwatch->getTotalTime());
+        if (Stopwatch::getInstance()->updateAndCheck()) {
+            model->updateWorld(Stopwatch::getInstance()->getTotalTime());
             this->checkForEvents();
             if (!model->checkForDestroyed()){
                 this->endGame();
                 break;
             }
-            view->updateView(stopwatch->getTotalTickTime());
+            view->updateView(Stopwatch::getInstance()->getTotalTickTime());
         }
     }
 }
@@ -59,7 +58,7 @@ void Ctrl::Controller::checkForEvents() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->model->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (this->model->getPlayer()->canShoot(stopwatch->getTotalTime())) {
+        if (this->model->getPlayer()->canShoot(Stopwatch::getInstance()->getTotalTime())) {
             this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
         }
     }
@@ -74,8 +73,8 @@ void Ctrl::Controller::makeBorders() {
 }
 
 void Ctrl::Controller::endGame() {
-    delete view;
-    delete model;
+    model = nullptr;
+    view = nullptr;
 }
 
 

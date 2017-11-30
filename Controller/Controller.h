@@ -5,13 +5,9 @@
 #ifndef GRADIUS_CONTROLLER_H
 #define GRADIUS_CONTROLLER_H
 
-namespace Model {
-    class Model;
-}
-
-namespace View {
-    class View;
-}
+#include "../View/View.h"
+#include "../Model/Model.h"
+#include <memory>
 
 namespace Ctrl {
 
@@ -30,9 +26,8 @@ namespace Ctrl {
         void endGame();
 
     private:
-        Model::Model *model;
-        View::View *view;
-        Stopwatch *stopwatch;
+        std::unique_ptr<Model::Model> model;
+        std::unique_ptr<View::View> view;
     };
 
 }

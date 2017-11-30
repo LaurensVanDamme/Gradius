@@ -53,6 +53,7 @@ bool View::Entity::isDestroyed() const {
 }
 
 void View::Entity::draw(sf::RenderWindow* window, float deltaTime) {
+    // Update the animation if it exists
     if (animationEnabled) {
         animation.update(row, deltaTime);
         body.setTextureRect(animation.uvRect);

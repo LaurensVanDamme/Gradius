@@ -17,17 +17,17 @@ namespace Ctrl {
 
     public:
 /**
-\n    Updates the totalTime etc and returns if the program can do another tick
+* @brief Updates the totalTime etc and returns if the program can continue
 */
         bool updateAndCheck();
 
 /**
-\n    Returns the totalTickTime before the substraction of timePerTick
+* @brief Returns the totalTickTime before the substraction of timePerTick
 */
         float getTotalTickTime() const;
 
 /**
-\n    Returns the totalTime the program is running
+* @brief Returns the totalTime the program is running
 */
         float getTotalTime() const;
 

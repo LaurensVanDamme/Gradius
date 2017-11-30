@@ -24,7 +24,7 @@ namespace View {
     public:
         View();
 
-        View(unsigned int windowWidth, unsigned int windowHeight, Model::Model *model);
+        View(unsigned int windowWidth, unsigned int windowHeight);
 
         void addPlayer(Model::Ship *entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
 
