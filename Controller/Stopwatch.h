@@ -33,7 +33,6 @@ namespace Ctrl {
 
     private:
         float timePerFrame = 0.030; // Seconds per tick/frame
-        float deltaTime;
         float totalFrameTime;
         float totalTime;
         float formalTotalFrameTime;

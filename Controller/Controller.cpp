@@ -66,7 +66,7 @@ void Ctrl::Controller::getUserInput() {
 }
 
 void Ctrl::Controller::makeBorders() {
-    Model::Entity* border = this->model->addBorder();
+    std::shared_ptr<Model::Entity> border = this->model->addBorder();
     // As long as a border is added continue
     while(border){
         this->view->addViewEntity(border, "../Textures/rock.png");

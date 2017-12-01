@@ -35,13 +35,15 @@ namespace View {
 
         bool isDestroyed() const;
 
+//        Entity(const Entity& rhs);
+
 
         virtual void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime);
 
 
 
     protected:
-        sf::Texture texture;
+        std::shared_ptr<sf::Texture> texture;
         sf::RectangleShape body;
         Animation animation;
         unsigned int row;

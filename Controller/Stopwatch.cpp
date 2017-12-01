@@ -10,7 +10,7 @@ Ctrl::Stopwatch::Stopwatch() {
 }
 
 bool Ctrl::Stopwatch::updateAndCheck() {
-    deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;  // Get the amount of seconds for the last while loop
+    float deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;  // Get the amount of seconds for the last while loop
     lastTime = clock();
     totalTime += deltaTime; // Add the deltaTime to the totalTime
     totalFrameTime += deltaTime;

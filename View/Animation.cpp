@@ -10,13 +10,13 @@ View::Animation::Animation() {
 
 }
 
-View::Animation::Animation(sf::Texture& texture, sf::Vector2u imageCount, float switchtime):
+View::Animation::Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime):
         imageCount(imageCount), switchTime(switchtime) {
     this->totalTime = 0.0;  // Initialize the time at 0 sec
     currentImage.x = 0;  // Always start with the first image
     // Calculate the height and width for the rectangle that is to be displayed
-    uvRect.width = texture.getSize().x / (float)(imageCount.x);
-    uvRect.height = texture.getSize().y / (float)(imageCount.y);
+    uvRect.width = texture->getSize().x / (float)(imageCount.x);
+    uvRect.height = texture->getSize().y / (float)(imageCount.y);
 }
 
 void View::Animation::update(unsigned int row, float deltaTime) {

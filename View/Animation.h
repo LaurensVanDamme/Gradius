@@ -15,7 +15,7 @@ namespace View {
     public:
         Animation();
 
-        Animation(sf::Texture& texture, sf::Vector2u imageCount, float switchtime);
+        Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime);
 
         void update(unsigned int row, float deltaTime);
 

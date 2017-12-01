@@ -11,7 +11,8 @@ View::Entity::Entity() {}
 View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): Observer(entity) {
     destroyed = false;
-    texture.loadFromFile(pathToTexture);
+    texture = std::make_shared<sf::Texture>(sf::Texture());
+    texture->loadFromFile(pathToTexture);
     // Check if an animation has to be made
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {
         animation = Animation(texture, imageCount, switchTime);
@@ -23,7 +24,7 @@ View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToText
     // Create a body for the player with a texture and set it at the right position
     if(auto sub = subject.lock()) {
         Transformation *trans = Transformation::getInstance();
-        body.setTexture(&texture);
+        body.setTexture(&*texture);
         body.setSize(sf::Vector2f(trans->transformWidth(sub->getWidth()),
                                   trans->transformHeight(sub->getHeight())));
         body.setOrigin(body.getSize() / 2.0f);
@@ -64,3 +65,14 @@ void View::Entity::draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTi
     }
     window->draw(body);
 }
+
+//View::Entity::Entity(const View::Entity &rhs) {
+//    body.setPosition(rhs.body.getPosition());
+//    this->animation = rhs.animation;
+//    this->animationEnabled = rhs.animationEnabled;
+//    this->row = rhs.row;
+//    this->subject = rhs.subject;
+//    this->texture = rhs.texture;
+//    body.setSize(rhs.body.getSize());
+//    body.setTexture(&texture);
+//}
