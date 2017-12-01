@@ -10,11 +10,6 @@
 
 #include "Stopwatch.h"
 #include "Controller.h"
-//#include "../View/View.h"
-//#include "../Model/Model.h"
-#include "../Model/Ship.h"
-
-#include <iostream>
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
     model = std::make_unique<Model::Model>(Model::Model());
