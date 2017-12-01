@@ -6,13 +6,14 @@
 #define GRADIUS_OBSERVER_H
 
 #include "../Model/Entity.h"
+#include <memory>
 
 class Subject;
 
 class Observer {
 public:
     Observer();
-    Observer(Model::Entity* subject);
+    Observer(std::weak_ptr<Model::Entity> subject);
 
     virtual void updateXCoor()=0;
 
@@ -21,7 +22,7 @@ public:
     virtual void updateDestroyed()=0;
 
 protected:
-    Model::Entity* subject;
+    std::weak_ptr<Model::Entity> subject;
 };
 
 

@@ -10,12 +10,11 @@
 
 #include "Stopwatch.h"
 #include "Controller.h"
-#include "../View/View.h"
-#include "../Model/Model.h"
+//#include "../View/View.h"
+//#include "../Model/Model.h"
 #include "../Model/Ship.h"
 
 #include <iostream>
-using namespace std;
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
     model = std::make_unique<Model::Model>(Model::Model());
@@ -36,19 +35,21 @@ void Ctrl::Controller::run(){
     {
         sf::Event event;
         view->checkForEvents(event);
+        // Check if it's time do make another frame
         if (Stopwatch::getInstance()->updateAndCheck()) {
             model->updateWorld(Stopwatch::getInstance()->getTotalTime());
-            this->checkForEvents();
+            this->getUserInput();
+            // Check if the player is destroyed, if so stop the game
             if (!model->checkForDestroyed()){
                 this->endGame();
                 break;
             }
-            view->updateView(Stopwatch::getInstance()->getTotalTickTime());
+            view->updateView(Stopwatch::getInstance()->getTotalFrameTime());
         }
     }
 }
 
-void Ctrl::Controller::checkForEvents() {
+void Ctrl::Controller::getUserInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->model->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -66,6 +67,7 @@ void Ctrl::Controller::checkForEvents() {
 
 void Ctrl::Controller::makeBorders() {
     Model::Entity* border = this->model->addBorder();
+    // As long as a border is added continue
     while(border){
         this->view->addViewEntity(border, "../Textures/rock.png");
         border = this->model->addBorder();

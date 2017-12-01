@@ -6,6 +6,7 @@
 #define GRADIUS_PLAYER_H
 
 #include "Entity.h"
+#include <memory>
 
 namespace Model {
     class Ship;
@@ -15,13 +16,13 @@ namespace View {
 
     class Player: public Entity {
     public:
-        Player(Model::Ship *entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
+        Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                float switchTime);
 
-        void draw(sf::RenderWindow *window, float deltaTime) override;
+        void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime) override;
 
     private:
-        Model::Ship* subject;
+        std::weak_ptr<Model::Ship> subject;
     };
 
 }

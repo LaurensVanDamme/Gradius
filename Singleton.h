@@ -9,13 +9,21 @@
 template<typename T>
 class Singleton {
 public:
+
+/**
+* @brief Returns the only instance of this class
+*/
     static T* getInstance(){
+        // If the instance doesn't exist make one
         if (!instance){
             Singleton::instance = new T;
-        }
+        }  // else return the only one
         return Singleton::instance;
     }
 
+/**
+* @brief Deletes the only instance of this class
+*/
     virtual ~Singleton(){
         delete instance;
     }

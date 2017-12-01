@@ -5,6 +5,7 @@
 #ifndef GRADIUS_SUBJECT_H
 #define GRADIUS_SUBJECT_H
 
+#include <memory>
 #include <vector>
 
 class Observer;
@@ -13,7 +14,7 @@ class Subject {
 public:
     Subject();
 
-    void attach(Observer* observer);
+    void attach(std::weak_ptr<Observer> observer);
 
     void notifyXCoor() const ;
 
@@ -22,7 +23,7 @@ public:
     void notifyDestroyed();
 
 private:
-    std::vector<Observer*> observers;
+    std::vector<std::weak_ptr<Observer>> observers;
 };
 
 

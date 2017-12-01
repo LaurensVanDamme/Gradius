@@ -7,28 +7,26 @@
 #include "Player.h"
 #include "../Model/Ship.h"
 
-#include <vector>
-using namespace std;
 
 View::View::View() {
 
 }
 
 View::View::View(unsigned int windowWidth, unsigned int windowHeight){
-    window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
-    transformation = Transformation::getInstance();
-    transformation->updateWindowSize(windowWidth, windowHeight);
+    window = std::make_unique<sf::RenderWindow>(sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu"));
+    Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }
 
-void View::View::addPlayer(Model::Ship *entity, const std::string &pathToTexture, sf::Vector2u imageCount,
+void View::View::addPlayer(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, sf::Vector2u imageCount,
                            float switchTime) {
-    auto ventity = new Player(entity, pathToTexture, imageCount, switchTime);
-    entity->attach(ventity);
+    auto ventity = std::make_shared<Player>(Player(entity, pathToTexture, imageCount, switchTime));
+    if (auto ent = entity.lock())
+        ent->attach(ventity);
     this->entities.push_back(ventity);
 }
 
-void View::View::addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime) {
-    Entity* ventity = new Entity(entity, pathToTexture, imageCount, switchTime);
+void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime) {
+    auto ventity = std::make_shared<Entity>(Entity(entity, pathToTexture, imageCount, switchTime));
     entity->attach(ventity);
     this->entities.push_back(ventity);
 }
@@ -54,13 +52,11 @@ sf::Text getFPS(sf::Font font) {
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // Go over every entity in the view and draw it on the window if it isn't destroyed
-    vector<Entity*> toKeep;
+    std::vector<std::shared_ptr<Entity>> toKeep;
     for (auto entity: this->entities){
         if (!entity->isDestroyed()){
             entity->draw(window, deltaTime);
             toKeep.push_back(entity);
-        } else {
-            delete entity;
         }
     }
     this->entities = toKeep;
@@ -80,7 +76,7 @@ void View::View::checkForEvents(sf::Event event) {
                 window->close();
                 break;
             case sf::Event::Resized:
-                transformation->updateWindowSize(window->getSize().x, window->getSize().y);
+            Transformation::getInstance()->updateWindowSize(window->getSize().x, window->getSize().y);
                 break;
         }
     }

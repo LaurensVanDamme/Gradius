@@ -48,7 +48,7 @@ int main()
             sf::Event event;
             view.checkForEvents(event);
             view.updateView(totalTime);
-            controller.checkForEvents(1);
+            controller.getUserInput(1);
             totalTime -= 0.015;
 //        cout << deltaTime << "   " << "" << endl;
         }

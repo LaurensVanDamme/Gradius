@@ -5,8 +5,8 @@
 #ifndef GRADIUS_STOPWATCH_H
 #define GRADIUS_STOPWATCH_H
 
-#include <ctime>
 #include "../Singleton.h"
+#include <ctime>
 
 namespace Ctrl {
 
@@ -17,14 +17,14 @@ namespace Ctrl {
 
     public:
 /**
-* @brief Updates the totalTime etc and returns if the program can continue
+* @brief Updates the stopwatch and returns if the program can continue
 */
         bool updateAndCheck();
 
 /**
-* @brief Returns the totalTickTime before the substraction of timePerTick
+* @brief Returns the totalTickTime before the subtraction of timePerTick
 */
-        float getTotalTickTime() const;
+        float getTotalFrameTime() const;
 
 /**
 * @brief Returns the totalTime the program is running
@@ -32,11 +32,11 @@ namespace Ctrl {
         float getTotalTime() const;
 
     private:
-        float timePerTick = 0.030; // Seconds per tick/frame
+        float timePerFrame = 0.030; // Seconds per tick/frame
         float deltaTime;
-        float totalTickTime;
+        float totalFrameTime;
         float totalTime;
-        float formalTotalTickTime;
+        float formalTotalFrameTime;
         std::clock_t lastTime;
     };
 

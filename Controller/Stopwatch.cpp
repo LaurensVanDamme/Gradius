@@ -3,8 +3,6 @@
 //
 
 #include "Stopwatch.h"
-#include <iostream>
-using namespace std;
 
 Ctrl::Stopwatch::Stopwatch() {
     lastTime = std::clock();
@@ -15,19 +13,19 @@ bool Ctrl::Stopwatch::updateAndCheck() {
     deltaTime = float(clock() - lastTime) / CLOCKS_PER_SEC;  // Get the amount of seconds for the last while loop
     lastTime = clock();
     totalTime += deltaTime; // Add the deltaTime to the totalTime
-    totalTickTime += deltaTime;
-    formalTotalTickTime = totalTickTime;
-    // If totalTime s bigger then timePerTick we can proceed with the program so it returns 1
-    if (totalTickTime < timePerTick){
+    totalFrameTime += deltaTime;
+    formalTotalFrameTime = totalFrameTime;
+    // If totalTime is bigger than timePerFrame we can proceed with the program so it returns 1
+    if (totalFrameTime < timePerFrame){
         return false;
     } else {
-        totalTickTime -= timePerTick;  // Reset the totalTime
+        totalFrameTime -= timePerFrame;  // Reset the totalFrameTime
         return true;
     }
 }
 
-float Ctrl::Stopwatch::getTotalTickTime() const{
-    return formalTotalTickTime;
+float Ctrl::Stopwatch::getTotalFrameTime() const{
+    return formalTotalFrameTime;
 }
 
 float Ctrl::Stopwatch::getTotalTime() const {

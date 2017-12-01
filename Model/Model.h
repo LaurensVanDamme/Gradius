@@ -5,24 +5,23 @@
 #ifndef GRADIUS_MODEL_H
 #define GRADIUS_MODEL_H
 
+#include "ScrollingEntity.h"
+#include "Ship.h"
 #include <vector>
-using namespace std;
+#include <memory>
 
 namespace Model {
 
-    class Ship;
-    class ScrollingEntity;
-
     class Model {  // Vergeet deconstructor ni!!!
     public:
-        Ship *getPlayer();
+        std::shared_ptr<Ship> getPlayer();
 
         void setPlayer(double x, double y, float width, float height, float speed, unsigned int healt,
                        float timePerShot);
 
-        ScrollingEntity* addBullet(unsigned int damage, float speed);
+        std::shared_ptr<ScrollingEntity> addBullet(unsigned int damage, float speed);
 
-        ScrollingEntity* addBorder();
+        std::shared_ptr<ScrollingEntity> addBorder();
 
         bool checkForDestroyed();
 
@@ -31,8 +30,8 @@ namespace Model {
 
 
     private:
-        Ship *player;
-        vector<ScrollingEntity*> scrollingEntities;
+        std::shared_ptr<Ship> player;
+        std::vector<std::shared_ptr<ScrollingEntity>> scrollingEntities;
     };
 
 }

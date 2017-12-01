@@ -7,6 +7,7 @@
 #define GRADIUS_ANIMATION_H
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace View {
 
@@ -14,7 +15,7 @@ namespace View {
     public:
         Animation();
 
-        Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchtime);
+        Animation(sf::Texture& texture, sf::Vector2u imageCount, float switchtime);
 
         void update(unsigned int row, float deltaTime);
 

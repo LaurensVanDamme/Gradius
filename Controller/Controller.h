@@ -15,14 +15,30 @@ namespace Ctrl {
 
     class Controller {
     public:
+
+/**
+ * @brief Makes a game with model and view
+ */
         Controller(std::string jsonFile = "");
 
+/**
+ * @brief Starts the game loop
+ */
         void run();
 
-        void checkForEvents();
+/**
+ * @brief Checks for input of the user
+ */
+        void getUserInput();
 
+/**
+ * @brief Makes borders for the game
+ */
         void makeBorders();
 
+/**
+ * @brief Ends the game
+ */
         void endGame();
 
     private:

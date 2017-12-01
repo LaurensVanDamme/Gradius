@@ -5,9 +5,10 @@
 #ifndef GRADIUS_VIEW_H
 #define GRADIUS_VIEW_H
 
-#include <SFML/Graphics.hpp>
 #include "Transformation.h"
+#include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 
 namespace Model {
     class Model;
@@ -26,9 +27,9 @@ namespace View {
 
         View(unsigned int windowWidth, unsigned int windowHeight);
 
-        void addPlayer(Model::Ship *entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
+        void addPlayer(std::weak_ptr<Model::Ship> entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
 
-        void addViewEntity(Model::Entity *entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
+        void addViewEntity(std::shared_ptr<Model::Entity> entity, const std::string& pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0), float switchTime = 0);
 
         void checkForEvents(sf::Event event);
 
@@ -37,10 +38,8 @@ namespace View {
         bool isWindowOpen();
 
     private:
-        Model::Model *model;
-        sf::RenderWindow *window;
-        Transformation *transformation;
-        std::vector<Entity *> entities;
+        std::unique_ptr<sf::RenderWindow> window;
+        std::vector<std::shared_ptr<Entity>> entities;
     };
 
 }

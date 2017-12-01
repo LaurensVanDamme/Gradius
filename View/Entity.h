@@ -5,9 +5,10 @@
 #ifndef GRADIUS_VIEWENTITY_H
 #define GRADIUS_VIEWENTITY_H
 
-#include <SFML/Graphics.hpp>
 #include "Animation.h"
 #include "Observer.h"
+#include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace Model {
     class Entity;
@@ -21,7 +22,7 @@ namespace View {
     public:
 
         Entity();
-        Entity(Model::Entity *entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
+        Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
 //        void updateCoordinates(int x, int y);
 
@@ -35,7 +36,7 @@ namespace View {
         bool isDestroyed() const;
 
 
-        virtual void draw(sf::RenderWindow *window, float deltaTime);
+        virtual void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime);
 
 
 

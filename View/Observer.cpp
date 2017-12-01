@@ -8,6 +8,6 @@ Observer::Observer() {
 
 }
 
-Observer::Observer(Model::Entity *subject): subject(subject) {
+Observer::Observer(std::weak_ptr<Model::Entity> subject): subject(subject) {
 
 }
