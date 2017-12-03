@@ -13,7 +13,6 @@ View::View::View() {
 }
 
 View::View::View(unsigned int windowWidth, unsigned int windowHeight){
-//    window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu"));
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }

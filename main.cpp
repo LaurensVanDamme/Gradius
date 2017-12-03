@@ -1,8 +1,13 @@
+
+
+#include <cstdio>
+#include <cstdlib>
 #include <SFML/Graphics.hpp>
 #include "Controller/Controller.h"
 
 int main()
 {
+    srand (time(NULL));
     Ctrl::Controller game;
     game.run();
     return 0;

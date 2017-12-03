@@ -11,6 +11,7 @@
 #include "Stopwatch.h"
 #include "Controller.h"
 
+
 Ctrl::Controller::Controller(const std::string jsonFile) {
     model = std::make_unique<Model::Model>(Model::Model());
     view = std::make_unique<View::View>(View::View(2100, 1400));
@@ -20,6 +21,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     model->setPlayer(-3.5, 0, 0.88888, 0.66666, 0.08, 4, 0.25);
     view->addPlayer(model->getPlayer(), "../Textures/Night Raider sprites.png", sf::Vector2u(4,2), 0.15);
+    view->addViewEntity(model->addAIShip(5, 0, 0.88888, 0.66666, 0.02, 3, 0.20), "../Textures/F5S3.png");
 
     //------------- End Test -------------//
 }
@@ -32,7 +34,10 @@ void Ctrl::Controller::run(){
         view->checkForEvents(event);
         // Check if it's time do make another frame
         if (Stopwatch::getInstance()->updateAndCheck()) {
-            model->updateWorld(Stopwatch::getInstance()->getTotalTime());
+            std::vector<std::shared_ptr<Model::Entity>> temp = model->updateWorld(Stopwatch::getInstance()->getTotalTime());
+            for (auto e: temp){
+                view->addViewEntity(e, "../Textures/beam1.png");
+            }
             this->getUserInput();
             // Check if the player is destroyed, if so stop the game
             if (!model->checkForDestroyed()){

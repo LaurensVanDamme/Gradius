@@ -42,6 +42,7 @@ namespace Model {
 
         virtual void checkCoorY()=0;
 
+    protected:
         float speed;
     };
 

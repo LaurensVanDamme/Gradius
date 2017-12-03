@@ -26,9 +26,9 @@ namespace Model {
         void hit(unsigned int damage);
 
     private:
-        void checkCoorX() override;
+        virtual void checkCoorX() override;
 
-        void checkCoorY() override;
+        virtual void checkCoorY() override;
 
         float lastTimeShot;
         float lastTimeHit;
