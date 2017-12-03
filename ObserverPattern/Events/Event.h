@@ -12,6 +12,8 @@ namespace OP {
         class Event {
         public:
             Event();
+
+            virtual ~Event();
         };
 
     }

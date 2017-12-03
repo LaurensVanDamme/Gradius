@@ -7,6 +7,7 @@
 
 #include "Animation.h"
 #include "../ObserverPattern/Observer.h"
+#include "../ObserverPattern/Events/Event.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -24,25 +25,16 @@ namespace View {
         Entity();
         Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
-//        void updateCoordinates(int x, int y);
-
-
-        void updateXCoor() override;
-
-        void updateYCoor() override;
-
-        void updateDestroyed() override;
+        void update(std::shared_ptr<OP::Event::Event> event) override;
 
         bool isDestroyed() const;
-
-//        Entity(const Entity& rhs);
-
 
         virtual void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime);
 
 
 
     protected:
+//        std::weak_ptr<Model::Entity> subject;
         std::shared_ptr<sf::Texture> texture;
         sf::RectangleShape body;
         Animation animation;

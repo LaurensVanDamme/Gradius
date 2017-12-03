@@ -5,11 +5,11 @@
 #ifndef GRADIUS_ENTITY_H
 #define GRADIUS_ENTITY_H
 
-#include "Subject.h"
+#include "../ObserverPattern/Subject.h"
 
 namespace Model {
 
-    class Entity: public Subject {
+    class Entity: public OP::Subject {
     public:
         Entity();
 
@@ -28,12 +28,12 @@ namespace Model {
 /**
 \n    Updates the x coordinate of the entity by a new x coordinate
 */
-        void updatePositionX(double newPositionX);
+        void updatePositionX(float newPositionX);
 
 /**
 \n    Updates the y coordinate of the entity by a new y coordinate
 */
-        void updatePositionY(double newPositionY);
+        void updatePositionY(float newPositionY);
 
 
         float getHeight() const;

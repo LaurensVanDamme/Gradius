@@ -3,6 +3,9 @@
 //
 
 #include "Entity.h"
+#include "../ObserverPattern/Events/Destroyed.h"
+
+#include <iostream>
 
 Model::Entity::Entity() {}
 
@@ -18,18 +21,12 @@ float Model::Entity::getPositionY() const {
     return this->y;
 }
 
-void Model::Entity::updatePositionX(double newPositionX) {
+void Model::Entity::updatePositionX(float newPositionX) {
     this->x = newPositionX;
 }
 
-void Model::Entity::updatePositionY(double newPositionY) {
-    if (newPositionY > 3){
-        this->y = 3;
-    } else if (newPositionY < -3){
-        this->y = -3;
-    } else {
-        this->y = newPositionY;
-    }
+void Model::Entity::updatePositionY(float newPositionY) {
+    this->y = newPositionY;
 }
 
 float Model::Entity::getHeight() const {
@@ -46,5 +43,7 @@ bool Model::Entity::isDestroyed() const {
 
 void Model::Entity::wrecked() {
     this->destroyed = true;
-    this->notifyDestroyed();
+//    OP::Event::Destroyed event;
+    auto event = std::make_shared<OP::Event::Destroyed>(OP::Event::Destroyed()); //  Create a destroyed event
+    this->notify(event);
 }

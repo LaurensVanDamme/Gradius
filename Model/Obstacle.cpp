@@ -3,6 +3,7 @@
 //
 
 #include "Obstacle.h"
+#include "../ObserverPattern/Events/UpdateX.h"
 
 Model::Obstacle::Obstacle() {}
 
@@ -12,7 +13,9 @@ Model::Obstacle::Obstacle(double x, double y, float height, float width, unsigne
 void Model::Obstacle::scroll() {
     this->updatePositionX(this->getPositionX() - scrollSpeed);
     this->checkCoorX();
-    this->notifyXCoor();
+//    OP::Event::UpdateX event;
+    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
+    this->notify(event);
 }
 
 void Model::Obstacle::checkCoorX() {

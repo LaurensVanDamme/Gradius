@@ -7,3 +7,7 @@
 OP::Event::Event::Event() {
 
 }
+
+OP::Event::Event::~Event() {
+
+}

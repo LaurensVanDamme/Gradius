@@ -5,13 +5,13 @@
 #ifndef GRADIUS_SUBJECT_H
 #define GRADIUS_SUBJECT_H
 
+#include "Events/Event.h"
 #include <memory>
 #include <vector>
 
 namespace OP {  // Observer Pattern
 
     class Observer;
-    class Event;
 
     class Subject {
     public:
@@ -19,7 +19,9 @@ namespace OP {  // Observer Pattern
 
         void attach(std::weak_ptr<Observer> observer);
 
-        void notify(Event& event) const;
+        void notify(std::shared_ptr<Event::Event> event) const;
+
+        virtual ~Subject();
 
     private:
         std::vector<std::weak_ptr<Observer>> observers;

@@ -3,6 +3,7 @@
 //
 
 #include "Bullet.h"
+#include "../ObserverPattern/Events/UpdateX.h"
 #include <iostream>
 using namespace std;
 
@@ -16,7 +17,9 @@ Model::Bullet::Bullet(double x, double y, float height, float width, unsigned in
 void Model::Bullet::scroll() {
     this->updatePositionX(this->getPositionX() + scrollSpeed);
     this->checkCoorX();
-    this->notifyXCoor();
+//    OP::Event::UpdateX event;
+    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
+    this->notify(event);
 }
 
 void Model::Bullet::checkCoorX() {

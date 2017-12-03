@@ -4,6 +4,8 @@
 
 #include "Entity.h"
 #include "MovingEntity.h"
+#include "../ObserverPattern/Events/UpdateX.h"
+#include "../ObserverPattern/Events/UpdateY.h"
 
 #include <iostream>
 using namespace std;
@@ -22,23 +24,31 @@ float Model::MovingEntity::getSpeed() const {
 void Model::MovingEntity::moveUp() {
     this->updatePositionY(this->getPositionY() + this->getSpeed());
     this->checkCoorY();
-    this->notifyYCoor();
+//    OP::Event::UpdateY event;
+    auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create a update y event
+    this->notify(event);
 }
 
 void Model::MovingEntity::moveDown() {
     this->updatePositionY(this->getPositionY() - this->getSpeed());
     this->checkCoorY();
-    this->notifyYCoor();
+//    OP::Event::UpdateY event;
+    auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create a update y event
+    this->notify(event);
 }
 
 void Model::MovingEntity::moveRight() {
     this->updatePositionX(this->getPositionX() + this->getSpeed());
     this->checkCoorX();
-    this->notifyXCoor();
+//    OP::Event::UpdateX event;
+    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
+    this->notify(event);
 }
 
 void Model::MovingEntity::moveLeft() {
     this->updatePositionX(this->getPositionX() - this->getSpeed());
     this->checkCoorX();
-    this->notifyXCoor();
+//    OP::Event::UpdateX event;
+    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
+    this->notify(event);
 }

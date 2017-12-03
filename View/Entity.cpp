@@ -5,6 +5,9 @@
 #include "Entity.h"
 #include "Transformation.h"
 #include "../Model/Entity.h"
+#include "../ObserverPattern/Events/UpdateX.h"
+#include "../ObserverPattern/Events/UpdateY.h"
+#include "../ObserverPattern/Events/Destroyed.h"
 
 View::Entity::Entity() {}
 
@@ -22,35 +25,42 @@ View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToText
         animationEnabled = false;
     }
     // Create a body for the player with a texture and set it at the right position
-    if(auto sub = subject.lock()) {
+    if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
         Transformation *trans = Transformation::getInstance();
         body.setTexture(&*texture);
-        body.setSize(sf::Vector2f(trans->transformWidth(sub->getWidth()),
-                                  trans->transformHeight(sub->getHeight())));
+        if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+            body.setSize(sf::Vector2f(trans->transformWidth(s->getWidth()),
+                                      trans->transformHeight(s->getHeight())));
+            body.setOrigin(body.getSize() / 2.0f);
+            body.setPosition(trans->transformViaX(s->getPositionX()),
+                             trans->transformViaY(s->getPositionY()));
+        }
+    }
+}
+
+void View::Entity::update(std::shared_ptr<OP::Event::Event> event) {
+    // Check which type of event it is
+    if (auto e = std::dynamic_pointer_cast<OP::Event::UpdateX>(event)){
+        // Get the X coordinate from the entity and transform it into pixels
         body.setOrigin(body.getSize() / 2.0f);
-        body.setPosition(trans->transformViaX(sub->getPositionX()),
-                         trans->transformViaY(sub->getPositionY()));
+        if (auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
+            if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                body.setPosition(Transformation::getInstance()->transformViaX(s->getPositionX()),
+                                 body.getPosition().y);
+            }
+        }
+    } else if (auto e = std::dynamic_pointer_cast<OP::Event::UpdateY>(event)){
+        // Get the X coordinate from the entity and transform it into pixels
+        body.setOrigin(body.getSize() / 2.0f);
+        if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
+            if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                body.setPosition(body.getPosition().x,
+                                 Transformation::getInstance()->transformViaY(s->getPositionY()));
+            }
+        }
+    } else if (auto e = std::dynamic_pointer_cast<OP::Event::Destroyed>(event)){
+        destroyed = true;
     }
-}
-
-void View::Entity::updateXCoor() {
-    // Get the X coordinate from the entity and transform it into pixels
-    body.setOrigin(body.getSize() / 2.0f);
-    if(auto sub = subject.lock()) {
-        body.setPosition(Transformation::getInstance()->transformViaX(sub->getPositionX()), body.getPosition().y);
-    }
-}
-
-void View::Entity::updateYCoor() {
-    // Get the X coordinate from the entity and transform it into pixels
-    body.setOrigin(body.getSize() / 2.0f);
-    if(auto sub = subject.lock()) {
-        body.setPosition(body.getPosition().x, Transformation::getInstance()->transformViaY(sub->getPositionY()));
-    }
-}
-
-void View::Entity::updateDestroyed() {
-    destroyed = true;
 }
 
 bool View::Entity::isDestroyed() const {
@@ -65,14 +75,3 @@ void View::Entity::draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTi
     }
     window->draw(body);
 }
-
-//View::Entity::Entity(const View::Entity &rhs) {
-//    body.setPosition(rhs.body.getPosition());
-//    this->animation = rhs.animation;
-//    this->animationEnabled = rhs.animationEnabled;
-//    this->row = rhs.row;
-//    this->subject = rhs.subject;
-//    this->texture = rhs.texture;
-//    body.setSize(rhs.body.getSize());
-//    body.setTexture(&texture);
-//}
