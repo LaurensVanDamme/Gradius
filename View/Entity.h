@@ -6,7 +6,7 @@
 #define GRADIUS_VIEWENTITY_H
 
 #include "Animation.h"
-#include "Observer.h"
+#include "../ObserverPattern/Observer.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -18,7 +18,7 @@ namespace View {
 
     class Transformation;
 
-    class Entity: public Observer {
+    class Entity: public OP::Observer {
     public:
 
         Entity();
