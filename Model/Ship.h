@@ -16,7 +16,7 @@ namespace Model {
 
         Ship();
 
-        Ship(float x, float y, float width, float height, unsigned int healt, float speed);
+        Ship(float x, float y, float width, float height);
 
 
         bool canShoot(float time);

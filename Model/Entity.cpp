@@ -11,9 +11,11 @@
 
 Model::Entity::Entity() {}
 
-Model::Entity::Entity(float x, float y, float height, float width, float speed) : x(x), y(y), height(height),
-                                                                                  width(width) {
+Model::Entity::Entity(float x, float y, float height, float width) : x(x), y(y), height(height), width(width) {
+    this->type = "Entity";
+    this->speed = 0;
     this->health = 1;
+    this->damage = 0;
     this->destroyed = false;
 }
 
@@ -26,23 +28,32 @@ float Model::Entity::getPositionY() const {
 }
 
 float Model::Entity::getHeight() const {
-    return height;
+    return this->height;
 }
 
 float Model::Entity::getWidth() const {
-    return width;
+    return this->width;
 }
 
 float Model::Entity::getSpeed() const {
-    return speed;
+    return this->speed;
 }
 
 unsigned int Model::Entity::getHealth() const {
-    return health;
+    return this->health;
+}
+
+
+unsigned int Model::Entity::getDamage() const {
+    return this->damage;
+}
+
+const std::string &Model::Entity::getType() const {
+    return this->type;
 }
 
 bool Model::Entity::isDestroyed() const {
-    return destroyed;
+    return this->destroyed;
 }
 
 void Model::Entity::moveUp() {
@@ -81,7 +92,8 @@ void Model::Entity::hit(unsigned int damage) {
     // Reduce healt one at a time
     // (if damage > healt it will be set to a very large number if it's substracted in one time)
     for (unsigned int i = 0; i < damage; i++) {
-        if ((health--) == 0) {
+        this->health--;
+        if (this->health == 0) {
             this->wrecked();
             break;
         }

@@ -14,13 +14,7 @@ namespace Model {
 
         PlayerShip();
 
-        PlayerShip(float x, float y, float width, float height, unsigned int healt);
-
-
-        const std::string &getType() const override;
-
-
-        unsigned int getDamage() const override;
+        PlayerShip(float x, float y, float width, float height);
 
 
         void update(float time) override;

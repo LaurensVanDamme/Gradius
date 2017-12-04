@@ -3,9 +3,11 @@
 //
 
 #include "Player.h"
-#include "../Model/Ship.h"
 #include "Transformation.h"
+#include "../Model/PlayerShip.h"
 #include "../Controller/Stopwatch.h"
+
+View::Player::Player() {}
 
 View::Player::Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                      float switchTime) : Entity(entity, pathToTexture, imageCount, switchTime) {
@@ -15,10 +17,12 @@ View::Player::Player(std::weak_ptr<Model::Ship> entity, const std::string &pathT
 void View::Player::draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime) {
     Transformation* trans = Transformation::getInstance();
     if(auto sub = subject.lock()) {
-        if (!sub->canBeHit(Ctrl::Stopwatch::getInstance()->getTotalTime(), false)) {
-            this->row = 1;
-        } else {
-            this->row = 0;
+        if (auto player = std::dynamic_pointer_cast<Model::PlayerShip>(sub)) {
+            if (!player->canBeHit(Ctrl::Stopwatch::getInstance()->getTotalTime(), false)) {
+                this->row = 1;
+            } else {
+                this->row = 0;
+            }
         }
         Entity::draw(window, deltaTime);
         float x = -3.5f;
@@ -27,7 +31,7 @@ void View::Player::draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTi
         texture.loadFromFile("../Textures/Hearth.png");
         sf::Vector2f size(trans->transformWidth(0.3), trans->transformHeight(0.3));
 
-        for (unsigned int i = 0; i < sub->getHealt(); i++) {
+        for (unsigned int i = 0; i < sub->getHealth(); i++) {
             sf::RectangleShape hearth(size);
             hearth.setTexture(&texture);
             hearth.setOrigin(hearth.getSize() / 2.0f);

@@ -8,16 +8,23 @@ Model::AIShip::AIShip() {
 
 }
 
-Model::AIShip::AIShip(float x, float y, float width, float height, unsigned int healt)
-        : Ship(x, y, width, height, healt, 0.02) {
-    lastTimeUp = 0;
-    lastTimeDown = 0;
-    goingDown = false;
-    goingUp = false;
-    yAcceleration = 0.03;
-    timesDown = 0;
-    timesUp = 0;
+Model::AIShip::AIShip(float x, float y, float width, float height)
+        : Ship(x, y, width, height) {
+    this->type = "AIShip";
+    this->speed = 0.02;
+    this->health = 2;
+    this->damage = 1;
+
+    // AI stuff
+    this->lastTimeUp = 0;
+    this->lastTimeDown = 0;
+    this->goingDown = false;
+    this->goingUp = false;
+    this->yAcceleration = 0.03;
+    this->timesDown = 0;
+    this->timesUp = 0;
 }
+
 
 void Model::AIShip::update(float time) {
     this->moveLeft();
@@ -71,12 +78,4 @@ void Model::AIShip::checkCoorY() {
     } else if (this->y <= (-3 + (this->getHeight() / 2) + 0.30)){
         this->y = -3 + (this->getHeight() / 2) - 0.30f;
     }
-}
-
-const std::string &Model::AIShip::getType() const {
-    return "AIShip";
-}
-
-unsigned int Model::AIShip::getDamage() const {
-    return 1;
 }

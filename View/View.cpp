@@ -5,7 +5,11 @@
 #include "View.h"
 #include "Entity.h"
 #include "Player.h"
+#include "../Model/Entity.h"
 #include "../Model/Ship.h"
+#include "Transformation.h"
+
+#include <iostream>
 
 
 View::View::View() {
@@ -13,19 +17,27 @@ View::View::View() {
 }
 
 View::View::View(unsigned int windowWidth, unsigned int windowHeight){
-    window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius - Main Menu");
+    window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }
 
-void View::View::addPlayer(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, sf::Vector2u imageCount,
-                           float switchTime) {
-    auto ventity = std::make_shared<Player>(Player(entity, pathToTexture, imageCount, switchTime));
-    if (auto ent = entity.lock())
-        ent->attach(ventity);
-    this->entities.push_back(ventity);
-}
-
-void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity, const std::string& pathToTexture, sf::Vector2u imageCount, float switchTime) {
+void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
+    std::string pathToTexture = "../Textures/";
+    sf::Vector2u imageCount(0,0);
+    float switchTime = 0;
+    if (entity->getType() == "PlayerShip"){
+        if (auto ent = std::dynamic_pointer_cast<Model::Ship>(entity)) {
+            auto ventity = std::make_shared<Player>(Player(ent, "../Textures/Night Raider sprites.png",
+                                                           sf::Vector2u(4,2), 0.15));
+            ent->attach(ventity);
+            this->entities.push_back(ventity);
+            return;
+        }
+    } else if (entity->getType() == "AIShip"){
+        pathToTexture += "F5S3.png";
+    } else if (entity->getType() == "Border"){
+        pathToTexture += "rock.png";
+    }
     auto ventity = std::make_shared<Entity>(Entity(entity, pathToTexture, imageCount, switchTime));
     entity->attach(ventity);
     this->entities.push_back(ventity);

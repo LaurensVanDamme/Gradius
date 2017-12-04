@@ -3,17 +3,15 @@
 //
 
 #include "Border.h"
+#include <limits>
 
 Model::Border::Border() {}
 
-Model::Border::Border(double x, double y, float height, float width) : Obstacle(x, y, height, width, 0.03) {}
-
-const std::string &Model::Border::getType() const {
-    return "Border";
-}
-
-unsigned int Model::Border::getDamage() const {
-    return 2;
+Model::Border::Border(float x, float y, float height, float width) : Obstacle(x, y, height, width) {
+    this->type = "Border";
+    this->speed = 0.03f;
+    this->health = std::numeric_limits<unsigned int>::infinity();
+    this->damage = 2;
 }
 
 void Model::Border::checkCoorX() {

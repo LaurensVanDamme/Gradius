@@ -16,6 +16,9 @@ namespace View {
 
     class Player: public Entity {
     public:
+
+        Player();
+
         Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                float switchTime);
 

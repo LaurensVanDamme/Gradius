@@ -15,7 +15,7 @@ namespace Model {
 
         Entity();
 
-        Entity(float x, float y, float height, float width, float speed);
+        Entity(float x, float y, float height, float width);
 
 
         float getPositionX() const;
@@ -34,6 +34,12 @@ namespace Model {
 
 
         unsigned int getHealth() const;
+
+
+        unsigned int getDamage() const;
+
+
+        const std::string &getType() const;
 
 
         bool isDestroyed() const;
@@ -65,12 +71,6 @@ namespace Model {
         virtual bool canBeHit(float time, bool hit);
 
 
-        virtual const std::string &getType() const=0;
-
-
-        virtual unsigned int getDamage() const=0;
-
-
         virtual void update(float time)=0;
 
     protected:
@@ -88,12 +88,14 @@ namespace Model {
     protected:
         float x;
         float y;
+        float speed;
         unsigned int health;
+        unsigned int damage;
+        std::string type;
 
     private:
         float height;
         float width;
-        float speed;
         bool destroyed;
     };
 

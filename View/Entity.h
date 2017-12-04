@@ -34,7 +34,6 @@ namespace View {
 
 
     protected:
-//        std::weak_ptr<Model::Entity> subject;
         std::shared_ptr<sf::Texture> texture;
         sf::RectangleShape body;
         Animation animation;

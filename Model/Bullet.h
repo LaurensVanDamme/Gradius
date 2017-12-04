@@ -14,13 +14,7 @@ namespace Model {
 
         Bullet();
 
-        Bullet(float x, float y, float height, float width, float speed, bool AI);
-
-
-        const std::string &getType() const override;
-
-
-        unsigned int getDamage() const override;
+        Bullet(float x, float y, float height, float width, bool AI);
 
 
         void update(float time) override;

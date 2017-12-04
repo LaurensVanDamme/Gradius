@@ -15,13 +15,7 @@ namespace Model {
 
         AIShip();
 
-        AIShip(float x, float y, float width, float height, unsigned int healt);
-
-
-        const std::string &getType() const override;
-
-
-        unsigned int getDamage() const override;
+        AIShip(float x, float y, float width, float height);
 
 
         void update(float time) override ;

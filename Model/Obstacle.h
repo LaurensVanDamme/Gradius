@@ -13,13 +13,7 @@ namespace Model {
     public:
         Obstacle();
 
-        Obstacle(float x, float y, float height, float width, float speed);
-
-
-        virtual const std::string &getType() const override;
-
-
-        virtual unsigned int getDamage() const override;
+        Obstacle(float x, float y, float height, float width);
 
 
         void update(float time) override;

@@ -6,17 +6,12 @@
 
 Model::PlayerShip::PlayerShip() {}
 
-Model::PlayerShip::PlayerShip(float x, float y, float width, float height, unsigned int healt
-                              ) : Ship(x, y, width, height, healt, 0.08) {
-    timePerShot = 0.25;
-}
-
-const std::string &Model::PlayerShip::getType() const {
-    return "PlayerShip";
-}
-
-unsigned int Model::PlayerShip::getDamage() const {
-    return 5;
+Model::PlayerShip::PlayerShip(float x, float y, float width, float height) : Ship(x, y, width, height) {
+    this->type = "PlayerShip";
+    this->speed = 0.08;
+    this->health = 4;
+    this->damage = 5;
+    this->timePerShot = 0.25;
 }
 
 void Model::PlayerShip::update(float time) {
@@ -24,9 +19,9 @@ void Model::PlayerShip::update(float time) {
 }
 
 bool Model::PlayerShip::canBeHit(float time, bool hit) {
-    if (time - lastTimeHit >= 1.5){
+    if ((time - this->lastTimeHit) >= 1.5){
         if (hit) {
-            lastTimeHit = time;
+            this->lastTimeHit = time;
         }
         return true;
     } else {

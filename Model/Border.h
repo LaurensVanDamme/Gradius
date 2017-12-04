@@ -15,13 +15,7 @@ namespace Model {
 
         Border();
 
-        Border(double x, double y, float height, float width);
-
-
-        const std::string &getType() const override;
-
-
-        unsigned int getDamage() const override;
+        Border(float x, float y, float height, float width);
 
     private:
 

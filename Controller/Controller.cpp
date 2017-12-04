@@ -19,9 +19,9 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
 
     //------------ start Test ------------//
 
-    model->setPlayer(-3.5, 0, 0.88888, 0.66666, 0.08, 4);
-    view->addPlayer(model->getPlayer(), "../Textures/Night Raider sprites.png", sf::Vector2u(4,2), 0.15);
-    view->addViewEntity(model->addAIShip(5, 0, 0.88888, 0.66666, 0.02, 3, 0.20), "../Textures/F5S3.png");
+    model->setPlayer(-3.5f, 0, 0.88888, 0.66666);
+    view->addViewEntity(model->getPlayer());
+//    view->addViewEntity(model->addAIShip(5, 0, 0.88888, 0.66666, 0.02, 3, 0.20), "../Textures/F5S3.png");
 
     //------------- End Test -------------//
 }
@@ -34,10 +34,7 @@ void Ctrl::Controller::run(){
         view->checkForEvents(event);
         // Check if it's time do make another frame
         if (Stopwatch::getInstance()->updateAndCheck()) {
-            std::vector<std::shared_ptr<Model::Entity>> temp = model->updateWorld(Stopwatch::getInstance()->getTotalTime());
-            for (auto e: temp){
-                view->addViewEntity(e, "../Textures/beam1.png");
-            }
+            model->updateWorld(Stopwatch::getInstance()->getTotalTime());
             this->getUserInput();
             // Check if the player is destroyed, if so stop the game
             if (!model->checkForDestroyed()){
@@ -60,7 +57,7 @@ void Ctrl::Controller::getUserInput() {
         this->model->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         if (this->model->getPlayer()->canShoot(Stopwatch::getInstance()->getTotalTime())) {
-            this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
+//            this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
         }
     }
 }
@@ -69,7 +66,7 @@ void Ctrl::Controller::makeBorders() {
     std::shared_ptr<Model::Entity> border = this->model->addBorder();
     // As long as a border is added continue
     while(border){
-        this->view->addViewEntity(border, "../Textures/rock.png");
+        this->view->addViewEntity(border);
         border = this->model->addBorder();
     }
 }

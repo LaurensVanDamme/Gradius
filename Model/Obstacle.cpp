@@ -7,16 +7,13 @@
 
 Model::Obstacle::Obstacle() {}
 
-Model::Obstacle::Obstacle(float x, float y, float height, float width, float speed)
-        : Entity(x, y, height, width, speed) {}
-
-const std::string &Model::Obstacle::getType() const {
-    return "Obstacle";
+Model::Obstacle::Obstacle(float x, float y, float height, float width)
+        : Entity(x, y, height, width) {
+    this->type = "Obstacle";
+    this->speed = 0.03f;
+    this->damage = 1;
 }
 
-unsigned int Model::Obstacle::getDamage() const {
-    return 1;
-}
 
 void Model::Obstacle::update(float time) {
     this->moveLeft();
