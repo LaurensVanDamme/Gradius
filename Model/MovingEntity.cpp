@@ -22,7 +22,7 @@ float Model::MovingEntity::getSpeed() const {
 }
 
 void Model::MovingEntity::moveUp() {
-    this->updatePositionY(this->getPositionY() + this->getSpeed());
+    this->y = this->y + this->getSpeed();
     this->checkCoorY();
 //    OP::Event::UpdateY event;
     auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create a update y event
@@ -30,7 +30,7 @@ void Model::MovingEntity::moveUp() {
 }
 
 void Model::MovingEntity::moveDown() {
-    this->updatePositionY(this->getPositionY() - this->getSpeed());
+    this->y = this->y - this->getSpeed();
     this->checkCoorY();
 //    OP::Event::UpdateY event;
     auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create a update y event
@@ -38,7 +38,7 @@ void Model::MovingEntity::moveDown() {
 }
 
 void Model::MovingEntity::moveRight() {
-    this->updatePositionX(this->getPositionX() + this->getSpeed());
+    this->x = this->x + this->getSpeed();
     this->checkCoorX();
 //    OP::Event::UpdateX event;
     auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
@@ -46,7 +46,7 @@ void Model::MovingEntity::moveRight() {
 }
 
 void Model::MovingEntity::moveLeft() {
-    this->updatePositionX(this->getPositionX() - this->getSpeed());
+    this->x = this->x - this->getSpeed();
     this->checkCoorX();
 //    OP::Event::UpdateX event;
     auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event

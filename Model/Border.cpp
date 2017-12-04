@@ -7,7 +7,7 @@
 Model::Border::Border(double x, double y, float height, float width, unsigned int damage) : Obstacle(x, y, height,
                                                                                                      width, damage) {}
 void Model::Border::checkCoorX() {
-    if (this->getPositionX() < (-4 - (this->getWidth() / 2))){
-        this->updatePositionX(4 + (this->getWidth() / 2));
+    if (this->x < (-4 - (this->getWidth() / 2))){
+        this->x = 4 + (this->getWidth() / 2);
     }
 }

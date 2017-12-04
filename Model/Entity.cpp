@@ -10,6 +10,7 @@
 Model::Entity::Entity() {}
 
 Model::Entity::Entity(float x, float y, float height, float width) : x(x), y(y), height(height), width(width) {
+    this->health = 1;
     this->destroyed = false;
 }
 
@@ -21,14 +22,6 @@ float Model::Entity::getPositionY() const {
     return this->y;
 }
 
-void Model::Entity::updatePositionX(float newPositionX) {
-    this->x = newPositionX;
-}
-
-void Model::Entity::updatePositionY(float newPositionY) {
-    this->y = newPositionY;
-}
-
 float Model::Entity::getHeight() const {
     return height;
 }
@@ -37,8 +30,22 @@ float Model::Entity::getWidth() const {
     return width;
 }
 
+unsigned int Model::Entity::getHealth() const {
+    return health;
+}
+
 bool Model::Entity::isDestroyed() const {
     return destroyed;
+}
+
+void Model::Entity::hit(unsigned int damage) {
+    if ((health -= damage) == 0){
+        this->wrecked();
+    }
+}
+
+bool Model::Entity::canBeHit(float time) {
+    return true;
 }
 
 void Model::Entity::wrecked() {

@@ -11,7 +11,7 @@ Model::Obstacle::Obstacle(double x, double y, float height, float width, unsigne
         : ScrollingEntity(x, y, height, width, damage) {}
 
 void Model::Obstacle::scroll() {
-    this->updatePositionX(this->getPositionX() - scrollSpeed);
+    this->x = this->x - scrollSpeed;
     this->checkCoorX();
 //    OP::Event::UpdateX event;
     auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
@@ -19,7 +19,7 @@ void Model::Obstacle::scroll() {
 }
 
 void Model::Obstacle::checkCoorX() {
-    if (this->getPositionX() < (-4 - (this->getWidth() / 2))){
+    if (this->x < (-4 - (this->getWidth() / 2))){
         this->wrecked();
     }
 }

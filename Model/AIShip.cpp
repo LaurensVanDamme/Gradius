@@ -54,17 +54,17 @@ bool Model::AIShip::moveAndAttack(float time) {
 }
 
 void Model::AIShip::checkCoorX() {
-    if (this->getPositionX() >= (4 + (this->getWidth() / 2))){
-        this->updatePositionX(4 + (this->getWidth() / 2));
-    } else if (this->getPositionX() <= (-4 - (this->getWidth() / 2))){
+    if (this->x >= (4 + (this->getWidth() / 2))){
+        this->x = 4 + (this->getWidth() / 2);
+    } else if (this->x <= (-4 - (this->getWidth() / 2))){
         this->wrecked();
     }
 }
 
 void Model::AIShip::checkCoorY() {
-    if (this->getPositionY() >= (3 - (this->getHeight() / 2) - 0.30)){
-        this->updatePositionY(3 - (this->getHeight() / 2) - 0.30);
-    } else if (this->getPositionY() <= (-3 + (this->getHeight() / 2) + 0.30)){
-        this->updatePositionY(-3 + (this->getHeight() / 2) - 0.30);
+    if (this->y >= (3 - (this->getHeight() / 2) - 0.30)){
+        this->y = 3 - (this->getHeight() / 2) - 0.30f;
+    } else if (this->y <= (-3 + (this->getHeight() / 2) + 0.30)){
+        this->y = -3 + (this->getHeight() / 2) - 0.30f;
     }
 }

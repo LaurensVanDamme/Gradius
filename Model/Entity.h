@@ -11,29 +11,16 @@ namespace Model {
 
     class Entity: public OP::Subject {
     public:
+
         Entity();
 
         Entity(float x, float y, float height, float width);
 
-/**
-\n    Returns the x coordinate of the entity
-*/
+
         float getPositionX() const;
 
-/**
-\n    Returns the y coordinate of the entity
-*/
+
         float getPositionY() const;
-
-/**
-\n    Updates the x coordinate of the entity by a new x coordinate
-*/
-        void updatePositionX(float newPositionX);
-
-/**
-\n    Updates the y coordinate of the entity by a new y coordinate
-*/
-        void updatePositionY(float newPositionY);
 
 
         float getHeight() const;
@@ -42,17 +29,42 @@ namespace Model {
         float getWidth() const;
 
 
+        unsigned int getHealth() const;
+
+
         bool isDestroyed() const;
 
+
+        void hit(unsigned int damage);
+
+
+        virtual bool canBeHit(float time);
+
+
+        virtual const std::string &getType() const=0;
+
+
+        virtual void update()=0;
+
+    protected:
 
         void wrecked();
 
     private:
-        bool destroyed;
+
+        virtual float checkCoorX()=0;
+
+        virtual float checkCoorY()=0;
+
+    protected:
         float x;
         float y;
+        unsigned int health;
+
+    private:
         float height;
         float width;
+        bool destroyed;
     };
 
 }

@@ -12,18 +12,18 @@ Model::Ship::Ship(double x, double y, float width, float height, float speed, un
 }
 
 void Model::Ship::checkCoorX() {
-    if (this->getPositionX() >= (4 - (this->getWidth() / 2))){
-        this->updatePositionX(4 - (this->getWidth() / 2));
-    } else if (this->getPositionX() <= (-4 + (this->getWidth() / 2))){
-        this->updatePositionX(-4 + (this->getWidth() / 2));
+    if (this->x >= (4 - (this->getWidth() / 2))){
+        this->x = 4 - (this->getWidth() / 2);
+    } else if (this->x <= (-4 + (this->getWidth() / 2))){
+        this->x = -4 + (this->getWidth() / 2);
     }
 }
 
 void Model::Ship::checkCoorY() {
-    if (this->getPositionY() >= (3 - (this->getHeight() / 2))){
-        this->updatePositionY(3 - (this->getHeight() / 2));
-    } else if (this->getPositionY() <= (-3 + (this->getHeight() / 2))){
-        this->updatePositionY(-3 + (this->getHeight() / 2));
+    if (this->y >= (3 - (this->getHeight() / 2))){
+        this->y = 3 - (this->getHeight() / 2);
+    } else if (this->y <= (-3 + (this->getHeight() / 2))){
+        this->y = -3 + (this->getHeight() / 2);
     }
 }
 
