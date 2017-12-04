@@ -12,9 +12,10 @@ namespace Model {
     class Entity: public OP::Subject {
     public:
 
+
         Entity();
 
-        Entity(float x, float y, float height, float width);
+        Entity(float x, float y, float height, float width, float speed);
 
 
         float getPositionX() const;
@@ -29,32 +30,60 @@ namespace Model {
         float getWidth() const;
 
 
+        float getSpeed() const;
+
+
         unsigned int getHealth() const;
 
 
         bool isDestroyed() const;
 
+/**
+* @brief Moves the entity up in the coordinate system
+*/
+        void moveUp();
+
+/**
+* @brief Moves the entity down in the coordinate system
+*/
+        void moveDown();
+
+/**
+* @brief Moves the entity right in the coordinate system
+*/
+        void moveRight();
+
+/**
+* @brief Moves the entity left in the coordinate system
+*/
+        void moveLeft();
+
 
         void hit(unsigned int damage);
 
 
-        virtual bool canBeHit(float time);
+        virtual bool canBeHit(float time, bool hit);
 
 
         virtual const std::string &getType() const=0;
 
 
-        virtual void update()=0;
+        virtual unsigned int getDamage() const=0;
+
+
+        virtual void update(float time)=0;
 
     protected:
 
+
         void wrecked();
 
-    private:
 
-        virtual float checkCoorX()=0;
+        virtual void checkCoorX();
 
-        virtual float checkCoorY()=0;
+
+        virtual void checkCoorY();
+
 
     protected:
         float x;
@@ -64,6 +93,7 @@ namespace Model {
     private:
         float height;
         float width;
+        float speed;
         bool destroyed;
     };
 

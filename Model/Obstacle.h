@@ -5,21 +5,24 @@
 #ifndef GRADIUS_OBSTACLE_H
 #define GRADIUS_OBSTACLE_H
 
-#include "ScrollingEntity.h"
+#include "Entity.h"
 
 namespace Model {
 
-    class Obstacle: public ScrollingEntity {
+    class Obstacle: public Entity {
     public:
         Obstacle();
 
-        Obstacle(double x, double y, float height, float width, unsigned int damage);
+        Obstacle(float x, float y, float height, float width, float speed);
 
-        void scroll() override;
 
-    private:
+        virtual const std::string &getType() const override;
 
-        virtual void checkCoorX() override;
+
+        virtual unsigned int getDamage() const override;
+
+
+        void update(float time) override;
 
     };
 

@@ -11,11 +11,20 @@ namespace Model {
 
     class AIShip: public Ship {
     public:
+
+
         AIShip();
 
-        AIShip(double x, double y, float width, float height, float speed, unsigned int healt, float timePerShot);
+        AIShip(float x, float y, float width, float height, unsigned int healt);
 
-        bool moveAndAttack(float time);
+
+        const std::string &getType() const override;
+
+
+        unsigned int getDamage() const override;
+
+
+        void update(float time) override ;
 
     private:
         void checkCoorX() override;

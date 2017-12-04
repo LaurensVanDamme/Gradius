@@ -5,35 +5,28 @@
 #ifndef GRADIUS_SHIP_H
 #define GRADIUS_SHIP_H
 
-#include "MovingEntity.h"
+#include "Entity.h"
 #include "Bullet.h"
 
 namespace Model {
 
-    class Ship : public MovingEntity {
+    class Ship : public Entity {
     public:
+
+
         Ship();
 
-        Ship(double x, double y, float width, float height, float speed, unsigned int healt,
-             float timePerShot);
+        Ship(float x, float y, float width, float height, unsigned int healt, float speed);
+
 
         bool canShoot(float time);
 
-        bool canBeHit(float time, bool hit = true);
-
-        unsigned int getHealt() const;
-
-        void hit(unsigned int damage);
-
     private:
-        virtual void checkCoorX() override;
-
-        virtual void checkCoorY() override;
-
         float lastTimeShot;
+
+    protected:
         float lastTimeHit;
         float timePerShot; // in seconds
-        unsigned int health;
     };
 
 }

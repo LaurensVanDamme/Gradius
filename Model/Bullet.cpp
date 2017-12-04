@@ -9,24 +9,26 @@ using namespace std;
 
 Model::Bullet::Bullet() {}
 
-Model::Bullet::Bullet(double x, double y, float height, float width, unsigned int damage, float speed)
-        : ScrollingEntity(x, y, height, width, damage) {
-    this->scrollSpeed = speed;
+Model::Bullet::Bullet(float x, float y, float height, float width, float speed, bool AI)
+        : Entity(x, y, height, width, speed), AI(AI) {}
+
+const std::string &Model::Bullet::getType() const {
+    if (AI){
+        return "AIBullet";
+    } else {
+        return "Bullet";
+    }
 }
 
-void Model::Bullet::scroll() {
-    this->x = this->x + scrollSpeed;
-    this->checkCoorX();
-//    OP::Event::UpdateX event;
-    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create a update x event
-    this->notify(event);
+unsigned int Model::Bullet::getDamage() const {
+    return 1;
 }
 
-void Model::Bullet::checkCoorX() {
-    if (this->x > (4 + (this->getWidth() / 2))){
-        this->wrecked();
-    } else if (this->x < (-4 - (this->getWidth() / 2))){
-        this->wrecked();
+void Model::Bullet::update(float time) {
+    if (AI){
+        this->moveLeft();
+    } else {
+        this->moveRight();
     }
 }
 

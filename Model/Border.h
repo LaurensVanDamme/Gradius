@@ -12,12 +12,21 @@ namespace Model {
     class Border: public Obstacle {
     public:
 
-        Border(double x, double y, float height, float width, unsigned int damage);
 
-        void checkCoorX() override;
+        Border();
+
+        Border(double x, double y, float height, float width);
+
+
+        const std::string &getType() const override;
+
+
+        unsigned int getDamage() const override;
 
     private:
 
+
+        void checkCoorX() override;
     };
 
 }

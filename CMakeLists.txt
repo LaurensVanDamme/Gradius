@@ -17,11 +17,9 @@ set(MODEL_FILES Model/Model.h Model/Model.cpp
         Model/Entity.cpp Model/Entity.h
         Model/Ship.cpp Model/Ship.h
         Model/Bullet.cpp Model/Bullet.h
-        Model/MovingEntity.cpp Model/MovingEntity.h
-        Model/ScrollingEntity.cpp Model/ScrollingEntity.h
         Model/Obstacle.cpp Model/Obstacle.h
         Model/Border.cpp Model/Border.h
-        Model/AIShip.cpp Model/AIShip.h)
+        Model/AIShip.cpp Model/AIShip.h Model/PlayerShip.cpp Model/PlayerShip.h)
 
 set(VIEW_FILES View/Entity.cpp View/Entity.h
         View/Player.cpp View/Player.h
