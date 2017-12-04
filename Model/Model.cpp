@@ -20,7 +20,7 @@ void Model::Model::setPlayer(float x, float y, float width, float height) {
 //    float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
 //    float y = this->player->getPositionY();
 //    auto bullet = std::make_shared<Bullet>(Bullet(x, y, width, height, damage, speed));
-//    this->scrollingEntities.push_back(bullet);
+//    this->entities.push_back(bullet);
 //    return bullet;
 //}
 //
@@ -30,7 +30,7 @@ void Model::Model::setPlayer(float x, float y, float width, float height) {
 //    float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
 //    float y = this->player->getPositionY();
 //    auto bullet = std::make_shared<Bullet>(Bullet(x, y, width, height, damage, speed));
-//    this->scrollingEntities.push_back(bullet);
+//    this->entities.push_back(bullet);
 //    return bullet;
 //}
 
@@ -47,7 +47,7 @@ std::shared_ptr<Model::Entity> Model::Model::addBorder() {
     auto border = std::make_shared<Border>(Border(x, y, 0.25, 0.25));
     x += 0.25;
     number++;
-    this->scrollingEntities.push_back(border);
+    this->entities.push_back(border);
     return border;
 }
 
@@ -64,11 +64,11 @@ bool Model::Model::checkForDestroyed() {
         return false;
     }
     std::vector<std::shared_ptr<Entity>> toKeep;
-    for (auto scrollingEntity: this->scrollingEntities) {
+    for (auto scrollingEntity: this->entities) {
         if (!scrollingEntity->isDestroyed())
             toKeep.push_back(scrollingEntity);
     }
-    this->scrollingEntities = toKeep;
+    this->entities = toKeep;
     return true;
 }
 
@@ -101,16 +101,13 @@ bool collision(std::shared_ptr<Model::Entity> e1, std::shared_ptr<Model::Entity>
 }
 
 void Model::Model::updateWorld(float totalTime) {
-    for (auto scrollingEntity: scrollingEntities){
+    for (auto scrollingEntity: entities){
         scrollingEntity->update(totalTime);
         if (collision(player, scrollingEntity)){
             if (player->canBeHit(totalTime)) {
                 player->hit(scrollingEntity->getDamage());
             }
         }
-    }
-    for (auto AI: AIShips) {
-        AI->update(totalTime);
     }
     // To add: Collitionhandling in een functie steken and aiShips, die kunnen dan ook gehit worden door een kogel van de speler
     // daardoor is die functie voor collition handig

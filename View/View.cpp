@@ -8,6 +8,7 @@
 #include "../Model/Entity.h"
 #include "../Model/Ship.h"
 #include "Transformation.h"
+#include "../ObserverPattern/Events/AddedEntity.h"
 
 #include <iostream>
 
@@ -91,6 +92,12 @@ void View::View::checkForEvents(sf::Event event) {
             Transformation::getInstance()->updateWindowSize(window->getSize().x, window->getSize().y);
                 break;
         }
+    }
+}
+
+void View::View::update(std::shared_ptr<OP::Event::Event> event) {
+    if (auto e = std::dynamic_pointer_cast<OP::Event::AddedEntity>(event)){
+        // continue...
     }
 }
 

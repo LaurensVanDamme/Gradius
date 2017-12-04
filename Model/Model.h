@@ -6,15 +6,15 @@
 #define GRADIUS_MODEL_H
 
 #include "Entity.h"
-#include "Border.h"
 #include "AIShip.h"
 #include "PlayerShip.h"
+#include "../ObserverPattern/Subject.h"
 #include <vector>
 #include <memory>
 
 namespace Model {
 
-    class Model {  // Vergeet deconstructor ni!!!
+    class Model: public OP::Subject {  // Vergeet deconstructor ni!!!
     public:
         std::shared_ptr<PlayerShip> getPlayer();
 
@@ -37,8 +37,7 @@ namespace Model {
 
     private:
         std::shared_ptr<PlayerShip> player;
-        std::vector<std::shared_ptr<Entity>> scrollingEntities;
-        std::vector<std::shared_ptr<AIShip>> AIShips;
+        std::vector<std::shared_ptr<Entity>> entities;
     };
 
 }

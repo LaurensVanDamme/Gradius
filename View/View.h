@@ -5,6 +5,9 @@
 #ifndef GRADIUS_VIEW_H
 #define GRADIUS_VIEW_H
 
+
+#include "../ObserverPattern/Observer.h"
+#include "../ObserverPattern/Events/Event.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
@@ -20,7 +23,7 @@ namespace View {
     class Entity;
 
 
-    class View {  // Vergeet deconstructor ni!!!
+    class View: public OP::Observer {  // Vergeet deconstructor ni!!!
     public:
 
 
@@ -33,6 +36,9 @@ namespace View {
 
 
         void checkForEvents(sf::Event event);
+
+
+        void update(std::shared_ptr<OP::Event::Event> event) override;
 
 
         void updateView(float deltaTime);
