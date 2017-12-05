@@ -12,7 +12,7 @@ namespace OP { // Observer Pattern
 
     class Subject;
 
-    class Observer: public std::enable_shared_from_this<Observer> {
+    class Observer {
     public:
         Observer();
 

@@ -26,8 +26,10 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     float switchTime = 0;
     if (entity->getType() == "PlayerShip"){
         if (auto ent = std::dynamic_pointer_cast<Model::Ship>(entity)) {
-            this->entities.push_back(std::make_shared<Player>(Player(ent, "../Textures/Night Raider sprites.png",
-                                                                     sf::Vector2u(4,2), 0.15)));
+            auto ventity = std::make_shared<Player>(ent, "../Textures/Night Raider sprites.png",
+                                                           sf::Vector2u(4,2), 0.15);
+            ent->attach(ventity);
+            this->entities.push_back(ventity);
             return;
         }
     } else if (entity->getType() == "AIShip"){
@@ -35,7 +37,9 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     } else if (entity->getType() == "Border"){
         pathToTexture += "rock.png";
     }
-    this->entities.push_back(std::make_shared<Entity>(Entity(entity, pathToTexture, imageCount, switchTime)));
+    auto ventity = std::make_shared<Entity>(entity, pathToTexture, imageCount, switchTime);
+    entity->attach(ventity);
+    this->entities.push_back(ventity);
 }
 
 //----------Tijdelijk----------//

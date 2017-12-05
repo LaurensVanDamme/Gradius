@@ -13,8 +13,10 @@
 
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
-    model = std::make_shared<Model::Model>(Model::Model());
-    view = std::make_shared<View::View>(View::View(2100, 1400, model));
+    model = std::make_shared<Model::Model>();
+    view = std::make_shared<View::View>(2100, 1400, model);
+    model->attach(view);
+    model->addBorders();
 
     //------------ start Test ------------//
 
@@ -54,9 +56,7 @@ void Ctrl::Controller::getUserInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->model->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (this->model->getPlayer()->canShoot(Stopwatch::getInstance()->getTotalTime())) {
-//            this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
-        }
+        this->model->getPlayer()->shoot(Stopwatch::getInstance()->getTotalTime());
     }
 }
 

@@ -14,13 +14,16 @@ namespace Model {
 
         PlayerShip();
 
-        PlayerShip(float x, float y, float width, float height);
+        PlayerShip(float x, float y, float width, float height, std::weak_ptr<Model> model);
 
 
         void update(float time) override;
 
 
         bool canBeHit(float time, bool hit = true) override;
+
+
+        void shoot(float time);
 
     protected:
 

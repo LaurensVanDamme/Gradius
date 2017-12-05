@@ -14,17 +14,17 @@
 
 namespace Model {
 
-    class Model: public OP::Subject {  // Vergeet deconstructor ni!!!
+    class Model: public OP::Subject, public std::enable_shared_from_this<Model> {  // Vergeet deconstructor ni!!!
     public:
         std::shared_ptr<PlayerShip> getPlayer();
 
         void setPlayer(float x, float y, float width, float height);
 
-//        std::shared_ptr<Entity> addBullet(unsigned int damage, float speed);
-//
-//        std::shared_ptr<Entity> addAIBullet(unsigned int damage, float speed);
+        void addBorders();
 
-        std::shared_ptr<Entity> addBorder();
+        void addBullet(float x, float y, float width, float height, bool AI);
+
+//        std::shared_ptr<Entity> addAIBullet(unsigned int damage, float speed);
 
 //        std::shared_ptr<AIShip> addAIShip(double x, double y, float width, float height, float speed,
 //                                                   unsigned int healt, float timePerShot);

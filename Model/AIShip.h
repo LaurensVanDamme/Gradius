@@ -15,7 +15,7 @@ namespace Model {
 
         AIShip();
 
-        AIShip(float x, float y, float width, float height);
+        AIShip(float x, float y, float width, float height, std::weak_ptr<Model> model);
 
 
         void update(float time) override ;

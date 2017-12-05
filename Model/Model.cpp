@@ -5,50 +5,46 @@
 #include "Entity.h"
 #include "Model.h"
 #include "Border.h"
+#include "../ObserverPattern/Event.h"
 
 std::shared_ptr<Model::PlayerShip> Model::Model::getPlayer() {
     return player;
 }
 
 void Model::Model::setPlayer(float x, float y, float width, float height) {
-    this->player = std::make_shared<PlayerShip>(PlayerShip(x, y, width, height));
+    this->player = std::make_shared<PlayerShip>(x, y, width, height, shared_from_this());
+    OP::Event event(OP::Event::AddedEntity);
+    event.addedEntity.entity = this->player;
+    this->notify(event);
 }
 
-//std::shared_ptr<Model::ScrollingEntity> Model::Model::addBullet(unsigned int damage, float speed) {
-//    float width = this->player->getWidth() / 4;
-//    float height = this->player->getHeight() /4;
-//    float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
-//    float y = this->player->getPositionY();
-//    auto bullet = std::make_shared<Bullet>(Bullet(x, y, width, height, damage, speed));
-//    this->entities.push_back(bullet);
-//    return bullet;
-//}
-//
-//std::shared_ptr<Model::ScrollingEntity> Model::Model::addAIBullet(unsigned int damage, float speed) {
-//    float width = this->player->getWidth() / 4;
-//    float height = this->player->getHeight() /4;
-//    float x = this->player->getPositionX() + (this->player->getWidth() / 2) + width;
-//    float y = this->player->getPositionY();
-//    auto bullet = std::make_shared<Bullet>(Bullet(x, y, width, height, damage, speed));
-//    this->entities.push_back(bullet);
-//    return bullet;
-//}
-
-std::shared_ptr<Model::Entity> Model::Model::addBorder() {
-    static float x = -4;
-    static float y = 2.875;
-    static unsigned int number = 0;
-    if (number == 33){
-        x = -4;
-        y = -2.875;
-    } else if (number == 66){
-        return nullptr;
+void Model::Model::addBorders() {
+    float x = -4;
+    float y = 2.875;
+    unsigned int number = 0;
+    while (true) {
+        if (number == 33) {
+            x = -4;
+            y = -2.875f;
+        } else if (number == 66) {
+            break;
+        }
+        auto border = std::make_shared<Border>(x, y, 0.25, 0.25);
+        x += 0.25;
+        number++;
+        this->entities.push_back(border);
+        OP::Event event(OP::Event::AddedEntity);
+        event.addedEntity.entity = border;
+        this->notify(event);
     }
-    auto border = std::make_shared<Border>(Border(x, y, 0.25, 0.25));
-    x += 0.25;
-    number++;
-    this->entities.push_back(border);
-    return border;
+}
+
+void Model::Model::addBullet(float x, float y, float width, float height, bool AI) {
+    auto bullet = std::make_shared<Bullet>(x, y, width, height, AI);
+    this->entities.push_back(bullet);
+    OP::Event event(OP::Event::AddedEntity);
+    event.addedEntity.entity = bullet;  // Problem here...
+    this->notify(event);
 }
 
 //std::shared_ptr<Model::AIShip>
@@ -101,11 +97,11 @@ bool collision(std::shared_ptr<Model::Entity> e1, std::shared_ptr<Model::Entity>
 }
 
 void Model::Model::updateWorld(float totalTime) {
-    for (auto scrollingEntity: entities){
-        scrollingEntity->update(totalTime);
-        if (collision(player, scrollingEntity)){
+    for (auto entity: entities){
+        entity->update(totalTime);
+        if (collision(player, entity)){
             if (player->canBeHit(totalTime)) {
-                player->hit(scrollingEntity->getDamage());
+                player->hit(entity->getDamage());
             }
         }
     }

@@ -10,7 +10,4 @@ OP::Observer::Observer() {
 }
 
 OP::Observer::Observer(std::weak_ptr<Subject> subject): subject(subject) {
-    if (auto ptr = this->subject.lock()){
-        ptr->attach(shared_from_this());
-    }
 }

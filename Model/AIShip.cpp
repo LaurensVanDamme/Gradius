@@ -3,13 +3,14 @@
 //
 
 #include "AIShip.h"
+#include "Model.h"
 
 Model::AIShip::AIShip() {
 
 }
 
-Model::AIShip::AIShip(float x, float y, float width, float height)
-        : Ship(x, y, width, height) {
+Model::AIShip::AIShip(float x, float y, float width, float height, std::weak_ptr<Model> model)
+        : Ship(x, y, width, height, model) {
     this->type = "AIShip";
     this->speed = 0.02;
     this->health = 2;

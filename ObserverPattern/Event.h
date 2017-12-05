@@ -18,15 +18,6 @@ namespace OP {
     public:
 
         ////////////////////////////////////////////////////////////
-        /// \brief Shot event parameters (Shot)
-        ///
-        ////////////////////////////////////////////////////////////
-        struct ShotEvent {
-            float x;
-            float y;
-        };
-
-        ////////////////////////////////////////////////////////////
         /// \brief Added item event parameters (AddedEntity)
         ///
         ////////////////////////////////////////////////////////////
@@ -42,14 +33,12 @@ namespace OP {
             UpdateX,        ///< The subject requested to update the x coordinate
             UpdateY,        ///< The subject requested to update the y coordinate
             Destroyed,      ///< The subject notified that he is destroyed
-            Shot,           ///< The subject notified that he shot
             AddedEntity     ///< The subject requested to create an view entity
         };
 
         EventType type; ///< Type of the event
 
         union {
-            ShotEvent shot;                 ///< Shot event parameters (Event::Shot)
             AddingEntityEvent addedEntity;      ///< Added item event parameters (Event::AddedEntity)
         };
 
