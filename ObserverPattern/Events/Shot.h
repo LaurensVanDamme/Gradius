@@ -5,7 +5,7 @@
 #ifndef GRADIUS_EVENTSHOT_H
 #define GRADIUS_EVENTSHOT_H
 
-#include "Event.h"
+#include "../Event.h"
 
 namespace OP {
 

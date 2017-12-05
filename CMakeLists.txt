@@ -4,14 +4,9 @@ project(Gradius)
 set(CMAKE_CXX_STANDARD 14)
 
 
-set(EVENT_FILES ObserverPattern/Events/Event.cpp ObserverPattern/Events/Event.h
-        ObserverPattern/Events/Shot.cpp ObserverPattern/Events/Shot.h
-        ObserverPattern/Events/UpdateY.cpp ObserverPattern/Events/UpdateY.h
-        ObserverPattern/Events/UpdateX.cpp ObserverPattern/Events/UpdateX.h
-        ObserverPattern/Events/Destroyed.cpp ObserverPattern/Events/Destroyed.h ObserverPattern/Events/AddedEntity.cpp ObserverPattern/Events/AddedEntity.h)
-
-set(OBSERVER_PATTERN_FILES ${EVENT_FILES} ObserverPattern/Subject.cpp ObserverPattern/Subject.h
-        ObserverPattern/Observer.cpp ObserverPattern/Observer.h )
+set(OBSERVER_PATTERN_FILES ObserverPattern/Subject.cpp ObserverPattern/Subject.h
+        ObserverPattern/Observer.cpp ObserverPattern/Observer.h
+        ObserverPattern/Event.h)
 
 set(MODEL_FILES Model/Model.h Model/Model.cpp
         Model/Entity.cpp Model/Entity.h

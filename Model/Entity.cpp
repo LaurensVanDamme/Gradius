@@ -3,9 +3,7 @@
 //
 
 #include "Entity.h"
-#include "../ObserverPattern/Events/UpdateX.h"
-#include "../ObserverPattern/Events/UpdateY.h"
-#include "../ObserverPattern/Events/Destroyed.h"
+#include "../ObserverPattern/Event.h"
 
 #include <iostream>
 
@@ -59,32 +57,28 @@ bool Model::Entity::isDestroyed() const {
 void Model::Entity::moveUp() {
     this->y = this->y + this->getSpeed();
     this->checkCoorY();
-//    OP::Event::UpdateY event;
-    auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create an update y event
+    OP::Event event(OP::Event::UpdateY);  // Create an update y event
     this->notify(event);
 }
 
 void Model::Entity::moveDown() {
     this->y = this->y - this->getSpeed();
     this->checkCoorY();
-//    OP::Event::UpdateY event;
-    auto event = std::make_shared<OP::Event::UpdateY>(OP::Event::UpdateY()); //  Create an update y event
+    OP::Event event(OP::Event::UpdateY);  // Create an update y event
     this->notify(event);
 }
 
 void Model::Entity::moveRight() {
     this->x = this->x + this->getSpeed();
     this->checkCoorX();
-//    OP::Event::UpdateX event;
-    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create an update x event
+    OP::Event event(OP::Event::UpdateX);  // Create an update x event
     this->notify(event);
 }
 
 void Model::Entity::moveLeft() {
     this->x = this->x - this->getSpeed();
     this->checkCoorX();
-//    OP::Event::UpdateX event;
-    auto event = std::make_shared<OP::Event::UpdateX>(OP::Event::UpdateX()); //  Create an update x event
+    OP::Event event(OP::Event::UpdateX);  // Create an update x event
     this->notify(event);
 }
 
@@ -106,8 +100,7 @@ bool Model::Entity::canBeHit(float time, bool hit) {
 
 void Model::Entity::wrecked() {
     this->destroyed = true;
-//    OP::Event::Destroyed event;
-    auto event = std::make_shared<OP::Event::Destroyed>(OP::Event::Destroyed()); //  Create a destroyed event
+    OP::Event event(OP::Event::Destroyed); //  Create a destroyed event
     this->notify(event);
 }
 

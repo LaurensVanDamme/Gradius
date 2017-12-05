@@ -5,7 +5,7 @@
 #ifndef GRADIUS_UPDATEX_H
 #define GRADIUS_UPDATEX_H
 
-#include "Event.h"
+#include "../Event.h"
 
 namespace OP {
 

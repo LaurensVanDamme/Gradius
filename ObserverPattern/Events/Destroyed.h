@@ -5,7 +5,7 @@
 #ifndef GRADIUS_DESTROYED_H
 #define GRADIUS_DESTROYED_H
 
-#include "Event.h"
+#include "../Event.h"
 
 namespace OP {
 

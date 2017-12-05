@@ -13,14 +13,12 @@
 
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
-    model = std::make_unique<Model::Model>(Model::Model());
-    view = std::make_unique<View::View>(View::View(2100, 1400));
-    this->makeBorders();
+    model = std::make_shared<Model::Model>(Model::Model());
+    view = std::make_shared<View::View>(View::View(2100, 1400, model));
 
     //------------ start Test ------------//
 
     model->setPlayer(-3.5f, 0, 0.88888, 0.66666);
-    view->addViewEntity(model->getPlayer());
 //    view->addViewEntity(model->addAIShip(5, 0, 0.88888, 0.66666, 0.02, 3, 0.20), "../Textures/F5S3.png");
 
     //------------- End Test -------------//
@@ -59,15 +57,6 @@ void Ctrl::Controller::getUserInput() {
         if (this->model->getPlayer()->canShoot(Stopwatch::getInstance()->getTotalTime())) {
 //            this->view->addViewEntity(this->model->addBullet(1, 0.16), "../Textures/beam1.png");
         }
-    }
-}
-
-void Ctrl::Controller::makeBorders() {
-    std::shared_ptr<Model::Entity> border = this->model->addBorder();
-    // As long as a border is added continue
-    while(border){
-        this->view->addViewEntity(border);
-        border = this->model->addBorder();
     }
 }
 

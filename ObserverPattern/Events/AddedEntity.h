@@ -5,7 +5,7 @@
 #ifndef GRADIUS_ADDEDENTITY_H
 #define GRADIUS_ADDEDENTITY_H
 
-#include "Event.h"
+#include "../Event.h"
 #include <memory>
 
 namespace OP {

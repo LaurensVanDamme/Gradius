@@ -3,7 +3,6 @@
 //
 
 #include "Obstacle.h"
-#include "../ObserverPattern/Events/UpdateX.h"
 
 Model::Obstacle::Obstacle() {}
 

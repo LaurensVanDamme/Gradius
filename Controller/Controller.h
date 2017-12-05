@@ -11,8 +11,6 @@
 
 namespace Ctrl {
 
-    class Stopwatch;
-
     class Controller {
     public:
 
@@ -32,18 +30,13 @@ namespace Ctrl {
         void getUserInput();
 
 /**
- * @brief Makes borders for the game
- */
-        void makeBorders();
-
-/**
  * @brief Ends the game
  */
         void endGame();
 
     private:
-        std::unique_ptr<Model::Model> model;
-        std::unique_ptr<View::View> view;
+        std::shared_ptr<Model::Model> model;
+        std::shared_ptr<View::View> view;
     };
 
 }

@@ -7,7 +7,7 @@
 
 #include "Animation.h"
 #include "../ObserverPattern/Observer.h"
-#include "../ObserverPattern/Events/Event.h"
+#include "../ObserverPattern/Event.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -25,7 +25,7 @@ namespace View {
         Entity();
         Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
-        void update(std::shared_ptr<OP::Event::Event> event) override;
+        void update(OP::Event& event) override;
 
         bool isDestroyed() const;
 

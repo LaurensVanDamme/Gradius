@@ -7,15 +7,13 @@
 
 
 #include "../ObserverPattern/Observer.h"
-#include "../ObserverPattern/Events/Event.h"
+#include "../ObserverPattern/Event.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
 
 namespace Model {
     class Model;
-    class Entity;
-    class Ship;
 }
 
 namespace View {
@@ -23,28 +21,30 @@ namespace View {
     class Entity;
 
 
-    class View: public OP::Observer {  // Vergeet deconstructor ni!!!
+    class View: public OP::Observer {
     public:
 
 
         View();
 
-        View(unsigned int windowWidth, unsigned int windowHeight);
-
-
-        void addViewEntity(std::shared_ptr<Model::Entity> entity);
+        View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::Model> model);
 
 
         void checkForEvents(sf::Event event);
 
 
-        void update(std::shared_ptr<OP::Event::Event> event) override;
+        void update(OP::Event& event) override;
 
 
         void updateView(float deltaTime);
 
 
         bool isWindowOpen();
+
+    private:
+
+
+        void addViewEntity(std::shared_ptr<Model::Entity> entity);
 
     private:
         std::unique_ptr<sf::RenderWindow> window;

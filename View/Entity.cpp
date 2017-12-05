@@ -5,9 +5,6 @@
 #include "Entity.h"
 #include "Transformation.h"
 #include "../Model/Entity.h"
-#include "../ObserverPattern/Events/UpdateX.h"
-#include "../ObserverPattern/Events/UpdateY.h"
-#include "../ObserverPattern/Events/Destroyed.h"
 
 View::Entity::Entity() {}
 
@@ -26,40 +23,41 @@ View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToText
     }
     // Create a body for the player with a texture and set it at the right position
     if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
-        Transformation *trans = Transformation::getInstance();
         body.setTexture(&*texture);
         if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
-            body.setSize(sf::Vector2f(trans->transformWidth(s->getWidth()),
-                                      trans->transformHeight(s->getHeight())));
+            body.setSize(sf::Vector2f(Transformation::getInstance()->transformWidth(s->getWidth()),
+                                      Transformation::getInstance()->transformHeight(s->getHeight())));
             body.setOrigin(body.getSize() / 2.0f);
-            body.setPosition(trans->transformViaX(s->getPositionX()),
-                             trans->transformViaY(s->getPositionY()));
+            body.setPosition(Transformation::getInstance()->transformViaX(s->getPositionX()),
+                             Transformation::getInstance()->transformViaY(s->getPositionY()));
         }
     }
 }
 
-void View::Entity::update(std::shared_ptr<OP::Event::Event> event) {
+void View::Entity::update(OP::Event& event) {
     // Check which type of event it is
-    if (auto e = std::dynamic_pointer_cast<OP::Event::UpdateX>(event)){
-        // Get the X coordinate from the entity and transform it into pixels
-        body.setOrigin(body.getSize() / 2.0f);
-        if (auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
-            if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
-                body.setPosition(Transformation::getInstance()->transformViaX(s->getPositionX()),
-                                 body.getPosition().y);
+    switch (event.type){
+        case OP::Event::UpdateX:
+            // Get the X coordinate from the entity and transform it into pixels
+            body.setOrigin(body.getSize() / 2.0f);
+            if (auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
+                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                    body.setPosition(Transformation::getInstance()->transformViaX(s->getPositionX()),
+                                     body.getPosition().y);
+                }
             }
-        }
-    } else if (auto e = std::dynamic_pointer_cast<OP::Event::UpdateY>(event)){
-        // Get the X coordinate from the entity and transform it into pixels
-        body.setOrigin(body.getSize() / 2.0f);
-        if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
-            if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
-                body.setPosition(body.getPosition().x,
-                                 Transformation::getInstance()->transformViaY(s->getPositionY()));
+            break;
+        case OP::Event::UpdateY:
+            // Get the Y coordinate from the entity and transform it into pixels
+            body.setOrigin(body.getSize() / 2.0f);
+            if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
+                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                    body.setPosition(body.getPosition().x, Transformation::getInstance()->transformViaY(s->getPositionY()));
+                }
             }
-        }
-    } else if (auto e = std::dynamic_pointer_cast<OP::Event::Destroyed>(event)){
-        destroyed = true;
+            break;
+        case OP::Event::Destroyed:
+            this->destroyed = true;
     }
 }
 

@@ -5,10 +5,8 @@
 #include "View.h"
 #include "Entity.h"
 #include "Player.h"
-#include "../Model/Entity.h"
-#include "../Model/Ship.h"
+#include "../Model/Model.h"
 #include "Transformation.h"
-#include "../ObserverPattern/Events/AddedEntity.h"
 
 #include <iostream>
 
@@ -17,7 +15,7 @@ View::View::View() {
 
 }
 
-View::View::View(unsigned int windowWidth, unsigned int windowHeight){
+View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::Model> model): Observer(model){
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }
@@ -28,10 +26,8 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     float switchTime = 0;
     if (entity->getType() == "PlayerShip"){
         if (auto ent = std::dynamic_pointer_cast<Model::Ship>(entity)) {
-            auto ventity = std::make_shared<Player>(Player(ent, "../Textures/Night Raider sprites.png",
-                                                           sf::Vector2u(4,2), 0.15));
-            ent->attach(ventity);
-            this->entities.push_back(ventity);
+            this->entities.push_back(std::make_shared<Player>(Player(ent, "../Textures/Night Raider sprites.png",
+                                                                     sf::Vector2u(4,2), 0.15)));
             return;
         }
     } else if (entity->getType() == "AIShip"){
@@ -39,9 +35,7 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     } else if (entity->getType() == "Border"){
         pathToTexture += "rock.png";
     }
-    auto ventity = std::make_shared<Entity>(Entity(entity, pathToTexture, imageCount, switchTime));
-    entity->attach(ventity);
-    this->entities.push_back(ventity);
+    this->entities.push_back(std::make_shared<Entity>(Entity(entity, pathToTexture, imageCount, switchTime)));
 }
 
 //----------Tijdelijk----------//
@@ -95,9 +89,9 @@ void View::View::checkForEvents(sf::Event event) {
     }
 }
 
-void View::View::update(std::shared_ptr<OP::Event::Event> event) {
-    if (auto e = std::dynamic_pointer_cast<OP::Event::AddedEntity>(event)){
-        // continue...
+void View::View::update(OP::Event& event) {
+    if (event.type == OP::Event::AddedEntity){
+        this->addViewEntity(event.addedEntity.entity);
     }
 }
 
