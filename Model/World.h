@@ -6,7 +6,6 @@
 #define GRADIUS_MODEL_H
 
 #include "Entity.h"
-#include "AIShooter.h"
 #include "PlayerShip.h"
 #include "../ObserverPattern/Subject.h"
 #include <vector>
@@ -27,7 +26,9 @@ namespace Model {
 
         void addObstacle(float x, float y, float width, float height);
 
-        void addAIShip(float x, float y, float width, float height);
+        void addAIShooter(float x, float y, float width, float height);
+
+        void addAIFollower(float x, float y, float width, float height);
 
         void makeBorders();
 

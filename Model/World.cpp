@@ -5,6 +5,8 @@
 #include "Entity.h"
 #include "World.h"
 #include "Border.h"
+#include "AIFollower.h"
+#include "AIShooter.h"
 #include "../ObserverPattern/Event.h"
 
 Model::World::World(){}
@@ -37,8 +39,16 @@ void Model::World::addObstacle(float x, float y, float width, float height) {
     this->notify(event);
 }
 
-void Model::World::addAIShip(float x, float y, float width, float height) {
-    auto AI = std::make_shared<AIShooter>(AIShooter(x, y, width, height, shared_from_this()));
+void Model::World::addAIShooter(float x, float y, float width, float height) {
+    auto AI = std::make_shared<AIShooter>(x, y, width, height, shared_from_this());
+    this->entities.push_back(AI);
+    OP::Event event(OP::Event::AddedEntity);
+    event.addedEntity.entity = AI;
+    this->notify(event);
+}
+
+void Model::World::addAIFollower(float x, float y, float width, float height) {
+    auto AI = std::make_shared<Model::AIFollower>(x, y, width, height, shared_from_this());
     this->entities.push_back(AI);
     OP::Event event(OP::Event::AddedEntity);
     event.addedEntity.entity = AI;
@@ -113,12 +123,8 @@ void Model::World::updateWorld(float totalTime) {
                 if (type2 == "Bullet" or type2 == "AIBullet" or type2 == "PlayerShip") {
                     continue;
                 }
-            } else if (type1 == "AIBullet"){
-                if (type2 == "Bullet" or type2 == "AIBullet" or type2 == "AIShooter") {
-                    continue;
-                }
-            } else if (type1 == "AIShooter"){
-                if (type2 == "AIBullet" or type2 == "AIShooter") {
+            } else if (type1.substr(0,2) == "AI"){
+                if (type2.substr(0,2) == "AI") {
                     continue;
                 }
             }
