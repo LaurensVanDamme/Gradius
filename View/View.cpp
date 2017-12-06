@@ -36,6 +36,8 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
         pathToTexture += "F5S3.png";
     } else if (entity->getType() == "Border"){
         pathToTexture += "rock.png";
+    } else if (entity->getType() == "Bullet"){
+        pathToTexture += "beam1.png";
     }
     auto ventity = std::make_shared<Entity>(entity, pathToTexture, imageCount, switchTime);
     entity->attach(ventity);

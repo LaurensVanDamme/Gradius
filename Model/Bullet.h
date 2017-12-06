@@ -14,7 +14,7 @@ namespace Model {
 
         Bullet();
 
-        Bullet(float x, float y, float height, float width, bool AI);
+        Bullet(float x, float y, float width, float height, bool AI);
 
 
         void update(float time) override;

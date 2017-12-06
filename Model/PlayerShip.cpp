@@ -34,7 +34,7 @@ bool Model::PlayerShip::canBeHit(float time, bool hit) {
 void Model::PlayerShip::shoot(float time) {
     if (this->canShoot(time)){
         if (auto mod = model.lock()){
-            mod->addBullet(this->x + this->getWidth() + 0.2222f, this->y, 0.2222, 0.1666, false);
+            mod->addBullet(this->x + (this->getWidth() / 2) + 0.2222f, this->y, 0.2222, 0.1666, false);
         }
     }
 }

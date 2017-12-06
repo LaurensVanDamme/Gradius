@@ -7,12 +7,12 @@
 
 Model::Bullet::Bullet() {}
 
-Model::Bullet::Bullet(float x, float y, float height, float width, bool AI)
+Model::Bullet::Bullet(float x, float y, float width, float height, bool AI)
         : Entity(x, y, height, width), AI(AI) {
-    if (AI){
-        type = "AIBullet";
+    if (this->AI){
+        this->type = "AIBullet";
     } else {
-        type = "Bullet";
+        this->type = "Bullet";
     }
     this->speed = 0.16;
     this->health = 1;
@@ -20,7 +20,7 @@ Model::Bullet::Bullet(float x, float y, float height, float width, bool AI)
 }
 
 void Model::Bullet::update(float time) {
-    if (AI){
+    if (this->AI){
         this->moveLeft();
     } else {
         this->moveRight();

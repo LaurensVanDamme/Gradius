@@ -42,7 +42,7 @@ namespace OP {
             AddingEntityEvent addedEntity;      ///< Added item event parameters (Event::AddedEntity)
         };
 
-        Event(Event::EventType type): type(type){}
+        Event(Event::EventType type): type(type), addedEntity{} {}
 
         virtual ~Event() {}
     };
