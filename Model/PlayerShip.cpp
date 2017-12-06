@@ -3,11 +3,11 @@
 //
 
 #include "PlayerShip.h"
-#include "Model.h"
+#include "World.h"
 
 Model::PlayerShip::PlayerShip() {}
 
-Model::PlayerShip::PlayerShip(float x, float y, float width, float height, std::weak_ptr<Model> model):
+Model::PlayerShip::PlayerShip(float x, float y, float width, float height, std::weak_ptr<World> model):
         Ship(x, y, width, height, model) {
     this->type = "PlayerShip";
     this->speed = 0.08;
@@ -21,7 +21,7 @@ void Model::PlayerShip::update(float time) {
 }
 
 bool Model::PlayerShip::canBeHit(float time, bool hit) {
-    if ((time - this->lastTimeHit) >= 1.5){
+    if ((time - this->lastTimeHit) >= 1){
         if (hit) {
             this->lastTimeHit = time;
         }
@@ -33,8 +33,8 @@ bool Model::PlayerShip::canBeHit(float time, bool hit) {
 
 void Model::PlayerShip::shoot(float time) {
     if (this->canShoot(time)){
-        if (auto mod = model.lock()){
-            mod->addBullet(this->x + (this->getWidth() / 2) + 0.2222f, this->y, 0.2222, 0.1666, false);
+        if (auto mod = world.lock()){
+            mod->addBullet(this->x + (this->getWidth() / 2) + 0.15f, this->y, 0.15, 0.10, false);
         }
     }
 }

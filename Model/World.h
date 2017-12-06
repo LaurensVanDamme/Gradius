@@ -6,38 +6,46 @@
 #define GRADIUS_MODEL_H
 
 #include "Entity.h"
-#include "AIShip.h"
+#include "AIShooter.h"
 #include "PlayerShip.h"
 #include "../ObserverPattern/Subject.h"
 #include <vector>
 #include <memory>
+#include <queue>
 
 namespace Model {
 
-    class Model: public OP::Subject, public std::enable_shared_from_this<Model> {  // Vergeet deconstructor ni!!!
+    class World: public OP::Subject, public std::enable_shared_from_this<World> {  // Vergeet deconstructor ni!!!
     public:
+        World();
+
         std::shared_ptr<PlayerShip> getPlayer();
 
         void setPlayer(float x, float y, float width, float height);
 
-        void addBorders();
-
         void addBullet(float x, float y, float width, float height, bool AI);
 
-//        std::shared_ptr<Entity> addAIBullet(unsigned int damage, float speed);
+        void addObstacle(float x, float y, float width, float height);
 
-//        std::shared_ptr<AIShip> addAIShip(double x, double y, float width, float height, float speed,
-//                                                   unsigned int healt, float timePerShot);
+        void addAIShip(float x, float y, float width, float height);
+
+        void makeBorders();
 
         bool checkForDestroyed();
 
+        bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
+
         void updateWorld(float totalTime);
 
+        void pushToCeilingQueue(unsigned int rows);
 
+        void pushToFloorQueue(unsigned int rows);
 
     private:
         std::shared_ptr<PlayerShip> player;
         std::vector<std::shared_ptr<Entity>> entities;
+        std::queue<unsigned int> ceiling;
+        std::queue<unsigned int> floor;
     };
 
 }

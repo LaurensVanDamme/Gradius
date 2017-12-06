@@ -10,7 +10,7 @@
 
 namespace Model {
 
-    class Model;
+    class World;
 
     class Ship : public Entity {
     public:
@@ -18,7 +18,7 @@ namespace Model {
 
         Ship();
 
-        Ship(float x, float y, float width, float height, std::weak_ptr<Model> model);
+        Ship(float x, float y, float width, float height, std::weak_ptr<World> world);
 
 
         bool canShoot(float time);
@@ -26,7 +26,7 @@ namespace Model {
     protected:
         float lastTimeHit;
         float timePerShot; // in seconds
-        std::weak_ptr<Model> model;
+        std::weak_ptr<World> world;
 
     private:
         float lastTimeShot;

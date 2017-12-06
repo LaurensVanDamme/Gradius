@@ -13,7 +13,7 @@
 #include <memory>
 
 namespace Model {
-    class Model;
+    class World;
 }
 
 namespace View {
@@ -27,7 +27,7 @@ namespace View {
 
         View();
 
-        View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::Model> model);
+        View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::World> model);
 
 
         void checkForEvents(sf::Event event);

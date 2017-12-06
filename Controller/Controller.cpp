@@ -13,15 +13,20 @@
 
 
 Ctrl::Controller::Controller(const std::string jsonFile) {
-    model = std::make_shared<Model::Model>();
-    view = std::make_shared<View::View>(2100, 1400, model);
-    model->attach(view);
-    model->addBorders();
+    world = std::make_shared<Model::World>();
+    view = std::make_shared<View::View>(2100, 1400, world);
+    world->attach(view);
+    world->makeBorders();
 
     //------------ start Test ------------//
 
-    model->setPlayer(-3.5f, 0, 0.88888, 0.66666);
-//    view->addViewEntity(model->addAIShip(5, 0, 0.88888, 0.66666, 0.02, 3, 0.20), "../Textures/F5S3.png");
+    world->setPlayer(-3.5f, 0, 0.6, 0.4);
+    world->addAIShip(5, 1.5, 0.4444, 0.3333);
+    world->addAIShip(5, 0, 0.4444, 0.3333);
+    world->addAIShip(5, -1.5f, 0.4444, 0.3333);
+    world->addObstacle(2,1.5,0.5,0.5);
+    world->addObstacle(2,0,0.5,0.5);
+    world->addObstacle(2,-1.5f,0.5,0.5);
 
     //------------- End Test -------------//
 }
@@ -34,10 +39,10 @@ void Ctrl::Controller::run(){
         view->checkForEvents(event);
         // Check if it's time do make another frame
         if (Stopwatch::getInstance()->updateAndCheck()) {
-            model->updateWorld(Stopwatch::getInstance()->getTotalTime());
+            world->updateWorld(Stopwatch::getInstance()->getTotalTime());
             this->getUserInput();
             // Check if the player is destroyed, if so stop the game
-            if (!model->checkForDestroyed()){
+            if (!world->checkForDestroyed()){
                 this->endGame();
                 break;
             }
@@ -48,20 +53,20 @@ void Ctrl::Controller::run(){
 
 void Ctrl::Controller::getUserInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        this->model->getPlayer()->moveLeft();
+        this->world->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        this->model->getPlayer()->moveRight();
+        this->world->getPlayer()->moveRight();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        this->model->getPlayer()->moveUp();
+        this->world->getPlayer()->moveUp();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        this->model->getPlayer()->moveDown();
+        this->world->getPlayer()->moveDown();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        this->model->getPlayer()->shoot(Stopwatch::getInstance()->getTotalTime());
+        this->world->getPlayer()->shoot(Stopwatch::getInstance()->getTotalTime());
     }
 }
 
 void Ctrl::Controller::endGame() {
-    model = nullptr;
+    world = nullptr;
     view = nullptr;
 }
 

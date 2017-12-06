@@ -9,13 +9,13 @@
 
 namespace Model {
 
-    class AIShip: public Ship {
+    class AIShooter: public Ship {
     public:
 
 
-        AIShip();
+        AIShooter();
 
-        AIShip(float x, float y, float width, float height, std::weak_ptr<Model> model);
+        AIShooter(float x, float y, float width, float height, std::weak_ptr<World> world);
 
 
         void update(float time) override ;

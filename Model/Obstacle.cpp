@@ -3,13 +3,15 @@
 //
 
 #include "Obstacle.h"
+#include <limits>
 
 Model::Obstacle::Obstacle() {}
 
 Model::Obstacle::Obstacle(float x, float y, float height, float width)
         : Entity(x, y, height, width) {
     this->type = "Obstacle";
-    this->speed = 0.03f;
+    this->speed = 0.02f;
+    this->health = std::numeric_limits<unsigned int>::infinity();
     this->damage = 1;
 }
 

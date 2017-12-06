@@ -20,14 +20,14 @@ int main()
     lastTime = clock();
     float deltaTime;
     float totalTime = 0;
-    Model model;
-    View view(2100, 1400, &model);
-    Controller controller(&model, &view);
+    World world;
+    View view(2100, 1400, &world);
+    Controller controller(&world, &view);
 
     //------------ start Test ------------//
 
     Ship* player = new Ship(-4, 0, 0.88888, 0.66666, 0.08, 2);
-    model.setPlayer(player);
+    world.setPlayer(player);
     Entity* test1 = new Entity(player, "../Textures/Night Raider sprites.png", sf::Vector2u(4,1), 0.1);
     view.addViewEntity(test1);
 

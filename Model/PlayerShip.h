@@ -14,7 +14,7 @@ namespace Model {
 
         PlayerShip();
 
-        PlayerShip(float x, float y, float width, float height, std::weak_ptr<Model> model);
+        PlayerShip(float x, float y, float width, float height, std::weak_ptr<World> model);
 
 
         void update(float time) override;

@@ -6,8 +6,8 @@
 
 Model::Ship::Ship() {}
 
-Model::Ship::Ship(float x, float y, float width, float height, std::weak_ptr<Model> model)
-        : Entity(x, y, height, width), model(model) {
+Model::Ship::Ship(float x, float y, float width, float height, std::weak_ptr<World> world)
+        : Entity(x, y, height, width), world(world) {
     lastTimeShot = 0;
     lastTimeHit = 0;
 }

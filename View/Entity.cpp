@@ -24,7 +24,7 @@ View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToText
     // Create a body for the player with a texture and set it at the right position
     if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
         body.setTexture(&*texture);
-        if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+        if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a World Entity
             body.setSize(sf::Vector2f(Transformation::getInstance()->transformWidth(s->getWidth()),
                                       Transformation::getInstance()->transformHeight(s->getHeight())));
             body.setOrigin(body.getSize() / 2.0f);
@@ -41,7 +41,7 @@ void View::Entity::update(OP::Event& event) {
             // Get the X coordinate from the entity and transform it into pixels
             body.setOrigin(body.getSize() / 2.0f);
             if (auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
-                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a World Entity
                     body.setPosition(Transformation::getInstance()->transformViaX(s->getPositionX()),
                                      body.getPosition().y);
                 }
@@ -51,7 +51,7 @@ void View::Entity::update(OP::Event& event) {
             // Get the Y coordinate from the entity and transform it into pixels
             body.setOrigin(body.getSize() / 2.0f);
             if(auto sub = subject.lock()) {  // Make a temporary shared pointer of the weak pointer
-                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a Model Entity
+                if (auto s = std::dynamic_pointer_cast<Model::Entity>(sub)) {  // Cast the subject to a World Entity
                     body.setPosition(body.getPosition().x, Transformation::getInstance()->transformViaY(s->getPositionY()));
                 }
             }

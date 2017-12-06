@@ -6,7 +6,7 @@
 #define GRADIUS_CONTROLLER_H
 
 #include "../View/View.h"
-#include "../Model/Model.h"
+#include "../Model/World.h"
 #include <memory>
 
 namespace Ctrl {
@@ -35,7 +35,7 @@ namespace Ctrl {
         void endGame();
 
     private:
-        std::shared_ptr<Model::Model> model;
+        std::shared_ptr<Model::World> world;
         std::shared_ptr<View::View> view;
     };
 

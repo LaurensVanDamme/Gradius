@@ -5,7 +5,7 @@
 #include "View.h"
 #include "Entity.h"
 #include "Player.h"
-#include "../Model/Model.h"
+#include "../Model/World.h"
 #include "Transformation.h"
 
 #include <iostream>
@@ -15,7 +15,7 @@ View::View::View() {
 
 }
 
-View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::Model> model): Observer(model){
+View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::World> model): Observer(model){
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }
@@ -32,12 +32,18 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
             this->entities.push_back(ventity);
             return;
         }
-    } else if (entity->getType() == "AIShip"){
+    } else if (entity->getType() == "AIShooter"){
         pathToTexture += "F5S3.png";
     } else if (entity->getType() == "Border"){
         pathToTexture += "rock.png";
     } else if (entity->getType() == "Bullet"){
         pathToTexture += "beam1.png";
+    } else if (entity->getType() == "AIBullet"){
+        pathToTexture += "beam2.png";
+    } else if (entity->getType() == "Obstacle") {
+        pathToTexture += "Metal block.png";
+    } else if (entity->getType() == "AIFollower") {
+        pathToTexture += "Follower.png";
     }
     auto ventity = std::make_shared<Entity>(entity, pathToTexture, imageCount, switchTime);
     entity->attach(ventity);
