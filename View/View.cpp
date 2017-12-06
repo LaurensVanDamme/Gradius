@@ -41,7 +41,7 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     } else if (entity->getType() == "AIBullet"){
         pathToTexture += "beam2.png";
     } else if (entity->getType() == "Obstacle") {
-        pathToTexture += "Metal block.png";
+        pathToTexture += "rock.png";
     } else if (entity->getType() == "AIFollower") {
         pathToTexture += "Follower.png";
     }
