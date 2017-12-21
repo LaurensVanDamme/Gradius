@@ -69,7 +69,7 @@ void View::Entity::draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTi
     // Update the animation if it exists
     if (animationEnabled) {
         animation.update(row, deltaTime);
-        body.setTextureRect(animation.uvRect);
+        body.setTextureRect(animation.getUvRect());
     }
     window->draw(body);
 }

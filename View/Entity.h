@@ -22,16 +22,27 @@ namespace View {
     class Entity: public OP::Observer {
     public:
 
+    /**
+    * @brief Initialize a View::Entity object
+    */
         Entity();
+
         Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 
+    /**
+    * @brief Update function from observer pattern: react to the given event
+    */
         void update(OP::Event& event) override;
 
+    /**
+    * @brief Return if the entity is detroyed
+    */
         bool isDestroyed() const;
 
+    /**
+    * @brief Draw the entity on the given window
+    */
         virtual void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime);
-
-
 
     protected:
         std::shared_ptr<sf::Texture> texture;

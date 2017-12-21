@@ -13,15 +13,26 @@ namespace View {
 
     class Animation {
     public:
+
+    /**
+    * @brief Initialize an View::Animation object
+    */
         Animation();
 
         Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime);
 
+    /**
+    * @brief Returns the uvRect variable
+    */
+        const sf::IntRect &getUvRect() const;
+
+    /**
+    * @brief Updates the animation
+    */
         void update(unsigned int row, float deltaTime);
 
-    public:
-        sf::IntRect uvRect;
     private:
+        sf::IntRect uvRect;
         sf::Vector2u imageCount;
         sf::Vector2u currentImage;
         float totalTime;

@@ -26,7 +26,7 @@ namespace View {
                float switchTime);
 
     /**
-    * @brief Draw the player and it's health on the window
+    * @brief Draw the player and it's health on the given window
     */
         void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime) override;
 

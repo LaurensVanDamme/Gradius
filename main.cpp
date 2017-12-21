@@ -7,8 +7,8 @@
 
 int main()
 {
-    srand (time(NULL));
-    Ctrl::Controller game;
+    srand (time(NULL)); // Initialize the random function
+    Ctrl::Controller game; // Create a game
     game.run();
     return 0;
 }

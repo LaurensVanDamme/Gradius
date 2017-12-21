@@ -2,11 +2,11 @@
 // Created by laurens on 11/18/17.
 //
 
-// Test
+/// Test
 
 #include "../View/Player.h"
 
-// End Test
+/// End Test
 
 #include "Stopwatch.h"
 #include "Controller.h"
@@ -18,7 +18,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
     world->attach(view);
     world->makeBorders();
 
-    //------------ start Test ------------//
+    ///------------ start Test ------------///
 
     world->setPlayer(0, 0, 0.6, 0.4);
     world->addAIShooter(4.2, 1.5, 0.4444, 0.3333);
@@ -28,7 +28,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
     world->addObstacle(2,0,0.5,0.5);
     world->addObstacle(2,-1.5f,0.5,0.5);
 
-    //------------- End Test -------------//
+    ///------------- End Test -------------///
 }
 
 void Ctrl::Controller::run(){
@@ -61,6 +61,7 @@ void Ctrl::Controller::run(){
 }
 
 void Ctrl::Controller::getUserInput() {
+    // Get the input from the user and update the model
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->world->getPlayer()->moveLeft();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))

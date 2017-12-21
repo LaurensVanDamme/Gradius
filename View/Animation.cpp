@@ -4,11 +4,8 @@
 //
 
 #include "Animation.h"
-#include <iostream>
 
-View::Animation::Animation() {
-
-}
+View::Animation::Animation() {}
 
 View::Animation::Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime):
         imageCount(imageCount), switchTime(switchtime) {
@@ -34,4 +31,8 @@ void View::Animation::update(unsigned int row, float deltaTime) {
     // Put the picture in the rectangle that will be displayed
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
+}
+
+const sf::IntRect &View::Animation::getUvRect() const {
+    return uvRect;
 }
