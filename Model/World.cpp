@@ -127,7 +127,7 @@ void Model::World::updateWorld(float totalTime) {
                 if (type2.substr(0,2) == "AI" or type2 == "Bullet") {
                     continue;
                 }
-            }else if (type1.substr(0,2) == "AI"){
+            } else if (type1.substr(0,2) == "AI"){
                 if (type2.substr(0,2) == "AI") {
                     continue;
                 }

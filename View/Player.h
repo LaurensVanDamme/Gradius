@@ -17,11 +17,17 @@ namespace View {
     class Player: public Entity {
     public:
 
+    /**
+    * @brief Initialize a View::Player object
+    */
         Player();
 
         Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                float switchTime);
 
+    /**
+    * @brief Draw the player and it's health on the window
+    */
         void draw(std::unique_ptr<sf::RenderWindow>& window, float deltaTime) override;
 
     private:

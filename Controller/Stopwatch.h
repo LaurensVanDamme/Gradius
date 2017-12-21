@@ -16,19 +16,19 @@ namespace Ctrl {
         Stopwatch();
 
     public:
-/**
-* @brief Updates the stopwatch and returns if the program can continue
-*/
+    /**
+    * @brief Updates the stopwatch and returns if the program can continue
+    */
         bool updateAndCheck();
 
-/**
-* @brief Returns the totalTickTime before the subtraction of timePerTick
-*/
+    /**
+    * @brief Returns the totalTickTime before the subtraction of timePerTick
+    */
         float getTotalFrameTime() const;
 
-/**
-* @brief Returns the totalTime the program is running
-*/
+    /**
+    * @brief Returns the totalTime the program is running
+    */
         float getTotalTime() const;
 
     private:

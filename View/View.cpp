@@ -8,15 +8,13 @@
 #include "../Model/World.h"
 #include "Transformation.h"
 
-#include <iostream>
 
-
-View::View::View() {
-
-}
+View::View::View() {}
 
 View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::World> model): Observer(model){
+    // Create a window where the game will be shown
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");
+    // Initialize the only Transformation object
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
 }
 
@@ -24,6 +22,7 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     std::string pathToTexture = "../Textures/";
     sf::Vector2u imageCount(0,0);
     float switchTime = 0;
+    // Check the type of entity and get the right texture and (if present) animation
     if (entity->getType() == "PlayerShip"){
         if (auto ent = std::dynamic_pointer_cast<Model::Ship>(entity)) {
             auto ventity = std::make_shared<Player>(ent, "../Textures/Night Raider sprites.png",
@@ -46,11 +45,13 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
         pathToTexture += "Follower.png";
     }
     auto ventity = std::make_shared<Entity>(entity, pathToTexture, imageCount, switchTime);
+    // Link subject and observer
     entity->attach(ventity);
+    // Add the View::Entity to the view
     this->entities.push_back(ventity);
 }
 
-//----------Tijdelijk----------//
+///----------Tijdelijk----------///
 
 sf::Text getFPS(sf::Font font) {
     static sf::Clock clock;
@@ -66,11 +67,11 @@ sf::Text getFPS(sf::Font font) {
     return text;
 }
 
-//-------einde tijdelijk-------//
+///-------einde tijdelijk-------///
 
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
-    // Go over every entity in the view and draw it on the window if it isn't destroyed
+    // Go over every entity in the view and draw it if it isn't destroyed
     std::vector<std::shared_ptr<Entity>> toKeep;
     for (auto entity: this->entities){
         if (!entity->isDestroyed()){
@@ -79,17 +80,19 @@ void View::View::updateView(float deltaTime) {
         }
     }
     this->entities = toKeep;
-    //----------Tijdelijk----------//
+    ///----------Tijdelijk----------///
     sf::Font font;
     font.loadFromFile("arial.ttf");
     window->draw(getFPS(font));
-    //-------Einde tijdelijk-------//
+    ///-------Einde tijdelijk-------///
+    // Display the updated view in the window
     window->display();
 }
 
 void View::View::checkForEvents(sf::Event event) {
     while (window->pollEvent(event))
     {
+        // Check which event we have to handle
         switch (event.type){
             case sf::Event::Closed:
                 window->close();
@@ -102,6 +105,7 @@ void View::View::checkForEvents(sf::Event event) {
 }
 
 void View::View::update(OP::Event& event) {
+    // If the event is an addEntity event handle it
     if (event.type == OP::Event::AddedEntity){
         this->addViewEntity(event.addedEntity.entity);
     }
