@@ -27,7 +27,6 @@ namespace Model {
 
     protected:
 
-
         virtual void checkCoorX() override;
 
 

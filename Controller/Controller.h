@@ -37,6 +37,8 @@ namespace Ctrl {
     private:
         std::shared_ptr<Model::World> world;
         std::shared_ptr<View::View> view;
+        bool gameEnd;
+        bool exit;
     };
 
 }

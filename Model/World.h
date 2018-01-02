@@ -34,13 +34,15 @@ namespace Model {
 
         bool checkForDestroyed();
 
-        bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
-
         void updateWorld(float totalTime);
 
         void pushToCeilingQueue(unsigned int rows);
 
         void pushToFloorQueue(unsigned int rows);
+
+    private:
+
+        bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
 
     private:
         std::shared_ptr<PlayerShip> player;

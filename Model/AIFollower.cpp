@@ -17,15 +17,29 @@ Model::AIFollower::AIFollower(float x, float y, float width, float height, const
 
 void Model::AIFollower::update(float time) {
     if (auto mod = this->world.lock()){
-        if (mod->getPlayer()->getPositionX() < this->x){
-            this->moveLeft();
+        if (mod->getPlayer()->canBeHit(time, false)) {
+            this->speed = 0.04 ;
+            if (mod->getPlayer()->getPositionX() < this->x) {
+                this->moveLeft();
+            } else {
+                this->moveRight();
+            }
+            if (mod->getPlayer()->getPositionY() < this->y) {
+                this->moveDown();
+            } else {
+                this->moveUp();
+            }
         } else {
-            this->moveRight();
-        }
-        if (mod->getPlayer()->getPositionY() < this->y){
-            this->moveDown();
-        } else {
-            this->moveUp();
+            this->speed = 0.08;
+            if (mod->getPlayer()->getPositionX() + 1 < this->x) {
+                this->moveLeft();
+            } else if (mod->getPlayer()->getPositionX() < this->x and this->x - mod->getPlayer()->getPositionX() < 3){
+                this->moveRight();
+            } if (mod->getPlayer()->getPositionX() - 1 > this->x) {
+                this->moveRight();
+            } else if (mod->getPlayer()->getPositionX() > this->x and this->x - mod->getPlayer()->getPositionX() < 3){
+                this->moveLeft();
+            }
         }
     }
 }

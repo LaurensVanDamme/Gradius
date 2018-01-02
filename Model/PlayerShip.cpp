@@ -21,7 +21,7 @@ void Model::PlayerShip::update(float time) {
 }
 
 bool Model::PlayerShip::canBeHit(float time, bool hit) {
-    if ((time - this->lastTimeHit) >= 1){
+    if ((time - this->lastTimeHit) >= 0.6){
         if (hit) {
             this->lastTimeHit = time;
         }
