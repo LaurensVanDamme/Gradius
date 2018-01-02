@@ -71,15 +71,27 @@ sf::Text getFPS(sf::Font font) {
 
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
-    // Go over every entity in the view and draw it if it isn't destroyed
-    std::vector<std::shared_ptr<Entity>> toKeep;
-    for (auto entity: this->entities){
-        if (!entity->isDestroyed()){
-            entity->draw(window, deltaTime);
-            toKeep.push_back(entity);
+    // If there are things to draw, draw them
+    if (this->entities.size() == 0) {
+        sf::Texture texture;
+        texture.loadFromFile("../Textures/Game Over.png");
+        sf::RectangleShape background;
+        background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+        background.setTexture(&texture);
+        window->draw(background);
+    } else if (this->entities.size() == 1) {
+
+    } else{
+        // Go over every entity in the view and draw it if it isn't destroyed
+        std::vector<std::shared_ptr<Entity>> toKeep;
+        for (auto entity: this->entities) {
+            if (!entity->isDestroyed()) {
+                entity->draw(window, deltaTime);
+                toKeep.push_back(entity);
+            }
         }
+        this->entities = toKeep;
     }
-    this->entities = toKeep;
     ///----------Tijdelijk----------///
     sf::Font font;
     font.loadFromFile("arial.ttf");
@@ -96,9 +108,6 @@ void View::View::checkForEvents(sf::Event event) {
         switch (event.type){
             case sf::Event::Closed:
                 window->close();
-                break;
-            case sf::Event::Resized:
-            Transformation::getInstance()->updateWindowSize(window->getSize().x, window->getSize().y);
                 break;
         }
     }

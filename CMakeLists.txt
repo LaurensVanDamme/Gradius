@@ -14,7 +14,7 @@ set(MODEL_FILES Model/World.h Model/World.cpp
         Model/Bullet.cpp Model/Bullet.h
         Model/Obstacle.cpp Model/Obstacle.h
         Model/Border.cpp Model/Border.h
-        Model/AIShooter.cpp Model/AIShooter.h Model/PlayerShip.cpp Model/PlayerShip.h Model/AIFollower.cpp Model/AIFollower.h)
+        Model/AIShooter.cpp Model/AIShooter.h Model/PlayerShip.cpp Model/PlayerShip.h Model/AIFollower.cpp Model/AIFollower.h Model/Timestamp.cpp Model/Timestamp.h)
 
 set(VIEW_FILES View/Entity.cpp View/Entity.h
         View/Player.cpp View/Player.h

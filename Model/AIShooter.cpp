@@ -71,9 +71,10 @@ void Model::AIShooter::update(float time) {
 }
 
 void Model::AIShooter::checkCoorX() {
-    if (this->x >= (4 + (this->getWidth() / 2))){
-        this->x = 4 + (this->getWidth() / 2);
-    } else if (this->x <= (-4 - (this->getWidth() / 2))){
+//    if (this->x >= (4 + (this->getWidth() / 2))){
+//        this->x = 4 + (this->getWidth() / 2);
+//    } else
+    if (this->x <= (-4 - (this->getWidth() / 2))){
         this->wrecked();
     }
 }

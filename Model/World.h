@@ -7,6 +7,7 @@
 
 #include "Entity.h"
 #include "PlayerShip.h"
+#include "Timestamp.h"
 #include "../ObserverPattern/Subject.h"
 #include <vector>
 #include <memory>
@@ -18,9 +19,9 @@ namespace Model {
     public:
         World();
 
-        std::shared_ptr<PlayerShip> getPlayer();
+        void loadLevel(std::string pathToJson);
 
-        void setPlayer(float x, float y, float width, float height);
+        std::shared_ptr<PlayerShip> getPlayer();
 
         void addBullet(float x, float y, float width, float height, bool AI);
 
@@ -30,25 +31,28 @@ namespace Model {
 
         void addAIFollower(float x, float y, float width, float height);
 
-        void makeBorders();
-
         bool checkForDestroyed();
 
         void updateWorld(float totalTime);
+
+        void destroyAll();
+
+    private:
+
+        void makeBorders();
+
+        bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
 
         void pushToCeilingQueue(unsigned int rows);
 
         void pushToFloorQueue(unsigned int rows);
 
     private:
-
-        bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
-
-    private:
         std::shared_ptr<PlayerShip> player;
         std::vector<std::shared_ptr<Entity>> entities;
         std::queue<unsigned int> ceiling;
         std::queue<unsigned int> floor;
+        std::vector<std::shared_ptr<Timestamp>> level;
     };
 
 }

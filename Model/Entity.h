@@ -65,6 +65,9 @@ namespace Model {
         void moveLeft();
 
 
+        void wrecked();
+
+
         void hit(unsigned int damage);
 
 
@@ -74,9 +77,6 @@ namespace Model {
         virtual void update(float time)=0;
 
     protected:
-
-
-        void wrecked();
 
 
         virtual void checkCoorX();
