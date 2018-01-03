@@ -12,7 +12,7 @@ namespace Model {
     class AIFollower: public Ship {
     public:
 
-        AIFollower();
+        AIFollower()= default;
 
         AIFollower(float x, float y, float width, float height, const std::weak_ptr<World> &world);
 

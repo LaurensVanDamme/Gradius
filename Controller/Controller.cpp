@@ -12,7 +12,7 @@
 #include "Controller.h"
 
 
-Ctrl::Controller::Controller(const std::string jsonFile) {
+Ctrl::Controller::Controller() {
     gameEnd = false;
     exit = false;
     world = std::make_shared<Model::World>();

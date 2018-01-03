@@ -7,8 +7,6 @@
 #include "../Model/PlayerShip.h"
 #include "../Controller/Stopwatch.h"
 
-View::Player::Player() {}
-
 View::Player::Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                      float switchTime) : Entity(entity, pathToTexture, imageCount, switchTime) {
     subject = entity;

@@ -5,8 +5,6 @@
 #include "Obstacle.h"
 #include <limits>
 
-Model::Obstacle::Obstacle() {}
-
 Model::Obstacle::Obstacle(float x, float y, float height, float width)
         : Entity(x, y, height, width) {
     this->type = "Obstacle";

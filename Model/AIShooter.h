@@ -13,7 +13,7 @@ namespace Model {
     public:
 
 
-        AIShooter();
+        AIShooter()= default;
 
         AIShooter(float x, float y, float width, float height, std::weak_ptr<World> world);
 

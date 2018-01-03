@@ -5,14 +5,19 @@
 #include "Entity.h"
 #include "Transformation.h"
 #include "../Model/Entity.h"
-
-View::Entity::Entity() {}
+#include <exception>
+#include <iostream>
 
 View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
                              float switchTime = 0): Observer(entity) {
     destroyed = false;
     texture = std::make_shared<sf::Texture>(sf::Texture());
-    texture->loadFromFile(pathToTexture);
+    try {
+        texture->loadFromFile(pathToTexture);
+    } catch (std::exception &e){
+        std::cerr << "ERROR: The path to a texture isn't correct!" << std::endl;
+        texture->loadFromFile("../Textures/ERROR.png");
+    }
     // Check if an animation has to be made
     if (switchTime != 0 and imageCount != sf::Vector2u(0,0)) {
         animation = Animation(texture, imageCount, switchTime);

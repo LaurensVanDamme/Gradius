@@ -13,7 +13,7 @@ namespace Model {
     public:
 
 
-        Border();
+        Border()= default;
 
         Border(float x, float y, float height, float width);
 

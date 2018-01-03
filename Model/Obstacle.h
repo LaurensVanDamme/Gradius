@@ -11,7 +11,7 @@ namespace Model {
 
     class Obstacle: public Entity {
     public:
-        Obstacle();
+        Obstacle()= default;
 
         Obstacle(float x, float y, float height, float width);
 

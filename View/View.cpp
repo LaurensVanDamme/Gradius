@@ -8,9 +8,6 @@
 #include "../Model/World.h"
 #include "Transformation.h"
 
-
-View::View::View() {}
-
 View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::World> model): Observer(model){
     // Create a window where the game will be shown
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");

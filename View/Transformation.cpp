@@ -4,11 +4,6 @@
 
 #include "Transformation.h"
 
-
-View::Transformation::Transformation() {
-
-}
-
 void View::Transformation::updateWindowSize(unsigned int windowWidth, unsigned int windowHeight) {
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;

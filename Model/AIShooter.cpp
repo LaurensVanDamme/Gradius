@@ -5,10 +5,6 @@
 #include "AIShooter.h"
 #include "World.h"
 
-Model::AIShooter::AIShooter() {
-
-}
-
 Model::AIShooter::AIShooter(float x, float y, float width, float height, std::weak_ptr<World> world)
         : Ship(x, y, width, height, world) {
     this->type = "AIShooter";

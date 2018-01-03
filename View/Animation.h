@@ -17,7 +17,7 @@ namespace View {
     /**
     * @brief Initialize an View::Animation object
     */
-        Animation();
+        Animation()= default;
 
         Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime);
 

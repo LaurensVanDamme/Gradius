@@ -5,8 +5,6 @@
 #include "PlayerShip.h"
 #include "World.h"
 
-Model::PlayerShip::PlayerShip() {}
-
 Model::PlayerShip::PlayerShip(float x, float y, float width, float height, std::weak_ptr<World> model):
         Ship(x, y, width, height, model) {
     this->type = "PlayerShip";

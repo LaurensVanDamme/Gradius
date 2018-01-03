@@ -20,7 +20,7 @@ namespace View {
     /**
     * @brief Initialize a View::Player object
     */
-        Player();
+        Player()= default;
 
         Player(std::weak_ptr<Model::Ship> entity, const std::string &pathToTexture, const sf::Vector2u &imageCount,
                float switchTime);

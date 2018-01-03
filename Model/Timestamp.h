@@ -11,7 +11,9 @@
 namespace Model {
     class Timestamp {
     public:
+
         Timestamp()= default;
+
         Timestamp(float time, std::vector<std::string>& types, std::vector<std::vector<float>>& numbers);
 
         float getTime() const;

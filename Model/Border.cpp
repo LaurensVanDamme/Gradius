@@ -5,8 +5,6 @@
 #include "Border.h"
 #include <limits>
 
-Model::Border::Border() {}
-
 Model::Border::Border(float x, float y, float height, float width) : Obstacle(x, y, height, width) {
     this->type = "Border";
     this->speed = 0.03f;

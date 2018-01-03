@@ -13,7 +13,7 @@ namespace Model {
     public:
 
 
-        Entity();
+        Entity()= default;
 
         Entity(float x, float y, float height, float width);
 

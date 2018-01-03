@@ -16,7 +16,7 @@ namespace OP {  // Observer Pattern
 
     class Subject {
     public:
-        Subject();
+        Subject()= default;
 
         void attach(std::weak_ptr<Observer> observer);
 

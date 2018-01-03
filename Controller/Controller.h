@@ -17,7 +17,7 @@ namespace Ctrl {
     /**
      * @brief Makes a game with model and view
      */
-        Controller(std::string jsonFile = "");
+        Controller();
 
     /**
      * @brief Starts the game loop

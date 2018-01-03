@@ -5,10 +5,6 @@
 #include "Subject.h"
 #include "Observer.h"
 
-OP::Subject::Subject() {
-
-}
-
 void OP::Subject::attach(std::weak_ptr<Observer> observer) {
     observers.push_back(observer);
 }

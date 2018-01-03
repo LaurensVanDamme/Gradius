@@ -12,7 +12,7 @@ namespace Model {
     class PlayerShip: public Ship {
     public:
 
-        PlayerShip();
+        PlayerShip()= default;
 
         PlayerShip(float x, float y, float width, float height, std::weak_ptr<World> model);
 

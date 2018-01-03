@@ -7,8 +7,6 @@
 
 #include <iostream>
 
-Model::Entity::Entity() {}
-
 Model::Entity::Entity(float x, float y, float height, float width) : x(x), y(y), height(height), width(width) {
     this->type = "Entity";
     this->speed = 0;

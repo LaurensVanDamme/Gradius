@@ -12,7 +12,7 @@ namespace Model {
     class Bullet : public Entity {
     public:
 
-        Bullet();
+        Bullet()= default;
 
         Bullet(float x, float y, float width, float height, bool AI);
 

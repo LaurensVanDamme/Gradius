@@ -17,7 +17,7 @@ namespace View {
     /**
     * @brief Initialize a View::Transformation object
     */
-        Transformation();
+        Transformation()= default;
 
     public:
 

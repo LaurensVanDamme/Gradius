@@ -26,7 +26,7 @@ namespace View {
     /**
     * @brief Initialize a View::View object
     */
-        View();
+        View()= default;
 
         View(unsigned int windowWidth, unsigned int windowHeight, std::weak_ptr<Model::World> model);
 

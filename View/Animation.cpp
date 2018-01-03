@@ -5,8 +5,6 @@
 
 #include "Animation.h"
 
-View::Animation::Animation() {}
-
 View::Animation::Animation(std::shared_ptr<sf::Texture> texture, sf::Vector2u imageCount, float switchtime):
         imageCount(imageCount), switchTime(switchtime) {
     this->totalTime = 0.0;  // Initialize the time at 0 sec

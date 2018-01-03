@@ -25,7 +25,7 @@ namespace View {
     /**
     * @brief Initialize a View::Entity object
     */
-        Entity();
+        Entity()= default;
 
         Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount, float switchTime);
 

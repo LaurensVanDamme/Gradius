@@ -14,9 +14,9 @@ namespace OP { // Observer Pattern
 
     class Observer {
     public:
-        Observer();
+        Observer()= default;
 
-        Observer(std::weak_ptr<Subject> subject);
+        explicit Observer(std::weak_ptr<Subject> subject);
 
         virtual void update(Event& event)=0;
 

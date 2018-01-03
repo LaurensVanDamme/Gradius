@@ -16,7 +16,7 @@ namespace Model {
     public:
 
 
-        Ship();
+        Ship()= default;
 
         Ship(float x, float y, float width, float height, std::weak_ptr<World> world);
 

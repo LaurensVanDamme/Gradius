@@ -4,9 +4,6 @@
 
 #include "Bullet.h"
 
-
-Model::Bullet::Bullet() {}
-
 Model::Bullet::Bullet(float x, float y, float width, float height, bool AI)
         : Entity(x, y, height, width), AI(AI) {
     if (this->AI){

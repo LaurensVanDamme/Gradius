@@ -5,8 +5,6 @@
 #include "AIFollower.h"
 #include "World.h"
 
-Model::AIFollower::AIFollower() {}
-
 Model::AIFollower::AIFollower(float x, float y, float width, float height, const std::weak_ptr<Model::World> &world)
         : Ship(x, y, width, height, world) {
     this->type = "AIFollower";
