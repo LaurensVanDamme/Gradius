@@ -265,12 +265,3 @@ bool Model::World::collision(std::shared_ptr<Model::Entity> e1, std::shared_ptr<
     }
     return x and y;
 }
-
-
-void Model::World::pushToCeilingQueue(unsigned int rows) {
-    this->ceiling.push(rows);
-}
-
-void Model::World::pushToFloorQueue(unsigned int rows) {
-    this->floor.push(rows);
-}

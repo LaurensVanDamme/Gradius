@@ -36,17 +36,11 @@ namespace Model {
 
         bool collision(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
 
-        void pushToCeilingQueue(unsigned int rows);
-
-        void pushToFloorQueue(unsigned int rows);
-
         void destroyAll();
 
     private:
         std::shared_ptr<PlayerShip> player;
         std::vector<std::shared_ptr<Entity>> entities;
-        std::queue<unsigned int> ceiling;
-        std::queue<unsigned int> floor;
         std::queue<std::shared_ptr<Timestamp>> level;
     };
 
