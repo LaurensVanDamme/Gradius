@@ -18,7 +18,7 @@ Ctrl::Controller::Controller(const std::string jsonFile) {
     world = std::make_shared<Model::World>();
     view = std::make_shared<View::View>(2100, 1400, world);
     world->attach(view);
-    world->loadLevel("../Levels/Level 1.json");
+    world->loadLevel("../Levels/Level Test.json");
 }
 
 void Ctrl::Controller::run(){

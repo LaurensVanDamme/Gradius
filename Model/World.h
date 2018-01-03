@@ -16,9 +16,9 @@
 
 namespace Model {
 
-    class World: public OP::Subject, public std::enable_shared_from_this<World> {  // Vergeet deconstructor ni!!!
+    class World: public OP::Subject, public std::enable_shared_from_this<World> {
     public:
-        World();
+        World()= default;
 
         void loadLevel(std::string pathToJson);
 
@@ -26,17 +26,9 @@ namespace Model {
 
         void addBullet(float x, float y, float width, float height, bool AI);
 
-        void addObstacle(float x, float y, float width, float height);
-
-        void addAIShooter(float x, float y, float width, float height);
-
-        void addAIFollower(float x, float y, float width, float height);
-
         bool checkForEnd();
 
         void updateWorld(float totalTime);
-
-        void destroyAll();
 
     private:
 
@@ -47,6 +39,8 @@ namespace Model {
         void pushToCeilingQueue(unsigned int rows);
 
         void pushToFloorQueue(unsigned int rows);
+
+        void destroyAll();
 
     private:
         std::shared_ptr<PlayerShip> player;
