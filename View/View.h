@@ -60,6 +60,7 @@ namespace View {
     private:
         std::unique_ptr<sf::RenderWindow> window;
         std::vector<std::shared_ptr<Entity>> entities;
+        bool win;
     };
 
 }

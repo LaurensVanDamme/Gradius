@@ -12,7 +12,6 @@
 #include <fstream>
 #include <iostream>
 
-using namespace std;
 using json = nlohmann::json;
 
 Model::World::World(){
@@ -37,11 +36,13 @@ void Model::World::loadLevel(std::string pathToJson) {
         std::vector<std::vector<float>> numbers;
         for(unsigned int k = 0; k < j["Timestamps"][i]["Spawnlist"].size(); k++){
             types.push_back(j["Timestamps"][i]["Spawnlist"][k]["Type"]);
-            for (unsigned int l = 0; l < j["Timestamps"][i]["Spawnlist"][k]["Entity"].size(); l++){
-                numbers.push_back(j["Timestamps"][i]["Spawnlist"][k]["Numbers"][l]);
+            std::vector<float> num;
+            for (unsigned int l = 0; l < j["Timestamps"][i]["Spawnlist"][k]["Numbers"].size(); l++){
+                num.push_back(j["Timestamps"][i]["Spawnlist"][k]["Numbers"][l]);
             }
+            numbers.push_back(num);
         }
-        level.push_back(std::make_shared<Timestamp>(j["Timestamps"][i]["Time"], types, numbers));
+        level.push(std::make_shared<Timestamp>(j["Timestamps"][i]["Time"], types, numbers));
     }
 }
 
@@ -87,8 +88,6 @@ void Model::World::updateWorld(float totalTime) {
         entity->update(totalTime);
     }
 
-    cout << entities.size() << endl;
-
     // Check for collisions
     for (auto e1: entities){
         std::string type1 = e1->getType();
@@ -103,7 +102,7 @@ void Model::World::updateWorld(float totalTime) {
                     continue;
                 }
             } else if (type1.substr(0,2) == "AI"){
-                if (type2.substr(0,2) == "AI") {
+                if (type2.substr(0,2) == "AI" or type2 == "Obstacle") {
                     continue;
                 }
             }
@@ -123,15 +122,49 @@ void Model::World::updateWorld(float totalTime) {
     }
     this->entities = toKeep;
 
+    // Load entities from the level
+    if (!level.empty()) {
+        if (level.front()->getTime() <= totalTime) {
+            for (unsigned int i = 0; i < level.front()->getTypes().size(); i++) {
+                std::shared_ptr<Entity> entity;
+                if (level.front()->getTypes()[i] == "Obstacle") {
+                    entity = std::make_shared<Obstacle>(level.front()->getNumbers()[i][0],
+                                                        level.front()->getNumbers()[i][1],
+                                                        level.front()->getNumbers()[i][2],
+                                                        level.front()->getNumbers()[i][3]);
+                } else if (level.front()->getTypes()[i] == "AIShooter") {
+                    entity = std::make_shared<AIShooter>(level.front()->getNumbers()[i][0],
+                                                         level.front()->getNumbers()[i][1],
+                                                         level.front()->getNumbers()[i][2],
+                                                         level.front()->getNumbers()[i][3], shared_from_this());
+                } else if (level.front()->getTypes()[i] == "AIFollower") {
+                    entity = std::make_shared<Model::AIFollower>(level.front()->getNumbers()[i][0],
+                                                                 level.front()->getNumbers()[i][1],
+                                                                 level.front()->getNumbers()[i][2],
+                                                                 level.front()->getNumbers()[i][3], shared_from_this());
+                }
+                this->entities.push_back(entity);
+                OP::Event event(OP::Event::AddedEntity);
+                event.addedEntity.entity = entity;
+                this->notify(event);
+            }
+            level.pop();
+        }
+    } else {
+        if (!this->player->isDestroyed() and this->entities.size() == 67){
+            this->destroyAll();
+            OP::Event event(OP::Event::Won);
+            this->notify(event);
+        }
+    }
 }
 
-bool Model::World::checkForDestroyed() {
+bool Model::World::checkForEnd() {
     if (player->isDestroyed()){
         this->destroyAll();
         return true;
-    } else {
-        return false;
     }
+    else return level.empty() and this->entities.size() == 67;
 }
 
 void Model::World::destroyAll() {

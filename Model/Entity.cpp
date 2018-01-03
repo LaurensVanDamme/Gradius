@@ -105,9 +105,9 @@ void Model::Entity::wrecked() {
 }
 
 void Model::Entity::checkCoorX() {
-    if (this->x >= (4 + (this->getWidth() / 2))){
+    if (this->x >= (6 + (this->getWidth() / 2))){
         this->wrecked();
-    } else if (this->x <= (-4 - (this->getWidth() / 2))){
+    } else if (this->x <= (-5 - (this->getWidth() / 2))){
         this->wrecked();
     }
 }

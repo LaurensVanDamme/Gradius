@@ -10,6 +10,7 @@
 #include "Timestamp.h"
 #include "../ObserverPattern/Subject.h"
 #include <vector>
+#include <queue>
 #include <memory>
 #include <queue>
 
@@ -31,7 +32,7 @@ namespace Model {
 
         void addAIFollower(float x, float y, float width, float height);
 
-        bool checkForDestroyed();
+        bool checkForEnd();
 
         void updateWorld(float totalTime);
 
@@ -52,7 +53,7 @@ namespace Model {
         std::vector<std::shared_ptr<Entity>> entities;
         std::queue<unsigned int> ceiling;
         std::queue<unsigned int> floor;
-        std::vector<std::shared_ptr<Timestamp>> level;
+        std::queue<std::shared_ptr<Timestamp>> level;
     };
 
 }

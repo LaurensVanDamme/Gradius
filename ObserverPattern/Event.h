@@ -33,7 +33,8 @@ namespace OP {
             UpdateX,        ///< The subject requested to update the x coordinate
             UpdateY,        ///< The subject requested to update the y coordinate
             Destroyed,      ///< The subject notified that he is destroyed
-            AddedEntity     ///< The subject requested to create an view entity
+            AddedEntity,    ///< The subject requested to create an view entity
+            Won             ///< The subject says the game has been won
         };
 
         EventType type; ///< Type of the event

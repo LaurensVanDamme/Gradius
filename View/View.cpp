@@ -16,6 +16,7 @@ View::View::View(unsigned int windowWidth, unsigned int windowHeight, std::weak_
     window = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowWidth, windowHeight), "Gradius");
     // Initialize the only Transformation object
     Transformation::getInstance()->updateWindowSize(windowWidth, windowHeight);
+    win = false;
 }
 
 void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
@@ -72,16 +73,18 @@ sf::Text getFPS(sf::Font font) {
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // If there are things to draw, draw them
-    if (this->entities.size() == 0) {
+    if (this->entities.empty()) {
         sf::Texture texture;
-        texture.loadFromFile("../Textures/Game Over.png");
+        if (win){
+            texture.loadFromFile("../Textures/You Win.jpg");
+        } else {
+            texture.loadFromFile("../Textures/Game Over.png");
+        }
         sf::RectangleShape background;
         background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
         background.setTexture(&texture);
         window->draw(background);
-    } else if (this->entities.size() == 1) {
-
-    } else{
+    } else {
         // Go over every entity in the view and draw it if it isn't destroyed
         std::vector<std::shared_ptr<Entity>> toKeep;
         for (auto entity: this->entities) {
@@ -117,6 +120,8 @@ void View::View::update(OP::Event& event) {
     // If the event is an addEntity event handle it
     if (event.type == OP::Event::AddedEntity){
         this->addViewEntity(event.addedEntity.entity);
+    } else if (event.type == OP::Event::Won){
+        this->win = true;
     }
 }
 
