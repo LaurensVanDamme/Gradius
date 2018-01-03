@@ -18,7 +18,7 @@ Ctrl::Controller::Controller() {
     world = std::make_shared<Model::World>();
     view = std::make_shared<View::View>(2100, 1400, world);
     world->attach(view);
-    world->loadLevel("../Levels/Level Test.json");
+    world->loadLevel("../Levels/Level 1.json");
 }
 
 void Ctrl::Controller::run(){
@@ -47,13 +47,13 @@ void Ctrl::Controller::run(){
 void Ctrl::Controller::getUserInput() {
     // Get the input from the user and update the model
     if (!gameEnd) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) or sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             this->world->getPlayer()->moveLeft();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) or sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             this->world->getPlayer()->moveRight();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) or sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             this->world->getPlayer()->moveUp();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) or sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             this->world->getPlayer()->moveDown();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             this->world->getPlayer()->shoot(Stopwatch::getInstance()->getTotalTime());
