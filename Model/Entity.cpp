@@ -82,10 +82,10 @@ void Model::Entity::moveLeft() {
 
 void Model::Entity::hit(unsigned int damage) {
     // Reduce healt one at a time
-    // (if damage > healt it will be set to a very large number if it's substracted in one time)
+    // (if damage > healt it will be set to a very large number if it's subtracted in one time)
     for (unsigned int i = 0; i < damage; i++) {
         this->health--;
-        if (this->health == 0) {
+        if (this->health == 0) { // If it's health is 0, destroy it
             this->wrecked();
             break;
         }
@@ -103,6 +103,7 @@ void Model::Entity::wrecked() {
 }
 
 void Model::Entity::checkCoorX() {
+    // Make sure the entity can't live long outside the boundaries
     if (this->x >= (6 + (this->getWidth() / 2))){
         this->wrecked();
     } else if (this->x <= (-5 - (this->getWidth() / 2))){
@@ -111,6 +112,7 @@ void Model::Entity::checkCoorX() {
 }
 
 void Model::Entity::checkCoorY() {
+    // Make sure the entity can't live long outside the boundaries and can't hit the bottom and top borders
     if (this->y >= (3 + (this->getHeight() / 2))){
         this->wrecked();
     } else if (this->y <= (-3 - (this->getHeight() / 2))){

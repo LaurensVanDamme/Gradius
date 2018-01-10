@@ -13,25 +13,38 @@ namespace Model {
     public:
 
 
+        /**
+        * @brief Initialize a Model::AIShooter object
+        */
         AIShooter()= default;
 
         AIShooter(float x, float y, float width, float height, std::weak_ptr<World> world);
 
-
+        /**
+        * @brief Updates the aishooter with the given time
+        */
         void update(float time) override ;
 
     private:
+
+        /**
+        * @brief Check if the x coordinate is valid and change it if needed
+        */
         void checkCoorX() override;
 
+        /**
+        * @brief Check if the y coordinate is valid and change it if needed
+        */
         void checkCoorY() override;
 
-        float lastTimeDown;
-        float lastTimeUp;
-        float yAcceleration;
-        int timesUp;
-        int timesDown;
-        bool goingDown;
-        bool goingUp;
+    private:
+        float lastTimeDown{};
+        float lastTimeUp{};
+        float yAcceleration{};
+        int timesUp{};
+        int timesDown{};
+        bool goingDown{false};
+        bool goingUp{false};
 
     };
 

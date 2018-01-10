@@ -12,14 +12,18 @@ namespace Model {
     class Border: public Obstacle {
     public:
 
-
+        /**
+        * @brief Initialize a Model::Border object
+        */
         Border()= default;
 
         Border(float x, float y, float height, float width);
 
     private:
 
-
+        /**
+        * @brief Check if the x coordinate is valid and change it if needed
+        */
         void checkCoorX() override;
     };
 

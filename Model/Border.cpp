@@ -13,9 +13,12 @@ Model::Border::Border(float x, float y, float height, float width) : Obstacle(x,
 }
 
 void Model::Border::checkCoorX() {
+    // Make sure the entity can't live long outside the boundaries
     if (this->x >= (4 + this->getWidth())){
         this->wrecked();
-    } else if (this->x < (-4 - (this->getWidth() / 2))){
+    }
+        // If the border is at the left end of the coordinate system, spawn at the right end of the coordinate system
+    else if (this->x < (-4 - (this->getWidth() / 2))) {
         this->x = 4 + (this->getWidth() / 2);
     }
 }

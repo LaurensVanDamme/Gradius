@@ -12,15 +12,20 @@ namespace Model {
     class Bullet : public Entity {
     public:
 
+        /**
+        * @brief Initialize a Model::Bullet object
+        */
         Bullet()= default;
 
         Bullet(float x, float y, float width, float height, bool AI);
 
-
+        /**
+        * @brief Updates the bullet with the given time
+        */
         void update(float time) override;
 
     private:
-        bool AI;
+        bool AI{false};
     };
 
 }

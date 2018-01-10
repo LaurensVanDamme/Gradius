@@ -11,11 +11,17 @@ namespace Model {
 
     class Obstacle: public Entity {
     public:
+
+        /**
+        * @brief Initialize a Model::Obstacle object
+        */
         Obstacle()= default;
 
         Obstacle(float x, float y, float height, float width);
 
-
+        /**
+        * @brief Update the obstacle with the given time
+        */
         void update(float time) override;
 
     };
