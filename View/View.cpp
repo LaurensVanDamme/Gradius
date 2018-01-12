@@ -49,24 +49,6 @@ void View::View::addViewEntity(std::shared_ptr<Model::Entity> entity) {
     this->entities.push_back(ventity);
 }
 
-///----------Tijdelijk----------///
-
-sf::Text getFPS(sf::Font font) {
-    static sf::Clock clock;
-    float cTime = clock.getElapsedTime().asSeconds();
-    clock.restart();
-    int fps = std::round(1 / cTime);
-
-    std::string str = "FPS: " + std::to_string(fps);
-    sf::Text text;
-    text.setFont(font);
-    text.setCharacterSize(24);
-    text.setString(str);
-    return text;
-}
-
-///-------einde tijdelijk-------///
-
 void View::View::updateView(float deltaTime) {
     window->clear(sf::Color(150, 150, 150));
     // If there are things to draw, draw them
@@ -92,11 +74,6 @@ void View::View::updateView(float deltaTime) {
         }
         this->entities = toKeep;
     }
-    ///----------Tijdelijk----------///
-    sf::Font font;
-    font.loadFromFile("arial.ttf");
-    window->draw(getFPS(font));
-    ///-------Einde tijdelijk-------///
     // Display the updated view in the window
     window->display();
 }

@@ -5,7 +5,6 @@
 #include "Entity.h"
 #include "Transformation.h"
 #include "../Model/Entity.h"
-#include <exception>
 #include <iostream>
 
 View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToTexture, sf::Vector2u imageCount = sf::Vector2u(0,0),
@@ -13,8 +12,11 @@ View::Entity::Entity(std::weak_ptr<Model::Entity> entity, std::string pathToText
     destroyed = false;
     texture = std::make_shared<sf::Texture>(sf::Texture());
     try {
-        texture->loadFromFile(pathToTexture);
-    } catch (std::exception &e){
+        sf::err().rdbuf(NULL); // don't show the sfml error
+        if (!texture->loadFromFile(pathToTexture)) { // If file isn't right it will be nullptr
+            throw 1;
+        }
+    } catch (int i) {
         std::cerr << "ERROR: The path to a texture isn't correct!" << std::endl;
         texture->loadFromFile("../Textures/ERROR.png");
     }

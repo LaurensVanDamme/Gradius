@@ -2,12 +2,6 @@
 // Created by laurens on 11/18/17.
 //
 
-/// Test
-
-#include "../View/Player.h"
-
-/// End Test
-
 #include "Stopwatch.h"
 #include "Controller.h"
 

@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Controller/Controller.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     srand (time(NULL)); // Initialize the random function
     Ctrl::Controller game; // Create a game
