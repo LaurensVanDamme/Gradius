@@ -64,18 +64,123 @@
       {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
       {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
     ]},
+    {
+      "Time": 25,
+      "Spawnlist": [
+        {
+          "Type": "Obstacle",
+          "Numbers": [
+            4.5,
+            2,
+            1,
+            1
+          ]
+        },
+        {
+          "Type": "Obstacle",
+          "Numbers": [
+            4.5,
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
     {"Time": 30, "Spawnlist": [
+      {
+        "Type": "AIShooter",
+        "Numbers": [
+          4.5,
+          1.5,
+          0.4444,
+          0.3333
+        ]
+      },
+      {
+        "Type": "AIShooter",
+        "Numbers": [
+          4.5,
+          0,
+          0.4444,
+          0.3333
+        ]
+      },
+      {
+        "Type": "AIShooter",
+        "Numbers": [
+          4.5,
+          -1.5,
+          0.4444,
+          0.3333
+        ]
+      },
+      {
+        "Type": "Obstacle",
+        "Numbers": [
+          5,
+          -2,
+          1,
+          1
+        ]
+      },
+      {
+        "Type": "Obstacle",
+        "Numbers": [
+          5,
+          -1,
+          1,
+          1
+        ]
+      }
+    ]
+    },
+    {
+      "Time": 35,
+      "Spawnlist": [
+        {
+          "Type": "AIShooter",
+          "Numbers": [
+            4.5,
+            1.5,
+            0.4444,
+            0.3333
+          ]
+        },
+        {
+          "Type": "AIShooter",
+          "Numbers": [
+            4.5,
+            0,
+            0.4444,
+            0.3333
+          ]
+        },
+        {
+          "Type": "AIShooter",
+          "Numbers": [
+            4.5,
+            -1.5,
+            0.4444,
+            0.3333
+          ]
+        }
+      ]
+    },
+    {
+      "Time": 40,
+      "Spawnlist": [
       {"Type": "AIFollower", "Numbers": [ 2.3, 2, 0.3, 0.3]},
       {"Type": "AIFollower", "Numbers": [ 2.7, 1, 0.3, 0.3]},
-      {"Type": "AIFollower", "Numbers": [ -3, 0, 0.3, 0.3]},
-      {"Type": "AIFollower", "Numbers": [ 3.2, -1, 0.3, 0.3]},
-      {"Type": "AIFollower", "Numbers": [ 0, -2.5, 0.3, 0.3]}
-    ]},
-    {"Time": 40, "Spawnlist": [
-      {"Type": "AIShooter", "Numbers": [5.0, 1, 0.4444, 0.3333]},
-      {"Type": "AIShooter", "Numbers": [4.5, -1, 0.4444, 0.3333]},
-      {"Type": "AIFollower", "Numbers": [4.5, -1.5, 0.3, 0.3]},
-      {"Type": "AIFollower", "Numbers": [-4.5, 0, 1, 1]}
+        {
+          "Type": "AIFollower",
+          "Numbers": [
+            3.2,
+            -1,
+            0.3,
+            0.3
+          ]
+        }
     ]}
   ]
 }

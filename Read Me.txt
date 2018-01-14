@@ -1,0 +1,7 @@
+Move up: 'w' or 'Arrow up'
+Move down: 's' or 'Arrow down'
+Move left: 'a' or 'Arrow left'
+Move right: 'd' or 'Arrow left'
+Shoot: 'Spacebar'
+
+Level switch is possible when running the game.
