@@ -2,17 +2,38 @@
 // Created by laurens on 11/18/17.
 //
 
+#include <iostream>
 #include "Stopwatch.h"
 #include "Controller.h"
 
 
 Ctrl::Controller::Controller() {
+    // Give the player the option to chose which level he/she wants to play
+    std::string pathToLevel{"../Levels/"};
+    std::cout << "Which level do you want to play?\n- Test\n- 1\n- 2" << std::endl;
+    while (true){ // Mini Command Line Interface
+        std::string level;
+        std::cin >> level;
+        std::transform(level.begin(), level.end(), level.begin(), ::tolower);
+        if (level == "test"){
+            pathToLevel += "Test Level.json";
+            break;
+        } else if (level == "1"){
+            pathToLevel += "Level 1.json";
+            break;
+        } else if (level == "2"){
+            pathToLevel += "Level 2.json";
+            break;
+        } else {
+            std::cout << "Unknown level, please try again..." << std::endl;
+        }
+    }
     gameEnd = false;
     exit = false;
     world = std::make_shared<Model::World>();
     view = std::make_shared<View::View>(2100, 1400, world);
     world->attach(view);
-    world->loadLevel("../Levels/Level 1.json");
+    world->loadLevel(pathToLevel);
 }
 
 void Ctrl::Controller::run(){

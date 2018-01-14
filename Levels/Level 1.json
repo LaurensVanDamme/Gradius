@@ -9,15 +9,7 @@
       {"Type": "Obstacle", "Numbers": [5, -1.5, 0.5, 0.5]}
 	]},
 	{"Time": 2.5, "Spawnlist": [
-      {
-        "Type": "Obstacle",
-        "Numbers": [
-          5,
-          0,
-          0.7,
-          0.7
-        ]
-      },
+      {"Type": "Obstacle", "Numbers": [5, 0, 0.7, 0.7]},
       {"Type": "AIShooter", "Numbers": [4.5, 0, 0.4444, 0.3333]},
       {"Type": "AIShooter", "Numbers": [5, 1.5, 0.4444, 0.3333]},
       {"Type": "AIShooter", "Numbers": [5.5, -1.5, 0.4444, 0.3333]}
@@ -33,7 +25,8 @@
       {"Type": "AIFollower", "Numbers": [ 0, -2.5, 0.3, 0.3]}
 	]},
     {"Time": 18, "Spawnlist": [
-      {"Type": "AIShooter", "Numbers": [-4.5, 0, 0.4444, 0.3333]},
+      {"Type": "AIShooter", "Numbers": [5.0, 1, 0.4444, 0.3333]},
+      {"Type": "AIShooter", "Numbers": [4.5, -1, 0.4444, 0.3333]},
       {"Type": "AIFollower", "Numbers": [4.5, -1.5, 0.3, 0.3]},
       {"Type": "AIFollower", "Numbers": [-4.5, 0, 1, 1]}
     ]}

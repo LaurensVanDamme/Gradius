@@ -1,0 +1,81 @@
+{
+  "Timestamps": [
+    {"Time": 0, "Spawnlist": [
+      {"Type": "Obstacle", "Numbers": [4, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [6, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [6, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [6, 0, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [6, -2, 1, 1]}
+    ]},
+    {"Time": 3.8, "Spawnlist": [
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, 0, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 6.8, "Spawnlist": [
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 9.8, "Spawnlist": [
+      {"Type": "AIShooter", "Numbers": [4.5, 0.5, 0.4444, 0.3333]},
+      {"Type": "AIShooter", "Numbers": [4.5, -0.5, 0.4444, 0.3333]},
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 12.8, "Spawnlist": [
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, 0, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 0, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 15.8, "Spawnlist": [
+      {"Type": "AIFollower", "Numbers": [ 5, 1, 0.3, 0.3]},
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 18.8, "Spawnlist": [
+      {"Type": "Obstacle", "Numbers": [4.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, 1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -1, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [4.5, -2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, 2, 1, 1]},
+      {"Type": "Obstacle", "Numbers": [5.5, -2, 1, 1]}
+    ]},
+    {"Time": 30, "Spawnlist": [
+      {"Type": "AIFollower", "Numbers": [ 2.3, 2, 0.3, 0.3]},
+      {"Type": "AIFollower", "Numbers": [ 2.7, 1, 0.3, 0.3]},
+      {"Type": "AIFollower", "Numbers": [ -3, 0, 0.3, 0.3]},
+      {"Type": "AIFollower", "Numbers": [ 3.2, -1, 0.3, 0.3]},
+      {"Type": "AIFollower", "Numbers": [ 0, -2.5, 0.3, 0.3]}
+    ]},
+    {"Time": 40, "Spawnlist": [
+      {"Type": "AIShooter", "Numbers": [5.0, 1, 0.4444, 0.3333]},
+      {"Type": "AIShooter", "Numbers": [4.5, -1, 0.4444, 0.3333]},
+      {"Type": "AIFollower", "Numbers": [4.5, -1.5, 0.3, 0.3]},
+      {"Type": "AIFollower", "Numbers": [-4.5, 0, 1, 1]}
+    ]}
+  ]
+}

@@ -22,7 +22,7 @@ namespace Ctrl {
         bool updateAndCheck();
 
     /**
-    * @brief Returns the totalTickTime before the subtraction of timePerTick
+    * @brief Returns the totalFrameTime before the subtraction of timePerTick
     */
         float getTotalFrameTime() const;
 
@@ -32,7 +32,7 @@ namespace Ctrl {
         float getTotalTime() const;
 
     private:
-        float timePerFrame = 0.030; // Seconds per tick/frame
+        float timePerFrame = 0.030; // Seconds per frame
         float totalFrameTime;
         float totalTime;
         float formalTotalFrameTime;

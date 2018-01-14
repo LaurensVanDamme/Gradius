@@ -38,3 +38,5 @@ template<typename T> T* Singleton<T>::instance = nullptr;
 
 
 #endif //GRADIUS_SINGLTON_H
+
+
